@@ -1,0 +1,33 @@
+{
+	"moduleName": "Downloads",
+	"version": 2.62,
+	"pages": [
+		{
+			"pid": "intranet_directories",
+			"file": "directories.php",
+			"directory": "scripts",
+			"title": "Dateien",
+			"accessRestriction": {
+				"gruppen": ["F", "B", "P", "C", "G", "W", "Y"]
+			}
+		}
+	],
+	"includes": [
+		{
+			"iid": "intranet_download",
+			"file": "download.php",
+			"directory": "scripts",
+			"accessRestriction": {
+				"gruppen": ["F", "B", "P", "C", "G", "W", "Y"]
+			}
+		}
+	],
+	"menuElementsIntranet": [
+		{
+			"pid": "intranet_directories",
+			"name": "Dateien",
+			"type": "menu_entry",
+			"position": 10050
+		}
+	]
+}

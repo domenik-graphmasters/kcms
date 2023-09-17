@@ -1,0 +1,29 @@
+{
+	"moduleName": "Log",
+	"version": 1.20,
+	"pages": [
+		{
+			"pid": "intranet_log",
+			"file": "log.php",
+			"directory": "scripts",
+			"title": "Protokoll",
+			"accessRestriction": {
+				"aemter": ["internetwart"]
+			}
+		}
+	],
+	"menuElementsAdministration": [
+		{
+			"name": "System",
+			"type": "menu_folder",
+			"elements": [
+				{
+					"pid": "intranet_log",
+					"name": "Protokoll",
+					"type": "menu_entry",
+					"position": 4
+				}
+			]
+		}
+	]
+}

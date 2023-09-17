@@ -1,0 +1,57 @@
+{
+	"moduleName": "Event",
+	"pages": [
+		{
+			"pid": "event",
+			"file": "event.php",
+			"directory": "scripts",
+			"title": "Veranstaltung"
+		},
+		{
+			"pid": "event_admin_galerien",
+			"file": "galleries.php",
+			"directory": "scripts/admin",
+			"title": "Foto-Verwaltung",
+			"accessRestriction": {
+				"gruppen": ["F", "B", "P"]
+			}
+		},
+		{
+			"pid": "event_admin_galerie",
+			"file": "gallery.php",
+			"directory": "scripts/admin",
+			"title": "Galerie",
+			"accessRestriction": {
+				"gruppen": ["F", "B", "P"]
+			}
+		}
+	],
+	"includes": [
+		{
+			"iid": "event_picture",
+			"file": "picture.php",
+			"directory": "scripts"
+		},
+		{
+			"iid": "event_admin_galerie_upload",
+			"file": "gallery_upload.php",
+			"directory": "scripts/admin",
+			"accessRestriction": {
+				"gruppen": ["F", "B", "P"]
+			}
+		},
+		{
+			"iid": "fb_event",
+			"file": "fbevent.php",
+			"directory": "scripts"
+		}
+	],
+	"menuElementsIntranet": [
+		{
+			"pid": "event_admin_galerien",
+			"name": "Fotos",
+			"type": "menu_entry",
+			"position": 30000
+		}
+	]
+}

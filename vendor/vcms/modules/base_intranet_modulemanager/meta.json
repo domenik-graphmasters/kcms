@@ -1,0 +1,35 @@
+{
+	"moduleName": "Modul-Manager",
+	"pages": [
+		{
+			"pid": "modules",
+			"file": "modulemanager.php",
+			"directory": "scripts",
+			"title": "Module",
+			"accessRestriction": {
+				"aemter": ["internetwart"]
+			}
+		}
+	],
+	"includes": [
+		{
+			"iid": "auto_update",
+			"file": "auto_update.php",
+			"directory": "scripts"
+		}
+	],
+	"menuElementsAdministration": [
+		{
+			"name": "System",
+			"type": "menu_folder",
+			"elements": [
+				{
+					"pid": "modules",
+					"name": "Module",
+					"type": "menu_entry",
+					"position": 2
+				}
+			]
+		}
+	]
+}

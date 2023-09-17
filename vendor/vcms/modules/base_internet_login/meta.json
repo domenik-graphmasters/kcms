@@ -1,0 +1,32 @@
+{
+	"moduleName": "Login",
+	"pages": [
+		{
+			"pid": "login",
+			"file": "login.php",
+			"directory": "scripts",
+			"title": "Login"
+		},
+		{
+			"pid": "registration",
+			"file": "registration.php",
+			"directory": "scripts",
+			"title": "Registrierung"
+		},
+		{
+			"pid": "password",
+			"file": "password.php",
+			"directory": "scripts",
+			"title": "Passwort zurücksetzen"
+		}
+	],
+	"menuElementsInternet": [
+		{
+			"pid": "login",
+			"name": "Login",
+			"nameLogout": "Logout",
+			"type": "menu_entry_login",
+			"position": 99999
+		}
+	]
+}

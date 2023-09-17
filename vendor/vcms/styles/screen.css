@@ -1,0 +1,97 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	padding: 0;
+	background-color: #fdfdfd;
+	color: #222;
+	font-family: "Libre Franklin", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	/* hyphenation */
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	-webkit-hyphens: auto;
+	-ms-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
+}
+
+#container {
+	min-height: 100%;
+}
+
+.navbar-internet-only + #content {
+	padding-top: 125px;
+}
+
+.navbar-internet-intranet + #content {
+	padding-top: 158px;
+}
+
+main,
+footer {
+	padding: 0.6em;
+}
+
+hr {
+	clear: both;
+}
+
+td.img-column {
+	width: 200px;
+}
+
+td.tool-column {
+	text-align: center;
+}
+
+a .fa {
+	color: #333;
+}
+
+.image-muted {
+	background-color: black;
+}
+
+.image-muted img {
+	opacity: 0.5;
+}
+
+.img-box .delete-icon-box {
+	position: absolute;
+	padding: 1px;
+	background-color: white;
+	z-index: 100;
+}
+
+.semestercover-box {
+	max-width: 400px;
+}
+
+.last-insert-id {
+	display: none;
+}
+
+.reveal {
+	visibility: hidden;
+}
+
+tiny {
+	font-size: 65%;
+	vertical-align: middle;
+}
+
+.social-buttons a {
+	color: #333;
+}
+
+.social-buttons a i {
+	margin-left: 0.5em;
+}
+
+footer .auto-update-img {
+	display: none;
+	width: 1px;
+	height: 1px;
+}

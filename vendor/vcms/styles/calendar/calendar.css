@@ -1,0 +1,59 @@
+.calendar {
+	width: 100%;
+}
+
+.calendar .calendar-month-name {
+	width: 100%;
+	margin-top: 1px;
+	background-color: rgba(0, 0, 0, 0.65);
+	color: white;
+}
+
+.calendar .calendar-month-name h2 {
+	text-align: center;
+	margin: 0;
+	padding: 0.5em;
+}
+
+.calendar .calendar-cell-container {
+  display: flex;
+	flex-wrap: wrap;
+	flex: none;
+	justify-content: space-around;
+}
+
+.calendar .calendar-cell {
+	margin-top: 1px;
+	padding: 0.5em;
+}
+
+@media (max-width: 768px){
+	.calendar .calendar-cell {
+		width: 100%;
+	}
+}
+
+@media (min-width: 768px){
+	.calendar .calendar-cell {
+		/* (100% / 7) - 0.1% */
+		width: 14.185714285714285714285714285714%;
+	}
+}
+
+.calendar .calendar-day-name {
+	text-align: center;
+}
+
+.calendar .calendar-day {
+	border: thin solid #ddd;
+	text-align: left;
+}
+
+.calendar .calendar-day .calendar-event {
+	text-align: center;
+	margin-top: 1em;
+}
+
+.calendar .calendar-day .calendar-event time {
+	font-weight: bold;
+}

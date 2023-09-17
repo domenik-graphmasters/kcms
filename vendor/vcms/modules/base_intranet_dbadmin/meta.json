@@ -1,0 +1,203 @@
+{
+	"moduleName": "Datenbank-Administration",
+	"pages": [
+		{
+			"pid": "intranet_admin_persons",
+			"file": "persons.php",
+			"directory": "scripts/person",
+			"title": "Personen",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+			}
+		},
+		{
+			"pid": "intranet_admin_person",
+			"file": "person.php",
+			"directory": "scripts/person",
+			"title": "Person",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+			}
+		},
+		{
+			"pid": "intranet_admin_semesters",
+			"file": "semesters.php",
+			"directory": "scripts/semester",
+			"title": "Semester",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart"]
+			}
+		},
+		{
+			"pid": "intranet_admin_semester",
+			"file": "semester.php",
+			"directory": "scripts/semester",
+			"title": "Semester",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart"]
+			}
+		},
+		{
+			"pid": "intranet_admin_events",
+			"file": "events.php",
+			"directory": "scripts/event",
+			"title": "Veranstaltungen",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+			}
+		},
+		{
+			"pid": "intranet_admin_event",
+			"file": "event.php",
+			"directory": "scripts/event",
+			"title": "Veranstaltung",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+			}
+		},
+		{
+			"pid": "intranet_admin_associations",
+			"file": "associations.php",
+			"directory": "scripts/association",
+			"title": "Vereine",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+			}
+		},
+		{
+			"pid": "intranet_admin_association",
+			"file": "association.php",
+			"directory": "scripts/association",
+			"title": "Verein",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+			}
+		},
+		{
+			"pid": "intranet_admin_vips",
+			"file": "vips.php",
+			"directory": "scripts/vip",
+			"title": "Vips",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+			}
+		},
+		{
+			"pid": "intranet_admin_vip",
+			"file": "vip.php",
+			"directory": "scripts/vip",
+			"title": "Vip",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+			}
+		},
+		{
+			"pid": "intranet_admin_memberships",
+			"file": "memberships.php",
+			"directory": "scripts/membership",
+			"title": "Vereinsmitgliedschaften",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+			}
+		},
+		{
+			"pid": "intranet_admin_membership",
+			"file": "membership.php",
+			"directory": "scripts/membership",
+			"title": "Vereinsmitgliedschaft",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+			}
+		},
+		{
+			"pid": "intranet_admin_groups",
+			"file": "groups.php",
+			"directory": "scripts",
+			"title": "Gruppen",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart"]
+			}
+		},
+		{
+			"pid": "intranet_admin_status",
+			"file": "status.php",
+			"directory": "scripts",
+			"title": "Status",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart"]
+			}
+		},
+		{
+			"pid": "intranet_admin_regions",
+			"file": "regions.php",
+			"directory": "scripts",
+			"title": "Regionen",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart"]
+			}
+		}
+	],
+	"menuElementsAdministration": [
+		{
+			"name": "Daten",
+			"type": "menu_folder",
+			"position": 100,
+			"elements": [
+				{
+					"pid": "intranet_admin_persons",
+					"name": "Personen",
+					"type": "menu_entry",
+					"position": 200
+				},
+				{
+					"pid": "intranet_admin_semesters",
+					"name": "Semester",
+					"type": "menu_entry",
+					"position": 300
+				},
+				{
+					"pid": "intranet_admin_events",
+					"name": "Veranstaltungen",
+					"type": "menu_entry",
+					"position": 400
+				},
+				{
+					"pid": "intranet_admin_associations",
+					"name": "Vereine",
+					"type": "menu_entry",
+					"position": 500
+				},
+				{
+					"pid": "intranet_admin_vips",
+					"name": "Vips",
+					"type": "menu_entry",
+					"position": 550
+				},
+				{
+					"pid": "intranet_admin_memberships",
+					"name": "Mitgliedschaften",
+					"type": "menu_entry",
+					"position": 501
+				},
+				{
+					"pid": "intranet_admin_groups",
+					"name": "Gruppen",
+					"type": "menu_entry",
+					"position": 800
+				},
+				{
+					"pid": "intranet_admin_status",
+					"name": "Status",
+					"type": "menu_entry",
+					"position": 900
+				},
+				{
+					"pid": "intranet_admin_regions",
+					"name": "Regionen",
+					"type": "menu_entry",
+					"position": 1000
+				}
+			]
+		}
+	]
+}

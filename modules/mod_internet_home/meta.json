@@ -1,0 +1,50 @@
+{
+	"moduleName": "Home",
+	"version": 3.82,
+	"installScript": "install/install.php",
+	"pages": [
+		{
+			"pid": "home",
+			"file": "home.php",
+			"directory": "scripts",
+			"title": "Startseite",
+			"containerEnabled": false
+		},
+		{
+			"pid": "intranet_admin_announcements",
+			"file": "announcements.php",
+			"directory": "scripts/admin",
+			"title": "Ankündigungen",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart", "senior", "consenior", "scriptor", "fuchsmajor", "fuchsmajor2", "quaestor", "jubelsenior"]
+			}
+		},
+		{
+			"pid": "intranet_admin_announcement",
+			"file": "announcement.php",
+			"directory": "scripts/admin",
+			"title": "Ankündigung",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart", "senior", "consenior", "scriptor", "fuchsmajor", "fuchsmajor2", "quaestor", "jubelsenior"]
+			}
+		}
+	],
+	"menuElementsAdministration": [
+		{
+			"name": "Daten",
+			"type": "menu_folder",
+			"elements": [
+				{
+					"pid": "intranet_admin_announcements",
+					"name": "Startseite",
+					"type": "menu_entry",
+					"position": 2000
+				}
+			]
+		}
+	],
+	"headerStrings": [
+		"<link rel='stylesheet' href='vendor/vcms/styles/navigation/navigation_transparent.css' />",
+		"<link rel='stylesheet' href='modules/mod_internet_home/styles/screen.css' />"
+	]
+}

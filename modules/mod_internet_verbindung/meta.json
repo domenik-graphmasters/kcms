@@ -1,0 +1,63 @@
+{
+        "moduleName": "Verein",
+        "version": 2.0,
+        "pages": [
+                {
+                        "pid": "ueberuns",
+                        "file": "ueberuns.html",
+                        "directory": "custom",
+                        "title": "Über uns"
+                },
+                {
+                        "pid": "prinzipien",
+                        "file": "prinzipien.html",
+                        "directory": "custom",
+                        "title": "Prinzipien"
+                },
+                {
+                        "pid": "geschichte",
+                        "file": "geschichte.html",
+                        "directory": "custom",
+                        "title": "Geschichte"
+                },
+                {
+                        "pid": "kartellverband",
+                        "file": "kartellverband.html",
+                        "directory": "custom",
+                        "title": "Kartellverband"
+                }
+        ],
+        "menuElementsInternet": [
+                {
+                        "name": "Verein",
+                        "type": "menu_folder",
+                        "position": 600,
+                        "elements": [
+                                {
+                                        "pid": "ueberuns",
+                                        "name": "Über uns",
+                                        "type": "menu_entry",
+                                        "position": 100
+                                },
+                                {
+                                        "pid": "prinzipien",
+                                        "name": "Prinzipien",
+                                        "type": "menu_entry",
+                                        "position": 200
+                                },
+                                {
+                                        "pid": "geschichte",
+                                        "name": "Geschichte",
+                                        "type": "menu_entry",
+                                        "position": 300
+                                },
+                                {
+                                        "pid": "kartellverband",
+                                        "name": "Kartellverband",
+                                        "type": "menu_entry",
+                                        "position": 400
+                                }
+                        ]
+                }
+        ]
+}

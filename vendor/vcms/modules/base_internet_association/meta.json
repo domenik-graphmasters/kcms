@@ -1,0 +1,14 @@
+{
+	"moduleName": "Vereine",
+	"pages": [
+		{
+			"pid": "verein",
+			"file": "association.php",
+			"directory": "scripts",
+			"title": "Verein",
+			"accessRestriction": {
+				"gruppen": ["F", "B", "P", "C", "G", "W", "Y"]
+			}
+		}
+	]
+}

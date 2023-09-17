@@ -1,0 +1,76 @@
+.person-signature-box {
+	width: 100%;
+}
+
+.person-signature-box .img-box {
+	background-color: white;
+	border: 1px solid #333;
+}
+
+.person-signature-box .person-activity-box {
+	width: 100%;
+	line-height: 0;
+}
+
+.person-signature-box .person-activity-box .person-activity-bar {
+	display: inline-block;
+	height: 0.2em;
+	margin: 0.2em 0 0 0;
+}
+
+.person-signature-box .person-activity-box .person-activity-bar-active {
+	background-color: black;
+}
+
+.person-signature-box .person-activity-box .person-activity-bar-inactive {
+	background-color: white;
+}
+
+.person-img-xs {
+	height: 40px;
+}
+
+.person-img-md {
+	width: 100%;
+}
+
+.person-img-lg {
+	width: 100%;
+}
+
+.person-img-dummy {
+	padding-top: 133%;
+}
+
+.persons-grid {
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 576px) {
+	.persons-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (min-width: 768px) {
+	.persons-grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (min-width: 992px) {
+	.persons-grid {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+.persons-grid .persons-grid-element {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.persons-grid .persons-grid-element .persons-grid-description {
+	padding-left: 1rem;
+	padding-right: 1rem;
+}

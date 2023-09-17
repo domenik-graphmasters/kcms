@@ -1,0 +1,63 @@
+{
+	"moduleName": "Export",
+	"version": 2.41,
+	"pages": [
+		{
+			"pid": "intranet_admin_export",
+			"file": "export.php",
+			"directory": "scripts",
+			"title": "Export",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+			}
+		}
+	],
+	"includes": [
+		{
+			"iid": "intranet_admin_export_daten_adressen",
+			"file": "data_addresses.php",
+			"directory": "scripts",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+			}
+		},
+		{
+			"iid": "intranet_admin_export_daten_geburtstage",
+			"file": "data_birthdays.php",
+			"directory": "scripts",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+			}
+		},
+		{
+			"iid": "intranet_admin_export_daten_rundegeburtstage",
+			"file": "data_significant_birthdays.php",
+			"directory": "scripts",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+			}
+		},
+		{
+			"iid": "intranet_admin_export_daten_jubilaeen",
+			"file": "data_anniversaries.php",
+			"directory": "scripts",
+			"accessRestriction": {
+				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+			}
+		}
+	],
+	"menuElementsAdministration": [
+		{
+			"name": "Daten",
+			"type": "menu_folder",
+			"elements": [
+				{
+					"pid": "intranet_admin_export",
+					"name": "Export",
+					"type": "menu_entry",
+					"position": 3000
+				}
+			]
+		}
+	]
+}
