@@ -248,5 +248,5 @@ if($libGenericStorage->loadValueInCurrentModule('show_haftungshinweis')){
 
 echo '<h2>VCMS</h2>';
 echo '<section class="cms-box">';
-echo '<p class="mb-4">Content Management System: <a href="http://www.' .$libGlobal->vcmsHostname. '">VCMS</a> (GNU General Public License)</p>';
+echo '<p class="mb-4">Content Management System: <a href="https://www.github.com/avgothia/vcms">VCMS</a> (GNU General Public License)</p>';
 echo '</section>';

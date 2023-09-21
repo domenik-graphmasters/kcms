@@ -37,7 +37,7 @@ class LibGlobal{
 	var $mkHostname;
 
 	function __construct() {
-		$this->vcmsHostname = 'ver' . 'bin' . 'dung' . 'scms' . '.' . 'de';
+		$this->vcmsHostname = 'vcm' . 's-ap' . 'i.gi' . 'thu' . 'b.io';
 		$this->mkHostname = 'www' . '.' . 'mar' . 'kom' . 'ann' . 'ia' . '.' . 'org';
 	}
 
