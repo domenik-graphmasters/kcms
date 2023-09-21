@@ -6,7 +6,7 @@ rm -rf build/*
 mkdir -p build/packages
 
 # create engine.tar
-tar -cvf build/packages/engine.tar vendor api.php index.php redirect.php robots.txt
+tar -cvf ${cwd}/build/packages/engine.tar ${cwd}/vendor ${cwd}/api.php ${cwd}/index.php ${cwd}/redirect.php ${cwd}/robots.txt
 
 # create module tars
 cd modules
@@ -19,7 +19,7 @@ for dir in */; do
 done
 
 # Define the output JSON file where we will store the results
-output_file="${cwd}/build//manifest.json"
+output_file="${cwd}/build/manifest.json"
 
 # Initialize an empty JSON object
 echo '{}' > "$output_file"
@@ -40,9 +40,9 @@ done
 
 # Extract the version from LibGlobal class
 engine_version=$(awk -F"'" '/var \$version =/ {print $2}' ${cwd}/vendor/vcms/lib/LibGlobal.class.php)
-echo $engine_version
 
 # Add the engine version to the output JSON object
 jq --argjson engine_version "$engine_version" '.["engine"] = $engine_version' "$output_file" > "$output_file.tmp" && mv "$output_file.tmp" "$output_file"
 
-echo "Module versions have been extracted and saved to $output_file"
+echo "Module versions have been extracted and saved to $output_file:"
+cat $output_file
