@@ -22,4 +22,3 @@ jobs:
                 source-directory: 'build'
                 destination-github-username: 'avgothia'
                 destination-repository-name: 'vcms-api'
-                target-branch: 'testing'
