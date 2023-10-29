@@ -10,27 +10,13 @@
 }
 
 .navbar-default #logo {
-	height: 75px;
-}
-
-@media(min-width: 768px){
-	.navbar-default.affix-top {
-		position: absolute;
-	}
-}
-
-@media(max-width: 767px){
-	.navbar-default #logo {
-		height: 50px;
-		width: 50px;
-		float: left;
-	}
+	height: 50px;
+	width: 50px;
 }
 
 .navbar-default.affix #logo {
 	height: 50px;
 	width: 50px;
-	float: left;
 }
 
 .navbar-default .navbar-header .navbar-brand {

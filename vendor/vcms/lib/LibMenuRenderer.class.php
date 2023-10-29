@@ -38,7 +38,7 @@ class LibMenuRenderer{
 
 		echo '    <nav id="nav" class="navbar navbar-default navbar-fixed-top ' .$navbarClass. '">' . PHP_EOL;
     echo '      <div class="container">' . PHP_EOL;
-		echo '        <div id="logo"></div>' . PHP_EOL;
+		echo '        <div id="logo" class="pull-left"></div>' . PHP_EOL;
     echo $this->printNavbarCollapsed();
     echo $this->printNavbarInternet($menuInternet, $aktivesPid);
     echo $this->printNavbarIntranet($menuIntranet, $menuAdministration, $aktivesPid);

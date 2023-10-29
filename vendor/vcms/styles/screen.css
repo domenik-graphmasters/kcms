@@ -95,3 +95,7 @@ footer .auto-update-img {
 	width: 1px;
 	height: 1px;
 }
+
+.text-truncate {
+	text-overflow: ellipsis;
+}
