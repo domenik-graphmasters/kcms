@@ -29,14 +29,14 @@ class LibRepositoryClient{
   function __construct(){
     global $libGlobal, $libFilesystem;
 
-		$this->repoHostname = 'api.' . $libGlobal->vcmsHostname;
+		$this->repoHostname = $libGlobal->vcmsHostname;
     $this->tempAbsoluteDirectoryPath = $libFilesystem->getAbsolutePath($this->tempRelativeDirectoryPath);
 	}
 
   function getModuleVersions(){
   	global $libGlobal, $libHttp, $libModuleHandler;
 
-    $manifestUrl = 'http://' .$this->repoHostname. '/manifest.json?id=' .$libGlobal->getSiteUrlAuthority(). '&version=' .$libGlobal->version;
+    $manifestUrl = 'https://' .$this->repoHostname. '/manifest.json?id=' .$libGlobal->getSiteUrlAuthority(). '&version=' .$libGlobal->version;
   	$modules = $libHttp->get($manifestUrl);
 
   	if(!is_array($modules)){
@@ -94,7 +94,7 @@ class LibRepositoryClient{
   	$isUpdate = is_dir($moduleAbsoluteDirectoryPath);
 
   	$libGlobal->notificationTexts[] = 'Lade Modulpaket aus dem Repository.';
-  	$libHttp->get('http://' .$this->repoHostname. '/packages/'. $module. '.tar', $tarAbsoluteFilePath);
+  	$libHttp->get('https://' .$this->repoHostname. '/packages/'. $module. '.tar', $tarAbsoluteFilePath);
 
   	//untar module package
   	$tar = new \pear\Archive\Archive_Tar($tarAbsoluteFilePath);
@@ -200,18 +200,18 @@ class LibRepositoryClient{
   	$tarRelativeFilePath = $this->tempRelativeDirectoryPath. '/engine.tar';
   	$tarAbsoluteFilePath = $libFilesystem->getAbsolutePath($tarRelativeFilePath);
 
-  	$tempEngineRelativeDirectoryPath = $this->tempRelativeDirectoryPath. '/engine';
+  	$tempEngineRelativeDirectoryPath = $this->tempRelativeDirectoryPath. '/home/runner/work/vcms/vcms'; // /temp/engine
   	$tempEngineAbsoluteDirectoryPath = $libFilesystem->getAbsolutePath($tempEngineRelativeDirectoryPath);
 
   	$libGlobal->notificationTexts[] = 'Lade Enginepaket aus dem Repository.';
-  	$libHttp->get('http://' .$this->repoHostname. '/packages/engine.tar', $tarAbsoluteFilePath);
+  	$libHttp->get('https://' .$this->repoHostname. '/packages/engine.tar', $tarAbsoluteFilePath);
 
   	$tar = new \pear\Archive\Archive_Tar($tarRelativeFilePath);
-  	$libGlobal->notificationTexts[] = 'Entpacke Enginepaket in den temp-Ordner.';
-  	$tar->extract($this->tempRelativeDirectoryPath. '/');
+  	$libGlobal->notificationTexts[] = 'Entpacke Enginepaket in das Verzeichnis: ' . $this->tempRelativeDirectoryPath;
+  	$tar->extract($this->tempRelativeDirectoryPath);
 
   	if(!is_dir($tempEngineAbsoluteDirectoryPath)){
-  		$libGlobal->errorTexts[] = 'Das Enginepaket konnte nicht entpackt werden.';
+  		$libGlobal->errorTexts[] = 'Das Enginepaket konnte nicht in das angegebene Verzeichnis entpackt werden: ' . $tempEngineAbsoluteDirectoryPath;
   	} elseif(!is_file($tempEngineAbsoluteDirectoryPath. '/index.php')) {
   		$libGlobal->errorTexts[] = 'Das Enginepaket ist fehlerhaft.';
   	} else {

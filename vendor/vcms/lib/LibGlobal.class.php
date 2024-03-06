@@ -21,7 +21,7 @@ namespace vcms;
 use PDO;
 
 class LibGlobal{
-	var $version = '12.06';
+	var $version = '12.07';
 
 	var $semester;
 	var $module;
@@ -37,7 +37,7 @@ class LibGlobal{
 	var $mkHostname;
 
 	function __construct() {
-		$this->vcmsHostname = 'vcm' . 's-ap' . 'i.gi' . 'thu' . 'b.io';
+		$this->vcmsHostname = 'avgothia.github.io/vcms-api';
 		$this->mkHostname = 'www' . '.' . 'mar' . 'kom' . 'ann' . 'ia' . '.' . 'org';
 	}
 
