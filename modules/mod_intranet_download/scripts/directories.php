@@ -58,8 +58,8 @@ $hashes = $rootFolderObject->getHashMap();
 */
 
 //delete file
-if (isset($_GET['aktion']) && $_GET['aktion'] == 'delete' && isset($_GET['hash'])) {
-    $element = $hashes[$_GET['hash']];
+if (isset($_GET['aktion']) && $_GET['aktion'] == 'delete' && isset($_GET['deleteHash'])) {
+    $element = $hashes[$_GET['deleteHash']];
 
     if (in_array($element->owningAmt, $libAuth->getAemter())) {
         $element->delete();
@@ -127,7 +127,7 @@ displayFolderContents($currentFolder);
 echo '</div>';
 
 
-if (!empty($libAuth->getAemter())) {
+if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
     /*
     * upload form
     */
@@ -135,23 +135,10 @@ if (!empty($libAuth->getAemter())) {
 
     echo '<div class="panel panel-default">';
     echo '<div class="panel-body">';
-    echo '<form action="index.php?pid=intranet_directories" method="post" enctype="multipart/form-data" class="form-horizontal">';
+    echo '<form action="index.php?pid=intranet_directories&aktion=open&hash=' . $currentFolder->getHash() . '" method="post" enctype="multipart/form-data" class="form-horizontal">';
     echo '<fieldset>';
     echo '<input type="hidden" name="aktion" value="upload" />';
-
-    echo '<div class="form-group">';
-    echo '<label for="hash" class="col-sm-3 control-label">in den Ordner</label>';
-    echo '<div class="col-sm-3"><select name="hash" class="form-control">';
-
-    foreach ($rootFolderObject->getNestedFoldersRec() as $folderElement) {
-        if (in_array($folderElement->owningAmt, $libAuth->getAemter())) {
-            echo '<option value="' . $folderElement->getHash() . '">' . $folderElement->name . '</option>';
-        }
-    }
-
-    echo '</select></div>';
-    echo '</div>';
-
+    echo '<input type="hidden" id="hash" name="hash" value="' . $currentFolder->getHash() . '">';
 
     echo '<div class="form-group">';
     echo '<label class="col-sm-3 control-label">mit Leserecht für</label>';
@@ -197,26 +184,14 @@ if (!empty($libAuth->getAemter())) {
 
     echo '<div class="panel panel-default">';
     echo '<div class="panel-body">';
-    echo '<form action="index.php?pid=intranet_directories" method="post" class="form-horizontal">';
+    echo '<form action="index.php?pid=intranet_directories&aktion=open&hash=' . $currentFolder->getHash() . '" method="post" class="form-horizontal">';
     echo '<fieldset>';
     echo '<input type="hidden" name="aktion" value="newfolder" />';
+    echo '<input type="hidden" id="hash" name="hash" value="' . $currentFolder->getHash() . '">';
 
     echo '<div class="form-group">';
     echo '<label for="foldername" class="col-sm-3 control-label">Neuen Ordner</label>';
     echo '<div class="col-sm-3"><input type="text" id="foldername" name="foldername" class="form-control" /></div>';
-    echo '</div>';
-
-    echo '<div class="form-group">';
-    echo '<label for="hash" class="col-sm-3 control-label">in Ordner</label>';
-    echo '<div class="col-sm-3"><select name="hash" class="form-control">';
-
-    foreach ($rootFolderObject->getNestedFoldersRec() as $folderElement) {
-        if (in_array($folderElement->owningAmt, $libAuth->getAemter())) {
-            echo '<option value="' . $folderElement->getHash() . '">' . $folderElement->name . '</option>';
-        }
-    }
-
-    echo '</select></div>';
     echo '</div>';
 
     echo '<div class="form-group">';
@@ -265,7 +240,8 @@ function displayFolderContents(Folder &$folder): void
             echo '</td>';
             echo '<td class="col-xs-1">';
             if ($folderElement->isDeleteable() && in_array($folderElement->owningAmt, $libAuth->getAemter())) {
-                echo '<a href="index.php?pid=intranet_directories&amp;aktion=delete&amp;hash=' . $folderElement->getHash() . '" onclick="return confirm(\'Willst Du den Ordner wirklich löschen?\')"><i class="fa fa-trash" aria-hidden="true"></i></a>';
+                $href = 'index.php?pid=intranet_directories&amp;aktion=delete&amp;deleteHash=' . $folderElement->getHash() . '&hash=' . $folder->getHash();
+                echo '<a href="' . $href . '" onclick="return confirm(\'Willst Du den Ordner wirklich löschen?\')"><i class="fa fa-trash" aria-hidden="true"></i></a>';
             }
             echo '</td>';
         } elseif ($folderElement->type == 2 && in_array($libAuth->getGruppe(), $folderElement->readGroups)) { // file
@@ -274,7 +250,8 @@ function displayFolderContents(Folder &$folder): void
             echo '<td class="col-xs-2 col-md-1"><span class="text-muted">' . getSizeString($folderElement->getSize()) . '</span></td>';
             echo '<td class="col-xs-1">';
             if (in_array($folderElement->owningAmt, $libAuth->getAemter())) {
-                echo '<a href="index.php?pid=intranet_directories&amp;aktion=delete&amp;hash=' . $folderElement->getHash() . '" onclick="return confirm(\'Willst Du die Datei wirklich löschen?\')"><i class="fa fa-trash" aria-hidden="true"></i></a>';
+                $href = 'index.php?pid=intranet_directories&amp;aktion=delete&amp;deleteHash=' . $folderElement->getHash() . '&hash=' . $folder->getHash();
+                echo '<a href="' . $href . '" onclick="return confirm(\'Willst Du die Datei wirklich löschen?\')"><i class="fa fa-trash" aria-hidden="true"></i></a>';
             }
             echo '</td>';
         }
