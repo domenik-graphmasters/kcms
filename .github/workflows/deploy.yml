@@ -22,3 +22,12 @@ jobs:
                 source-directory: 'build'
                 destination-github-username: 'avgothia'
                 destination-repository-name: 'vcms-api'
+
+            - name: Notify internetwart about changes
+              uses: dawidd6/action-send-mail@v3
+              with:
+                connection_url: ${{secrets.MAIL_CONNECTION}}
+                subject: Neues vcms update
+                to: iw@avgothia.de
+                from: noreply@avgothia.de
+                body: file://build/manifest.json
