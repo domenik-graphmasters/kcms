@@ -70,6 +70,10 @@ $stmt->execute();
 $stmt->bindColumn('number', $anzahlBesondersInteressierteGattinnen);
 $stmt->fetch();
 
+$stmt = $libDb->prepare("SELECT COUNT(*) AS number FROM base_person, mod_rundbrief_empfaenger WHERE base_person.id = mod_rundbrief_empfaenger.id AND email != '' AND email IS NOT NULL AND empfaenger=1 AND gruppe='Y'");
+$stmt->execute();
+$stmt->bindColumn('number', $anzahlVereinsfreunde);
+$stmt->fetch();
 
 /*
 * configuration
@@ -134,6 +138,10 @@ echo '</label></div>';
 
 echo '<div class="checkbox"><label><input type="checkbox" name="gattinnen">';
 echo $anzahlGattinnen. ' Gattinnen';
+echo '</label></div>';
+
+echo '<div class="checkbox"><label><input type="checkbox" name="vereinsfreunde">';
+echo $anzahlVereinsfreunde. ' Vereinsfreunde';
 echo '</label></div>';
 
 echo '</div></div>';

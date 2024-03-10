@@ -66,6 +66,10 @@ if(!isset($_POST['nachricht']) || $_POST['nachricht'] == '' || !isset($_POST['su
 		$subjectGroups[] = 'Gattinnen';
 	}
 
+	if(isset($_POST['vereinsfreunde']) && $_POST['vereinsfreunde'] == 'on'){
+		$subjectGroups[] = 'Vereinsfreunde';
+	}
+
 	if(count($subjectGroups) == 0){
 		$libGlobal->errorTexts[] = 'Es wurde keine Adressatengruppe ausgewählt.';
 	}
@@ -131,6 +135,10 @@ if(!isset($_POST['nachricht']) || $_POST['nachricht'] == '' || !isset($_POST['su
 
 	if(isset($_POST['gattinnen']) && $_POST['gattinnen'] == 'on'){
 		$sqlGroups[] = "(gruppe='G' OR gruppe='W')";
+	}
+
+	if(isset($_POST['vereinsfreunde']) && $_POST['vereinsfreunde'] == 'on'){
+		$subjectGroups[] = "gruppe='Y'";
 	}
 
 	$sqlGroupsString = ' AND ('.implode(' OR ',$sqlGroups).') ';
