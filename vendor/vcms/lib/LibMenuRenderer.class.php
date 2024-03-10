@@ -72,7 +72,7 @@ class LibMenuRenderer{
 
 		if($rootMenuFolderInternet->hasElements()){
 			echo '        <div id="navbar-internet" class="collapse navbar-collapse navbar-internet">' . PHP_EOL;
-			echo '          <ul class="nav navbar-nav navbar-right nav-pills">' . PHP_EOL;
+			echo '          <ul class="nav navbar-nav navbar-right">' . PHP_EOL;
 			echo $this->printNavbarLevel($rootMenuFolderInternet, 0, $aktivesPid);
 
 			if($libAuth->isLoggedin() && $libPerson->hasImageFile($libAuth->getId())){
@@ -90,7 +90,7 @@ class LibMenuRenderer{
 
 		if($rootMenuFolderIntranet->hasElements()){
 			echo '        <div id="navbar-intranet" class="collapse navbar-collapse navbar-intranet">' . PHP_EOL;
-			echo '          <ul class="nav navbar-nav navbar-right nav-pills">' . PHP_EOL;
+			echo '          <ul class="nav navbar-nav navbar-right">' . PHP_EOL;
 			echo $this->printNavbarLevel($rootMenuFolderIntranet, 0, $aktivesPid);
 			echo $this->printNavbarLevel($rootMenuFolderAdministration, 0, $aktivesPid);
 			echo '          </ul>' . PHP_EOL;

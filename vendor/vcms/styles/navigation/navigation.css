@@ -104,3 +104,21 @@
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
 }
+
+@media (max-width: 1199px) {
+
+	ul.dropdown-menu {
+		border: 1px solid #e7e7e7 !important;
+		border-radius: 4px !important;
+		margin: 0.3rem 1rem;
+	}
+
+	ul.dropdown-menu li:first-child {
+		padding-top: .1rem;
+	}
+
+	ul.dropdown-menu li:last-child {
+		padding-bottom: .1rem;
+	}
+}
+
