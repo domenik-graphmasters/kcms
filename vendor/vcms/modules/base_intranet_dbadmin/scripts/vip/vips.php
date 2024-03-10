@@ -50,6 +50,7 @@ if($libAuth->isLoggedin()){
 	echo '<div class="panel panel-default">';
 	echo '<div class="panel-body">';
 
+    echo '<div class="table-responsive">';
 	echo '<table class="table table-condensed table-striped table-hover">';
 	echo '<thead>';
 	echo '<tr><th>Id</th><th>Praefix</th><th>Name</th><th>Suffix</th><th>Vorname</th><th></th></tr>';
@@ -74,6 +75,7 @@ if($libAuth->isLoggedin()){
 	}
 
 	echo '</table>';
+    echo '</div>';
 
 	echo '</div>';
 	echo '</div>';
