@@ -16,6 +16,8 @@ You should have received a copy of the GNU General Public License
 along with VCMS. If not, see <http://www.gnu.org/licenses/>.
 */
 
+global $libDb;
+
 use vcms\filesystem\Folder;
 
 if (!is_object($libGlobal) || !$libAuth->isLoggedin())
@@ -102,6 +104,8 @@ elseif (isset($_POST['aktion']) && $_POST['aktion'] == "newfolder" && isset($_PO
 * output
 */
 
+echo '<script>$(function () {$(\'[data-toggle="tooltip"]\').tooltip()})</script>';
+
 echo $libString->getErrorBoxText();
 echo $libString->getNotificationBoxText();
 
@@ -122,7 +126,7 @@ if ($currentFolder !== $rootFolderObject && $currentFolder != null) {
     echo '<li class="active">' . $currentFolder->name . '</li>';
 }
 echo '</ol>';
-displayFolderContents($currentFolder);
+displayFolderContents($currentFolder, $libDb);
 
 echo '</div>';
 
@@ -210,7 +214,7 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
 * functions
 */
 
-function displayFolderContents(Folder &$folder): void
+function displayFolderContents(Folder &$folder, \vcms\LibDb $libDb): void
 {
     global $libAuth;
 
@@ -246,7 +250,19 @@ function displayFolderContents(Folder &$folder): void
             echo '</td>';
         } elseif ($folderElement->type == 2 && in_array($libAuth->getGruppe(), $folderElement->readGroups)) { // file
             echo '<td class="col-xs-5 col-md-7"><a href="api.php?iid=intranet_download&amp;hash=' . $folderElement->getHash() . '">' . getIconForFolder($folderElement) . $folderElement->getFileName() . '</a></td>';
-            echo '<td class="col-xs-2 col-md-1"><span class="text-muted">' . implode('', $folderElement->readGroups) . '</span></td>';
+
+            $stmt = $libDb->prepare("SELECT * FROM base_gruppe ORDER BY bezeichnung");
+            $stmt->execute();
+
+            $bezeichnungen = [];
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if(in_array($row['bezeichnung'], $folderElement->readGroups)) {
+                    $bezeichnungen[] = $row['beschreibung'];
+                }
+            }
+            $tooltip = 'Lesbar für: ' . implode(', ', $bezeichnungen);
+
+            echo '<td class="col-xs-2 col-md-1"><span class="text-muted" data-toggle="tooltip" title="' . $tooltip . '">' . implode('', $folderElement->readGroups) . '</span></td>';
             echo '<td class="col-xs-2 col-md-1"><span class="text-muted">' . getSizeString($folderElement->getSize()) . '</span></td>';
             echo '<td class="col-xs-1">';
             if (in_array($folderElement->owningAmt, $libAuth->getAemter())) {
