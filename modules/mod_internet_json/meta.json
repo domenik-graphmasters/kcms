@@ -1,0 +1,20 @@
+{
+  "moduleName": "Json",
+  "version": 1.00,
+  "pages": [
+    {
+      "pid": "json",
+      "file": "json.php",
+      "directory": "scripts",
+      "title": "Json"
+    }
+  ],
+  "menuElementsInternet": [
+    {
+      "pid": "json",
+      "name": "Json",
+      "type": "menu_entry",
+      "position": 30000
+    }
+  ]
+}
