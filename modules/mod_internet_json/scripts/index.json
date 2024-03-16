@@ -96,7 +96,7 @@
   },
   {
     "id": "gallery-single-with-text",
-    "imageUrl": "https://placehold.it/700x700",
+    "imageUrl": "https://placehold.it/700x400",
     "headline": "optional",
     "paragraph": "string"
   },

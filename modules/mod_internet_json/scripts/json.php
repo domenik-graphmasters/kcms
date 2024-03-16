@@ -124,6 +124,8 @@ foreach ($json as $item) {
 
         case 'statistics-with-explainer':
             renderStatisticsWithExplainer(
+                heading: $item['headline'],
+                paragraph: $item['paragraph'],
                 first: new Stat(
                     value: $item['firstStat']['value'],
                     hint: $item['firstStat']['hint']
