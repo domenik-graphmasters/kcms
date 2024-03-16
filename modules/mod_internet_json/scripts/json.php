@@ -7,7 +7,7 @@ include_once "components/hero.php";
 include_once "components/quote.php";
 include_once "components/statistics.php";
 
-$path = "modules/mod_internet_json/scripts/index.json";
+$path = "modules/mod_internet_json/scripts/frontpage.json";
 $content = file_get_contents($path);
 if (!$content) {
     echo "failed to read contents of " . $path;
