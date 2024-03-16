@@ -1,1 +1,9 @@
 build/
+.env
+docker/logs
+docker/ssl
+docker/mysql/data
+custom/intranet
+custom/semestercover
+custom/veranstaltungsfotos
+custom/systemconfig.php
