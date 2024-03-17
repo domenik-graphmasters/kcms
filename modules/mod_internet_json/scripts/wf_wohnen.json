@@ -1,0 +1,58 @@
+[
+  {
+    "id": "gallery-triplet",
+    "prominentImageUrl": "custom/zimmer.webp",
+    "topImageUrl": "custom/IMG_8655-2.jpg",
+    "bottomImageUrl": "custom/küche.webp"
+  },
+  {
+    "id": "basic-text-body",
+    "headline": "Lorem ipsum dolor sit amet",
+    "paragraph": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+  },
+  {
+    "id": "statistics-with-explainer",
+    "headline": "Headline",
+    "paragraph": "Lorem ipsum dolor est...",
+    "firstStat": {
+      "value": "150€",
+      "hint": "Festmiete"
+    },
+    "secondStat": {
+      "value": "10",
+      "hint": "Zimmer"
+    },
+    "thirdStat": {
+      "value": "5 Min",
+      "hint": "bis zur Uni"
+    }
+  },
+  {
+    "id": "faq-accordion",
+    "title": "Verbindungs FAQ",
+    "paragraph": "Hier findest du einige Bilder unseres Hauses und der Zimmer, weiterhin haben wir schon einmal ein paar Fragen für dich beantwortet. Um einen besseren Eindruck zu bekommen, würden wir uns freuen dich auf unserem Haus kennenzulernen. Schreib uns einfach, dann finden wir einen Termin um uns kennenzulernen.",
+    "entries": [
+      {
+        "question": "Wie groß sind die Zimmer?",
+        "answer": "12-15 Quadratmeter??"
+      },
+      {
+        "question": "Wie hoch ist die Miete?",
+        "answer": "Fixpreis 150€"
+      },
+      {
+        "question": "Und die Nebenkosten?",
+        "answer": "Die sind in der Miete bereits enthalten"
+      },
+      {
+        "question": "Wer kümmert sich um die Reinigung?",
+        "answer": "In den Gemeinschaftsräumen hat natürlich jeder hinter sich selber aufzuräumen, für die Grundreinigung haben wir jedoch auch eine Reinigungskraft, welche wöchentlich sauber macht."
+      }
+    ]
+  },
+  {
+    "id": "contact-us",
+    "headline": "Noch weitere Fragen? Interesse geweckt?",
+    "paragraph": "Hier findest du alle Möglichkeiten, mit uns in Kontakt zu treten"
+  }
+]

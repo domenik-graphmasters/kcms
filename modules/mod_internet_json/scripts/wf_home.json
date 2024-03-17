@@ -1,0 +1,23 @@
+[
+  {
+    "id": "hero-right-image",
+    "title": "K.St.V. Winfridia Göttingen",
+    "paragraph": "Der K.St.V. Winfridia ist eine katholische Studentenverbindung im Kartell katholisch deutscher Studentenvereine (KV). Unsere Geschichte reicht bis in das Jahr 1870 zurück, was uns zum achtältesten Bund im KV und zu einem der ältesten Bünde in Göttingen macht. Wer sich als Student an einer göttinger Universität christlichen Werten verbunden fühlt und ein freundschaftliches Miteinander zu schätzen weiß ist bei uns richtig.\nWir zählen mehr als 150 Mitglieder, welche sich auch nach der Studienzeit weiterhin unterstützen und ihre Verbundenheit erhalten und leben.\n",
+    "primaryButtonText": "Mehr erfahren",
+    "primaryButtonUrl": "#",
+    "secondaryButtonText": null,
+    "secondaryButtonUrl": null,
+    "imageUrl": "custom/styles/wappen.png"
+  },
+  {
+    "id": "coming-events",
+    "headline": "Veranstaltungen",
+    "paragraph": "Egal ob Kneipe, gemütlicher Abend oder wissenschaftlicher Vortrag: Hier findest du eine Übersicht unseres Semesterprogramms und unserer Veranstaltungen.",
+    "eventCount": 2
+  },
+  {
+    "id": "contact-us",
+    "headline": "Noch weitere Fragen? Interesse geweckt?",
+    "paragraph": "Hier findest du alle Möglichkeiten, mit uns in Kontakt zu treten"
+  }
+]
