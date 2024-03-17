@@ -3,18 +3,52 @@
   "version": 1.00,
   "pages": [
     {
-      "pid": "json",
-      "file": "json.php",
+      "pid": "wf_home",
+      "file": "wf_home.json",
       "directory": "scripts",
-      "title": "Json"
+      "title": "Home"
+    },
+    {
+      "pid": "wf_wohnen",
+      "file": "wf_wohnen.json",
+      "directory": "scripts",
+      "title": "Wohnen"
+    },
+    {
+      "pid": "wf_verein",
+      "file": "wf_verein.json",
+      "directory": "scripts",
+      "title": "Home"
     }
   ],
   "menuElementsInternet": [
     {
-      "pid": "json",
-      "name": "Json",
-      "type": "menu_entry",
-      "position": 30000
+      "name": "Winfridia",
+      "type": "menu_folder",
+      "position": 600,
+      "elements": [
+        {
+          "pid": "wf_home",
+          "name": "Home",
+          "type": "menu_entry",
+          "position": 100
+        },
+        {
+          "pid": "wf_verein",
+          "name": "Verein",
+          "type": "menu_entry",
+          "position": 200
+        },
+        {
+          "pid": "wf_wohnen",
+          "name": "Wohnen",
+          "type": "menu_entry",
+          "position": 300
+        }
+      ]
     }
+  ],
+  "headerStrings": [
+    "<link rel='stylesheet' href='modules/mod_internet_json/styles/screen.css' />"
   ]
 }

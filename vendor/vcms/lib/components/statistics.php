@@ -18,7 +18,7 @@ function renderStatisticsWithExplainer(
     Stat $third,
 ): void
 {
-    echo '<div class="row px-4 py-5 my-5">';
+    echo '<div class="row py-5 my-5">';
 
     echo "<h2 class='text-left'>$heading</h2>";
     if ($paragraph) {
@@ -56,8 +56,7 @@ function renderStatisticsStrip(
     Stat $fourth
 ): void
 {
-    echo '<div class="container-liquid bg-info">';
-    echo '<div class="row px-4 py-5 my-5 ">';
+    echo '<div class="row py-5 my-5 ">';
 
     echo "<div class='col-xs-12 col-md-3 mt-4'>";
     $h = $first->value;
@@ -88,6 +87,5 @@ function renderStatisticsStrip(
     echo '</div>';
 
 
-    echo '</div>';
     echo '</div>';
 }

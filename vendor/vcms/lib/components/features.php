@@ -6,7 +6,7 @@ function renderFeaturesHangingIcons(
     array   $entries
 ): void
 {
-    echo '<div class="row px-4 py-5 my-5">';
+    echo '<div class="row py-5 my-5">';
 
     echo "<h2 class='text-left'>$headline</h2>";
     if ($paragraph) {
@@ -50,7 +50,7 @@ function renderFeaturesCards(
     array   $entries
 ): void
 {
-    echo '<div class="row px-4 py-5 my-5">';
+    echo '<div class="row py-5 my-5">';
 
     echo "<h2 class='text-left'>$headline</h2>";
     if ($paragraph) {

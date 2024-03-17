@@ -10,7 +10,7 @@ function renderHeroCenteredSmallImage(
     ?string $imageUrl
 ): void
 {
-    echo '<div class="row text-center px-4 py-5 my-5">';
+    echo '<div class="row text-center py-5 my-5">';
 
     if ($imageUrl) {
         echo "<img src=$imageUrl class='mb-4' height='72' width='57' >";
@@ -42,7 +42,7 @@ function renderHeroCenteredLargeImage(
     ?string $imageUrl
 ): void
 {
-    echo '<div class="row text-center px-4 py-5 my-5">';
+    echo '<div class="row text-center py-5 my-5">';
     echo "<h1 class='mt-4 mb-3'>$title</h1>";
     echo "<div class='col-md-8 col-md-offset-2'>";
     echo "<p class='lead'>$paragraph</p>";
@@ -78,7 +78,7 @@ function renderHeroRightImage(
     ?string $imageUrl
 ): void
 {
-    echo '<div class="row px-4 py-5 my-5">';
+    echo '<div class="row py-5 my-5">';
     echo "<div class='col-xs-12 col-md-6 col-md-push-6'>";
     echo "<img src=$imageUrl class='mb-4 img-responsive center-block' loading='lazy' width='700' height='500'>";
     echo '</div>';
@@ -105,7 +105,7 @@ function renderHeroRightContact(
     string $paragraph,
 ): void
 {
-    echo '<div class="row px-4 py-5 my-5">';
+    echo '<div class="row py-5 my-5">';
     echo "<div class='col-sx-12 col-md-6'>";
     echo "<h1 class='mt-4 mb-3 text-left'>$title</h1>";
     echo "<div class=''>";

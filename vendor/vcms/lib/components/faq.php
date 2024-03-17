@@ -1,12 +1,13 @@
 <?php
 
+// TODO(bug): Questions with line break make influence paragraph format
 function renderFaqAccordion(
     string $title,
     string $paragraph,
     array  $entries
 ): void
 {
-    echo '<div class="row text-center px-4 py-5 my-5">';
+    echo '<div class="row text-center py-5 my-5">';
 
     echo "<h2 class='mt-4 mb-3 text-left'>$title</h2>";
     echo "<p class='text-left'>$paragraph</p>";
@@ -26,7 +27,7 @@ function renderFaqAccordion(
 }
 
 
-// TODO: Take image from entries
+// TODO(enhancement): Take image from entries
 function renderFaqAccordionWithImage(
     string $title,
     string $paragraph,
@@ -34,7 +35,7 @@ function renderFaqAccordionWithImage(
     string $imageUrl
 ): void
 {
-    echo '<div class="row text-center px-4 py-5 my-5">';
+    echo '<div class="row text-center py-5 my-5">';
 
     echo "<h2 class='mt-4 mb-3 text-left'>$title</h2>";
     echo "<p class='text-left'>$paragraph</p>";
