@@ -89,7 +89,7 @@ echo '</div>';
 echo '<div class="col-md-6">';
 
 echo '<div class="card">';
-echo '<div class="panel-body">';
+echo '<div class="card-body">';
 echo '<div class="btn-toolbar">';
 echo '<a href="index.php?pid=intranet_news_write" class="btn btn-secondary"><i class="fa fa-plus" aria-hidden="true"></i> Einen Beitrag hinzufügen</a>';
 echo '</div>';
@@ -118,7 +118,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
     echo '<div id="' . $row['id'] . '" class="card' . $libString->getLastInsertId($lastInsertId, $row['id']) . '">';
     echo '<div class="card-header">';
-	echo '<h3 class="panel-title">';
+    echo '<h3 class="card-titl">';
 	echo $libTime->formatDateString($row['eingabedatum']);
 	echo ' ';
 	echo $row['bezeichnung'];
@@ -133,7 +133,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 	echo '</h3>';
 	echo '</div>';
 
-	echo '<div class="panel-body">';
+    echo '<div class="card-body">';
 	echo '<div class="row">';
 
     echo '<div class="col-12 col-sm-9 col-md-10">';

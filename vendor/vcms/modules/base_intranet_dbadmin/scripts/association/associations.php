@@ -60,7 +60,7 @@ if($libAuth->isLoggedin()){
 
 
     echo '<div class="card">';
-	echo '<div class="panel-body">';
+    echo '<div class="card-body">';
 	echo '<div class="btn-toolbar">';
     echo '<a href="index.php?pid=intranet_admin_associations&amp;aktion=import" onclick="return confirm(\'Willst den Import wirklich durchführen?\')" class="btn btn-secondary"><i class="fa fa-cloud-download" aria-hidden="true"></i> KV-Vereine von ' . $libGlobal->mkHostname . ' importieren</a>';
     echo '<a href="index.php?pid=intranet_admin_association&amp;aktion=blank" class="btn btn-secondary">Einen neuen Verein anlegen</a>';
@@ -70,7 +70,7 @@ if($libAuth->isLoggedin()){
 
 
     echo '<div class="card">';
-	echo '<div class="panel-body">';
+    echo '<div class="card-body">';
 
     echo '<div class="table-responsive">';
     echo '<table class="table table-sm table-striped table-hover">';

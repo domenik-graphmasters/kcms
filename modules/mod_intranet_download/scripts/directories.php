@@ -140,7 +140,7 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
     echo '<h2>Datei hochladen</h2>';
 
     echo '<div class="card">';
-    echo '<div class="panel-body">';
+    echo '<div class="card-body">';
     echo '<form action="index.php?pid=intranet_directories&aktion=open&hash=' . $currentFolder->getHash() . '" method="post" enctype="multipart/form-data" class="">';
     echo '<fieldset>';
     echo '<input type="hidden" name="aktion" value="upload" />';
@@ -189,7 +189,7 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
     echo '<h2>Ordner anlegen</h2>';
 
     echo '<div class="card">';
-    echo '<div class="panel-body">';
+    echo '<div class="card-body">';
     echo '<form action="index.php?pid=intranet_directories&aktion=open&hash=' . $currentFolder->getHash() . '" method="post" class="">';
     echo '<fieldset>';
     echo '<input type="hidden" name="aktion" value="newfolder" />';

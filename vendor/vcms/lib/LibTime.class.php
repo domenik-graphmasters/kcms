@@ -600,7 +600,7 @@ class LibTime{
 
 		if(count($semesters) > 1 || (count($semesters) == 1 && ($semesters[0] != $globalsemester))){
             $retstr .= '<div class="card">';
-			$retstr .= '<div class="panel-body">';
+            $retstr .= '<div class="card-body">';
 			$retstr .= '<form action="index.php" class="form-inline">';
 			$retstr .= '<fieldset>';
 			$retstr .= '<input type="hidden" name="pid" value="' . $libGlobal->pid . '"/>';

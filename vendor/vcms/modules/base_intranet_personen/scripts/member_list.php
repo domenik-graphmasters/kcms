@@ -33,7 +33,7 @@ echo $libString->getErrorBoxText();
 echo $libString->getNotificationBoxText();
 
 echo '<div class="card">';
-echo '<div class="panel-body">';
+echo '<div class="card-body">';
 echo '<form action="index.php?pid=intranet_mitglied_listelebende" method="post" class="form-inline">';
 echo '<fieldset>';
 echo '<div class="form-group row">';

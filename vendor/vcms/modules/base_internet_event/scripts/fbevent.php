@@ -59,7 +59,7 @@ if($libEvent->isFacebookEvent($row)){
 		$eventInterestedCount = $eventObject['interested_count'];
 
         echo '<div class="card">';
-		// no panel-body here!
+        // no card-body here!
 		echo '<div class="thumbnail">';
 
 		echo '<div class="img-frame">';

@@ -140,7 +140,7 @@ if($libAuth->isLoggedin()){
 	}
 
     echo '<div class="card">';
-	echo '<div class="panel-body">';
+    echo '<div class="card-body">';
     echo '<form action="index.php?pid=intranet_admin_membership' . $extraActionParam . '" method="post" class="">';
 	echo '<fielset>';
 	echo '<input type="hidden" name="verein" value="' .$vmarray['verein']. '" />';

@@ -96,7 +96,7 @@ class LibTimelineEvent {
 		* heading
 		*/
         $retstr .= '<div class="card-header">';
-		$retstr .= '<h3 class="panel-title">';
+        $retstr .= '<h3 class="card-titl">';
 
 		if($this->datetime != ''){
 			$retstr .= '<time datetime="' .$libTime->formatUtcString($this->datetime). '">';
@@ -120,7 +120,7 @@ class LibTimelineEvent {
 		/*
 		* body
 		*/
-		$retstr .= '<div class="panel-body">';
+        $retstr .= '<div class="card-body">';
 
 		// description
 		$retstr .= '<div class="row">';

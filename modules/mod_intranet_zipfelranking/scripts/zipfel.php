@@ -30,7 +30,7 @@ $stmt->execute();
 
 while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     echo '<div class="card">';
-	echo '<div class="panel-body">';
+    echo '<div class="card-body">';
 
 	echo '<div class="row">';
     echo '<div class="col-6 col-sm-2">';

@@ -41,7 +41,7 @@ if($libAuth->isLoggedin()){
 
 
     echo '<div class="card">';
-	echo '<div class="panel-body">';
+    echo '<div class="card-body">';
 	echo '<div class="btn-toolbar">';
     echo '<a href="index.php?pid=intranet_admin_membership&amp;aktion=blank" class="btn btn-secondary">Eine neue Vereinsmitgliedschaft anlegen</a>';
 	echo '</div>';
@@ -50,7 +50,7 @@ if($libAuth->isLoggedin()){
 
 
     echo '<div class="card">';
-	echo '<div class="panel-body">';
+    echo '<div class="card-body">';
 
     echo '<div class="table-responsive">';
     echo '<table class="table table-sm table-striped table-hover">';

@@ -41,7 +41,7 @@ if($libGlobal->getSiteUrlAuthority() != ''){
 }
 
 echo '<div class="card">';
-echo '<div class="panel-body">';
+echo '<div class="card-body">';
 echo '<form action="' . $urlPrefix . 'index.php?pid=intranet_home" method="post" class="">';
 echo '<fieldset>';
 

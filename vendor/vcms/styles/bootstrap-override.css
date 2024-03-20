@@ -53,12 +53,12 @@ label {
 	border-bottom: 0;
 }
 
-.panel .card-header .panel-title {
+.panel .card-header .card-titl {
 	font-weight: normal;
 }
 
 .panel .card-header,
-.panel .panel-body {
+.panel .card-body {
 	padding: 1em;
 	background-color: inherit;
 }

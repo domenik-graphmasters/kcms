@@ -51,7 +51,7 @@ echo $libString->getNotificationBoxText();
 
 
 echo '<div class="card">';
-echo '<div class="panel-body">';
+echo '<div class="card-body">';
 echo '<div class="btn-toolbar">';
 echo '<a href="index.php?pid=intranet_chargierkalender_adminveranstaltung&amp;aktion=blank" class="btn btn-secondary">Eine neue Chargierveranstaltung anlegen</a>';
 echo '</div>';
@@ -71,7 +71,7 @@ echo $libTime->getSemesterMenu($libTime->getSemestersFromDates($daten), $libGlob
 
 
 echo '<div class="card">';
-echo '<div class="panel-body">';
+echo '<div class="card-body">';
 
 echo '<table class="table table-sm table-striped table-hover">';
 echo '<thead>';

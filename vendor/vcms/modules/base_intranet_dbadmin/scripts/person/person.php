@@ -206,7 +206,7 @@ if($libAuth->isLoggedin()){
 	}
 
     echo '<div class="card">';
-	echo '<div class="panel-body">';
+    echo '<div class="card-body">';
     echo '<form action="index.php?pid=intranet_admin_person' . $extraActionParam . '" method="post" class="">';
 	echo '<fieldset>';
 	echo '<input type="hidden" name="formtyp" value="personendaten" />';

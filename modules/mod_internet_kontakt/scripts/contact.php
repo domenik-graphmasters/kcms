@@ -213,7 +213,7 @@ if($libGenericStorage->loadValueInCurrentModule('show_form')){
 		}
 
         echo '<div class="card">';
-		echo '<div class="panel-body">';
+        echo '<div class="card-body">';
         echo '<form action="index.php?pid=kontakt" method="post" class="">';
 		echo '<fieldset>';
 

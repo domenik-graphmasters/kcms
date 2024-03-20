@@ -79,7 +79,7 @@ echo $libString->getErrorBoxText();
 echo $libString->getNotificationBoxText();
 
 echo '<div class="card">';
-echo '<div class="panel-body">';
+echo '<div class="card-body">';
 echo '<form action="index.php?pid=password" method="post" class="">';
 echo '<fieldset>';
 

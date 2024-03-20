@@ -35,7 +35,7 @@ if(isset($_GET['id'])){
 	echo '<div class="col-sm-9">';
 
     echo '<div class="card">';
-	echo '<div class="panel-body">';
+    echo '<div class="card-body">';
 	echo '<address>';
 
 	if($vereinarray['zusatz1']){
@@ -68,7 +68,7 @@ if(isset($_GET['id'])){
 
 
     echo '<div class="card">';
-	echo '<div class="panel-body">';
+    echo '<div class="card-body">';
 
 	if($vereinarray['farbe1']){
 		echo '<div style="width:50px">';
@@ -173,7 +173,7 @@ if(isset($_GET['id'])){
 		echo '<h3>Farbenstrophe</h3>';
 
         echo '<div class="card">';
-		echo '<div class="panel-body">';
+        echo '<div class="card-body">';
 		echo '<p class="mb-4">';
 		echo nl2br($vereinarray['farbenstrophe']);
 		echo '</p>';
@@ -185,7 +185,7 @@ if(isset($_GET['id'])){
 		echo '<h3>Inoffizielle Farbenstrophe</h3>';
 
         echo '<div class="card">';
-		echo '<div class="panel-body">';
+        echo '<div class="card-body">';
 		echo '<p class="mb-4">';
 		echo nl2br($vereinarray['farbenstrophe_inoffiziell']);
 		echo '</p>';
@@ -197,7 +197,7 @@ if(isset($_GET['id'])){
 		echo '<h3>Fuchsenstrophe</h3>';
 
         echo '<div class="card">';
-		echo '<div class="panel-body">';
+        echo '<div class="card-body">';
 		echo '<p class="mb-4">';
 		echo nl2br($vereinarray['fuchsenstrophe']);
 		echo '</p>';
@@ -209,7 +209,7 @@ if(isset($_GET['id'])){
 		echo '<h3>Bundeslied</h3>';
 
         echo '<div class="card">';
-		echo '<div class="panel-body">';
+        echo '<div class="card-body">';
 		echo '<p class="mb-4">';
 		echo nl2br($vereinarray['bundeslied']);
 		echo '</p>';
@@ -219,7 +219,7 @@ if(isset($_GET['id'])){
 
 	if($vereinarray['beschreibung']){
         echo '<div class="card">';
-		echo '<div class="panel-body">';
+        echo '<div class="card-body">';
 		echo '<p class="mb-4">';
 		echo nl2br($vereinarray['beschreibung']);
 		echo '</p>';
@@ -231,7 +231,7 @@ if(isset($_GET['id'])){
 
 	echo '<div class="col-sm-3">';
     echo '<div class="card">';
-	echo '<div class="panel-body">';
+    echo '<div class="card-body">';
 
 	$filePathZirkelSvg = 'custom/vereine/zirkel/' .$vereinarray['id']. '.svg';
 	$filePathZirkelGif = 'custom/vereine/zirkel/' .$vereinarray['id']. '.gif';
@@ -274,7 +274,7 @@ if(isset($_GET['id'])){
 		echo '<h2>Mitglieder</h2>';
 
         echo '<div class="card">';
-		echo '<div class="panel-body">';
+        echo '<div class="card-body">';
 		echo '<div class="persons-grid">';
 
 		$stmt = $libDb->prepare('SELECT base_verein_mitgliedschaft.mitglied, base_verein_mitgliedschaft.ehrenmitglied, base_person.gruppe FROM base_verein_mitgliedschaft, base_person WHERE base_verein_mitgliedschaft.verein = :verein AND base_verein_mitgliedschaft.mitglied = base_person.id ORDER BY base_verein_mitgliedschaft.ehrenmitglied DESC, base_person.name ASC');

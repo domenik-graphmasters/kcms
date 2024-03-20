@@ -25,7 +25,7 @@ $libDb->connect();
 echo '<h1>System-Protokoll</h1>';
 
 echo '<div class="card">';
-echo '<div class="panel-body">';
+echo '<div class="card-body">';
 
 echo '<table class="table table-sm table-striped table-hover">';
 echo '<thead>';

@@ -22,7 +22,7 @@ function printPersons($stmt){
 	$stmt->execute();
 
     echo '<div class="card">';
-	echo '<div class="panel-body">';
+    echo '<div class="card-body">';
 	echo '<div class="persons-grid">';
 
 	while($row = $stmt->fetch(PDO::FETCH_ASSOC)){

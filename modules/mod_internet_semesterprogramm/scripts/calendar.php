@@ -44,7 +44,7 @@ echo '</div>';
 
 echo '<div class="col-12 col-sm-6">';
 echo '<div class="card">';
-echo '<div class="panel-body">';
+echo '<div class="card-body">';
 echo '<div class="btn-toolbar">';
 echo '<a href="webcal://' . $libGlobal->getSiteUrlAuthority() . '/api.php?iid=semesterprogramm_icalendar" class="btn btn-secondary"><i class="fa fa-calendar" aria-hidden="true"></i> Semesterprogramm abonnieren</a>';
 echo '</div>';

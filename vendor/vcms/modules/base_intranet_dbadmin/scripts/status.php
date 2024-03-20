@@ -59,7 +59,7 @@ if($libAuth->isLoggedin()){
 	echo $libString->getNotificationBoxText();
 
     echo '<div class="card">';
-	echo '<div class="panel-body">';
+    echo '<div class="card-body">';
 
     echo '<div class="table-responsive">';
     echo '<table class="table table-sm table-striped table-hover">';
@@ -96,7 +96,7 @@ if($libAuth->isLoggedin()){
 	echo '<h2>Neuen Status anlegen</h2>';
 
     echo '<div class="card">';
-	echo '<div class="panel-body">';
+    echo '<div class="card-body">';
     echo '<form action="index.php?pid=intranet_admin_status" method="post" class="">';
 	echo '<fieldset>';
 	echo '<input type="hidden" name="aktion" value="create" />';

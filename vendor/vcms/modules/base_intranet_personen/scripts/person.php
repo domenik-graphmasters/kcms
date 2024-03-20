@@ -198,7 +198,7 @@ echo '</div>';
 
 echo '<div class="col-sm-9">';
 echo '<div class="card">';
-echo '<div class="panel-body">';
+echo '<div class="card-body">';
 printPersonData($row);
 
 echo '<div class="row">';
@@ -212,7 +212,7 @@ echo '</div>';
 echo '</div>';
 
 echo '<div class="card">';
-echo '<div class="panel-body">';
+echo '<div class="card-body">';
 printVita($row);
 echo '</div>';
 
@@ -228,7 +228,7 @@ if($ownprofile){
 	echo '<h2>Passwort ändern</h2>';
 
     echo '<div class="card">';
-	echo '<div class="panel-body">';
+    echo '<div class="card-body">';
     echo '<form action="index.php?pid=intranet_person&amp;id=' . $id . '" method="post" class="">';
 	echo '<fieldset>';
 	echo '<input type="hidden" name="formtyp" value="personpasswort" />';
@@ -252,7 +252,7 @@ if($ownprofile){
 	echo '<h2>Stammdaten ändern</h2>';
 
     echo '<div class="card">';
-	echo '<div class="panel-body">';
+    echo '<div class="card-body">';
     echo '<form action="index.php?pid=intranet_person" method="post" class="">';
 	echo '<fieldset>';
 	echo '<input type="hidden" name="formtyp" value="person_data" />';
