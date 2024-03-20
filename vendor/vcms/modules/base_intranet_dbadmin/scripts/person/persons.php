@@ -128,7 +128,7 @@ if($libAuth->isLoggedin()){
 	echo '<div class="panel-body">';
 	echo '<form action="index.php?pid=intranet_admin_persons" method="post" class="form-inline">';
 	echo '<fieldset>';
-	echo '<div class="form-group">';
+    echo '<div class="form-group row">';
 
 	echo '<label class="sr-only" for="sortierung">Sortierung</label>';
 	echo '<select id="orderby" name="orderby" class="form-control" onchange="this.form.submit()">';

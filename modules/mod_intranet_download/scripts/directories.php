@@ -144,7 +144,7 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
     echo '<input type="hidden" name="aktion" value="upload" />';
     echo '<input type="hidden" id="hash" name="hash" value="' . $currentFolder->getHash() . '">';
 
-    echo '<div class="form-group">';
+    echo '<div class="form-group row">';
     echo '<label class="col-sm-3 col-form-label">mit Leserecht für</label>';
     echo '<div class="col-sm-9">';
 
@@ -167,7 +167,7 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
 
     echo '</div></div>';
 
-    echo '<div class="form-group">';
+    echo '<div class="form-group row">';
     echo '<div class="col-sm-offset-3 col-sm-3">';
     echo '<label class="btn btn-default btn-file"><i class="fa fa-upload" aria-hidden="true"></i> Datei hochladen';
     echo '<input type="file" name="datei" onchange="this.form.submit()" style="display:none">';
@@ -193,12 +193,12 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
     echo '<input type="hidden" name="aktion" value="newfolder" />';
     echo '<input type="hidden" id="hash" name="hash" value="' . $currentFolder->getHash() . '">';
 
-    echo '<div class="form-group">';
+    echo '<div class="form-group row">';
     echo '<label for="foldername" class="col-sm-3 col-form-label">Neuen Ordner</label>';
     echo '<div class="col-sm-3"><input type="text" id="foldername" name="foldername" class="form-control" /></div>';
     echo '</div>';
 
-    echo '<div class="form-group">';
+    echo '<div class="form-group row">';
     echo '<div class="col-sm-offset-3 col-sm-3">';
     echo '<button type="submit" class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i> anlegen</button>';
     echo '</div>';

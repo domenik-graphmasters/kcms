@@ -51,7 +51,7 @@ class LibForm{
 	}
 
 	function printTextInput($name, $label, $value, $type = 'text', $disabled = false, $required = false, $classes = array()){
-		echo '<div class="form-group">';
+        echo '<div class="form-group row">';
         echo '<label for="' . $name . '" class="col-sm-' . $this->colLabel . ' col-form-label">' . $label . '</label>';
 		echo '<div class="col-sm-' .$this->colInput. '">';
 		echo '<input type="' .$type. '" id="' .$name. '" name="' .$name. '" value="' .$value. '"';
@@ -69,7 +69,7 @@ class LibForm{
 	}
 
 	function printTextarea($name, $label, $value, $disabled = false, $required = false, $classes = array()){
-		echo '<div class="form-group">';
+        echo '<div class="form-group row">';
         echo '<label for="' . $name . '" class="col-sm-' . $this->colLabel . ' col-form-label">' . $label . '</label>';
 		echo '<div class="col-sm-' .$this->colInput. '">';
 		echo '<textarea id="' .$name. '" name="' .$name. '" rows="10"';
@@ -87,7 +87,7 @@ class LibForm{
 	}
 
 	function printFileInput($name, $label, $disabled = false, $required = false, $classes = array(), $accepts = array()){
-		echo '<div class="form-group">';
+        echo '<div class="form-group row">';
         echo '<label for="' . $name . '" class="col-sm-' . $this->colLabel . ' col-form-label">' . $label . '</label>';
 		echo '<div class="col-sm-' .$this->colInput. '">';
 		echo '<label class="btn btn-default btn-file';
@@ -108,7 +108,7 @@ class LibForm{
 	}
 
 	function printFileUpload($name, $label, $disabled = false, $required = false, $classes = array(), $accepts = array()){
-		echo '<div class="form-group">';
+        echo '<div class="form-group row">';
 		echo '<label class="btn btn-default btn-file';
 
 		$this->printClassesString($classes);
@@ -126,7 +126,7 @@ class LibForm{
 	}
 
 	function printStaticText($label, $value, $disabled = false, $required = false, $classes = array()){
-		echo '<div class="form-group">';
+        echo '<div class="form-group row">';
         echo '<label class="col-sm-' . $this->colLabel . ' col-form-label">' . $label . '</label>';
 		echo '<div class="col-sm-' .$this->colInput. '">';
 		echo '<p class="form-control-static mb-3';
@@ -141,7 +141,7 @@ class LibForm{
 	}
 
 	function printSubmitButton($label, $classes = array()){
-		echo '<div class="form-group">';
+        echo '<div class="form-group row">';
 		echo '<div class="col-sm-offset-' .$this->colLabel. ' col-sm-' .$this->colInput. '">';
 		echo '<button type="submit" class="btn btn-default';
 
@@ -163,7 +163,7 @@ class LibForm{
 	function printMitgliederDropDownBox($name, $label, $activeElementId = '', $allowNull = true, $disabled = false){
 		global $libDb, $libPerson;
 
-		echo '<div class="form-group">';
+        echo '<div class="form-group row">';
         echo '<label for="' . $name . '" class="col-sm-' . $this->colLabel . ' col-form-label">' . $label . '</label>';
 		echo '<div class="col-sm-' .$this->colInput. '"><select id="' .$name. '" name="' .$name. '"';
 
@@ -195,7 +195,7 @@ class LibForm{
 	function printVereineDropDownBox($name, $label, $activeElementId = '', $allowNull = true, $disabled = false){
 		global $libDb;
 
-		echo '<div class="form-group">';
+        echo '<div class="form-group row">';
         echo '<label for="' . $name . '" class="col-sm-' . $this->colLabel . ' col-form-label">' . $label . '</label>';
 		echo '<div class="col-sm-' .$this->colInput. '"><select id="' .$name. '" name="' .$name. '"';
 
@@ -227,7 +227,7 @@ class LibForm{
 	function printSemesterDropDownBox($name, $label, $selectedSemester = '', $allowNull = true, $disabled = false){
 		global $libDb;
 
-		echo '<div class="form-group">';
+        echo '<div class="form-group row">';
         echo '<label for="' . $name . '" class="col-sm-' . $this->colLabel . ' col-form-label">' . $label . '</label>';
 		echo '<div class="col-sm-' .$this->colInput. '"><select id="' .$name. '" name="' .$name. '"';
 
@@ -259,7 +259,7 @@ class LibForm{
 	function printStatusDropDownBox($name, $label, $selectedStatus = '', $allowNull = true, $disabled = false){
 		global $libDb;
 
-		echo '<div class="form-group">';
+        echo '<div class="form-group row">';
         echo '<label for="' . $name . '" class="col-sm-' . $this->colLabel . ' col-form-label">' . $label . '</label>';
 		echo '<div class="col-sm-' .$this->colInput. '"><select id="' .$name. '" name="' .$name. '"';
 
@@ -291,7 +291,7 @@ class LibForm{
 	function printGruppeDropDownBox($name, $label, $selectedGruppe = '', $allowNull = true, $disabled = false){
 		global $libDb;
 
-		echo '<div class="form-group">';
+        echo '<div class="form-group row">';
         echo '<label for="' . $name . '" class="col-sm-' . $this->colLabel . ' col-form-label">' . $label . '</label>';
 		echo '<div class="col-sm-' .$this->colInput. '"><select id="' .$name. '" name="' .$name. '"';
 
@@ -323,7 +323,7 @@ class LibForm{
 	function printRegionDropDownBox($name, $label, $selectedRegion = '', $allowNull = true, $disabled = false){
 		global $libDb;
 
-		echo '<div class="form-group">';
+        echo '<div class="form-group row">';
         echo '<label for="' . $name . '" class="col-sm-' . $this->colLabel . ' col-form-label">' . $label . '</label>';
 		echo '<div class="col-sm-' .$this->colInput. '"><select id="' .$name. '" name="' .$name. '"';
 
@@ -362,7 +362,7 @@ class LibForm{
 	function printVeranstaltungDropDownBox($name, $label, $selectedVeranstaltung = '', $allowNull = true, $disabled = false){
 		global $libDb;
 
-		echo '<div class="form-group">';
+        echo '<div class="form-group row">';
         echo '<label for="' . $name . '" class="col-sm-' . $this->colLabel . ' col-form-label">' . $label . '</label>';
 		echo '<div class="col-sm-' .$this->colInput. '"><select id="' .$name. '" name="' .$name. '"';
 
@@ -392,7 +392,7 @@ class LibForm{
 	}
 
 	function printBoolSelectBox($name, $label, $selectedValue = 0){
-		echo '<div class="form-group">';
+        echo '<div class="form-group row">';
         echo '<label for="' . $name . '" class="col-sm-' . $this->colLabel . ' col-form-label">' . $label . '</label>';
 		echo '<div class="col-sm-' .$this->colInput. '"><select name="' .$name. '" class="form-control">';
 		echo '<option value="1"';

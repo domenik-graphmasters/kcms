@@ -237,7 +237,7 @@ if($ownprofile){
 	$libForm->printTextInput('newpwd1', 'Neues Passwort', '', 'password', false, true);
 	$libForm->printTextInput('newpwd2', 'Neues Passwort (Wiederholung)', '', 'password', false, true);
 
-	echo '<div class="form-group">';
+    echo '<div class="form-group row">';
 	echo '<div class="col-sm-3"></div>';
 	echo '<div class="col-sm-9">' .$libAuth->getPasswordRequirements(). '</div>';
 	echo '</div>';

@@ -95,7 +95,7 @@ echo '<div class="panel-body">';
 echo '<form action="index.php?pid=intranet_rundbrief_senden" method="post" enctype="multipart/form-data" onsubmit="return confirm(\'Willst Du die Nachricht wirklich verschicken?\');" class="">';
 echo '<fieldset>';
 
-echo '<div class="form-group">';
+echo '<div class="form-group row">';
 echo '<label class="col-sm-3 col-form-label">Adressaten</label>';
 echo '<div class="col-sm-4">';
 

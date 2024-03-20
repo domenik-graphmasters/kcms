@@ -36,7 +36,7 @@ echo '<div class="panel panel-default">';
 echo '<div class="panel-body">';
 echo '<form action="index.php?pid=intranet_mitglied_listelebende" method="post" class="form-inline">';
 echo '<fieldset>';
-echo '<div class="form-group">';
+echo '<div class="form-group row">';
 echo '<label for="searchterm" class="sr-only">Suchbegriff</label>';
 echo '<input type="text" id="searchterm" name="searchterm" class="form-control" placeholder="Suchbegriff" />';
 echo '</div> ';

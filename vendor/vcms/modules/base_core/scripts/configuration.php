@@ -75,7 +75,7 @@ foreach($storage as $moduleid => $arrays){
 	foreach($arrays as $array_name => $positionen){
 		//positions and values at that positions
 		foreach($positionen as $position => $value){
-			echo '<div class="form-group">';
+            echo '<div class="form-group row">';
             echo '<label class="col-sm-4 col-form-label">' . $array_name . '</label>';
 
 			echo '<div class="col-sm-1">';
