@@ -133,7 +133,7 @@ echo '</div>';
 
 echo '<div class="panel panel-default">';
 echo '<div class="panel-body">';
-echo '<table class="table table-bordered table-condensed">';
+echo '<table class="table table-bordered table-sm">';
 
 //for all semesters
 foreach($tArray as $key1 => $value1){

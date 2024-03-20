@@ -73,7 +73,7 @@ echo $libTime->getSemesterMenu($libTime->getSemestersFromDates($daten), $libGlob
 echo '<div class="panel panel-default">';
 echo '<div class="panel-body">';
 
-echo '<table class="table table-condensed table-striped table-hover">';
+echo '<table class="table table-sm table-striped table-hover">';
 echo '<thead>';
 echo '<tr><th>Id</th><th>Verein</th><th>Beschreibung</th><th>Datum</th><th></th></tr>';
 echo '</thead>';

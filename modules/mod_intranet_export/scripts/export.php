@@ -43,7 +43,7 @@ $semester101zurueck = $libTime->getPreviousSemesterNameOfSemester($semester100zu
 
 <div class="panel panel-default">
 	<div class="panel-body">
-		<table class="table table-condensed">
+        <table class="table table-sm">
 			<tr>
 				<th colspan="2">Adressdaten</th>
 			</tr>

@@ -57,7 +57,7 @@ if(isset($_REQUEST['action'])){
 	echo '<div class="panel panel-default">';
 	echo '<div class="panel-body">';
 
-	echo '<table class="table table-condensed table-striped table-hover">';
+    echo '<table class="table table-sm table-striped table-hover">';
 	echo '<thead>';
 	echo '<tr>';
 	echo '<th>Modulname</th><th>Status</th>';
