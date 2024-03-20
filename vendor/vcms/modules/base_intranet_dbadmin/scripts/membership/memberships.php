@@ -43,7 +43,7 @@ if($libAuth->isLoggedin()){
 	echo '<div class="panel panel-default">';
 	echo '<div class="panel-body">';
 	echo '<div class="btn-toolbar">';
-	echo '<a href="index.php?pid=intranet_admin_membership&amp;aktion=blank" class="btn btn-default">Eine neue Vereinsmitgliedschaft anlegen</a>';
+    echo '<a href="index.php?pid=intranet_admin_membership&amp;aktion=blank" class="btn btn-secondary">Eine neue Vereinsmitgliedschaft anlegen</a>';
 	echo '</div>';
 	echo '</div>';
 	echo '</div>';

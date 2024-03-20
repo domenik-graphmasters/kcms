@@ -118,7 +118,7 @@ if($libAuth->isLoggedin()){
 		echo '<div class="panel panel-default">';
 		echo '<div class="panel-body">';
 		echo '<div class="btn-toolbar">';
-		echo '<a href="index.php?pid=intranet_admin_person&amp;aktion=blank" class="btn btn-default">Eine neue Person anlegen</a>';
+        echo '<a href="index.php?pid=intranet_admin_person&amp;aktion=blank" class="btn btn-secondary">Eine neue Person anlegen</a>';
 		echo '</div>';
 		echo '</div>';
 		echo '</div>';

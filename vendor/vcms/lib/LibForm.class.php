@@ -90,7 +90,7 @@ class LibForm{
         echo '<div class="form-group row">';
         echo '<label for="' . $name . '" class="col-sm-' . $this->colLabel . ' col-form-label">' . $label . '</label>';
 		echo '<div class="col-sm-' .$this->colInput. '">';
-		echo '<label class="btn btn-default btn-file';
+        echo '<label class="btn btn-secondary btn-file';
 
 		$this->printClassesString($classes);
 
@@ -109,7 +109,7 @@ class LibForm{
 
 	function printFileUpload($name, $label, $disabled = false, $required = false, $classes = array(), $accepts = array()){
         echo '<div class="form-group row">';
-		echo '<label class="btn btn-default btn-file';
+        echo '<label class="btn btn-secondary btn-file';
 
 		$this->printClassesString($classes);
 
@@ -143,7 +143,7 @@ class LibForm{
 	function printSubmitButton($label, $classes = array()){
         echo '<div class="form-group row">';
 		echo '<div class="col-sm-offset-' .$this->colLabel. ' col-sm-' .$this->colInput. '">';
-		echo '<button type="submit" class="btn btn-default';
+        echo '<button type="submit" class="btn btn-secondary';
 
 		$this->printClassesString($classes);
 
@@ -153,7 +153,7 @@ class LibForm{
 	}
 
 	function printSubmitButtonInline($label, $classes = array()){
-		echo '<button type="submit" class="btn btn-default';
+        echo '<button type="submit" class="btn btn-secondary';
 
 		$this->printClassesString($classes);
 

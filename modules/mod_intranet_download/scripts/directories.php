@@ -169,7 +169,7 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
 
     echo '<div class="form-group row">';
     echo '<div class="col-sm-offset-3 col-sm-3">';
-    echo '<label class="btn btn-default btn-file"><i class="fa fa-upload" aria-hidden="true"></i> Datei hochladen';
+    echo '<label class="btn btn-secondary btn-file"><i class="fa fa-upload" aria-hidden="true"></i> Datei hochladen';
     echo '<input type="file" name="datei" onchange="this.form.submit()" style="display:none">';
     echo '</label>';
     echo '</div>';
@@ -200,7 +200,7 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
 
     echo '<div class="form-group row">';
     echo '<div class="col-sm-offset-3 col-sm-3">';
-    echo '<button type="submit" class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i> anlegen</button>';
+    echo '<button type="submit" class="btn btn-secondary"><i class="fa fa-plus" aria-hidden="true"></i> anlegen</button>';
     echo '</div>';
     echo '</div>';
 

@@ -49,7 +49,7 @@ echo $libString->getNotificationBoxText();
 echo '<div class="panel panel-default">';
 echo '<div class="panel-body">';
 echo '<div class="btn-toolbar">';
-echo '<a href="index.php?pid=intranet_admin_announcement&amp;aktion=blank" class="btn btn-default">Eine neue Ankündigung anlegen</a>';
+echo '<a href="index.php?pid=intranet_admin_announcement&amp;aktion=blank" class="btn btn-secondary">Eine neue Ankündigung anlegen</a>';
 echo '</div>';
 echo '</div>';
 echo '</div>';

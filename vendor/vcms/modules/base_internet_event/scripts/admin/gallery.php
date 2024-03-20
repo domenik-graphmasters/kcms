@@ -120,7 +120,7 @@ echo '<div id="files-success" role="alert" class="alert alert-success" style="di
 echo '<div id="files-danger" role="alert" class="alert alert-danger" style="display:none"></div>';
 
 echo '<div class="form-group row">';
-echo '<label class="btn btn-default btn-file">';
+echo '<label class="btn btn-secondary btn-file">';
 echo '<i aria-hidden="true" class="fa fa-upload"></i> Fotos hochladen';
 echo '<input id="fileupload" type="file" style="display:none" name="files[]" multiple>';
 echo '</label>';
