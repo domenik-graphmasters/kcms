@@ -547,7 +547,7 @@ class LibTime{
 		$file = $this->determineSemesterCover($semesterString);
 
 		if($file != ''){
-			return '<img src="custom/semestercover/' .$file. '" class="img-responsive center-block" alt="Semestercover" />';
+            return '<img src="custom/semestercover/' . $file . '" class="img-fluid center-block" alt="Semestercover" />';
 		}
 	}
 

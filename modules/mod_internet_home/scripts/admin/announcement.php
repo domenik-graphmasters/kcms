@@ -170,7 +170,7 @@ if((isset($_REQUEST['id']) && $_REQUEST['id'] != '') || $array['id'] != ''){
 		echo '</a>';
 		echo '</span>';
 
-		echo '<img src="' .$posssibleImage. '" class="img-responsive center-block" alt="Veranstaltungsbild" />';
+        echo '<img src="' . $posssibleImage . '" class="img-fluid center-block" alt="Veranstaltungsbild" />';
 		echo '</div>';
 		echo '</div>';
 	}

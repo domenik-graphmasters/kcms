@@ -34,7 +34,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 	$imageExists = is_file($image);
 
 	if($imageExists){
-		echo '<img src="' .$image. '" class="img-responsive center-block reveal" alt="" />';
+        echo '<img src="' . $image . '" class="img-fluid center-block reveal" alt="" />';
 	}
 
 	echo '<p class="caption mb-3">';

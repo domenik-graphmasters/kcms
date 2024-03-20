@@ -9,6 +9,7 @@ echo '    <title>' .$libGlobal->getPageTitle(). '</title>' . PHP_EOL;
 echo '    <meta name="description" content="' .$libConfig->seiteBeschreibung. '" />' . PHP_EOL;
 echo '    <meta name="keywords" content="' .$libConfig->seiteKeywords. '" />' . PHP_EOL;
 echo '    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css" />' . PHP_EOL;
+echo '    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">' . PHP_EOL;
 echo '    <link rel="stylesheet" href="vendor/fonts/font-awesome/css/font-awesome.min.css" />' . PHP_EOL;
 echo '    <link rel="stylesheet" href="vendor/fonts/libre-franklin/css/libre-franklin.css" />' . PHP_EOL;
 echo '    <link rel="stylesheet" href="vendor/hover/hover-min.css" />' . PHP_EOL;
@@ -22,8 +23,8 @@ echo '    <link rel="stylesheet" href="vendor/vcms/styles/person/person.css" />'
 echo '    <link rel="stylesheet" href="vendor/vcms/styles/timeline/timeline.css" />' . PHP_EOL;
 echo '    <link rel="stylesheet" href="custom/styles/screen.css" />' . PHP_EOL;
 echo '    <link rel="canonical" href="' .$libGlobal->getPageCanonicalUrl(). '"/>' . PHP_EOL;
-echo '    <script src="vendor/jquery/jquery.min.js"></script>' . PHP_EOL;
-echo '    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>' . PHP_EOL;
+echo '    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>' . PHP_EOL;
+echo '    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>' . PHP_EOL;
 echo '    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>' . PHP_EOL;
 echo '    <script src="vendor/vcms/styles/gallery/modal.js"></script>' . PHP_EOL;
 echo '    <script src="vendor/vcms/styles/screen.js"></script>' . PHP_EOL;
