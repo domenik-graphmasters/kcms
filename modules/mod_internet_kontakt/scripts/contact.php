@@ -171,7 +171,7 @@ echo '</div>';
 echo '<aside class="col-sm-6">';
 echo '<div class="card reveal mb-5">';
 echo '<div class="thumbnail">';
-echo '<img src="' . $libModuleHandler->getModuleDirectory() . '/custom/img/haus.jpg" alt="" class="img-fluid center-block reveal" />';
+echo '<img src="' . $libModuleHandler->getModuleDirectory() . '/custom/img/haus.jpg" alt="" class="img-fluid mx-auto reveal" />';
 echo '</div>';
 echo '</div>';
 echo '</aside>';

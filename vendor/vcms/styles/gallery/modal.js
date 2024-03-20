@@ -32,7 +32,7 @@ function createCarouselItem(a){
 
 	var img = $('<img />');
 	img.attr('src', thumbnailHref);
-	img.addClass('center-block');
+	img.addClass('mx-auto');
 	img.addClass('img-fluid');
 	img.appendTo(itemDiv);
 

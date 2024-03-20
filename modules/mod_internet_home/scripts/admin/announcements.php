@@ -91,7 +91,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
  	if(is_file($posssibleImage)){
 		echo '<a href="index.php?pid=intranet_admin_announcement&amp;id=' .$row['id']. '">';
-        echo '<img src="' . $posssibleImage . '" class="img-fluid center-block" alt="" />';
+        echo '<img src="' . $posssibleImage . '" class="img-fluid mx-auto" alt="" />';
 		echo '</a>';
  	}
 

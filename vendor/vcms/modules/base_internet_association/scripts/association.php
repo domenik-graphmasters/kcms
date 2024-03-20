@@ -237,24 +237,24 @@ if(isset($_GET['id'])){
 	$filePathZirkelGif = 'custom/vereine/zirkel/' .$vereinarray['id']. '.gif';
 
 	if(is_file($filePathZirkelSvg)){
-        echo '<p class="mb-4"><img src="' . $filePathZirkelSvg . '" alt="Zirkel" class="img-fluid center-block" /></p>';
+        echo '<p class="mb-4"><img src="' . $filePathZirkelSvg . '" alt="Zirkel" class="img-fluid mx-auto" /></p>';
 	} else if(is_file($filePathZirkelGif)){
-        echo '<p class="mb-4"><img src="' . $filePathZirkelGif . '" alt="Zirkel" class="img-fluid center-block" /></p>';
+        echo '<p class="mb-4"><img src="' . $filePathZirkelGif . '" alt="Zirkel" class="img-fluid mx-auto" /></p>';
 	}
 
 	$filePathWappenSvg = 'custom/vereine/wappen/' .$vereinarray['id']. '.svg';
 	$filePathWappenJpg = 'custom/vereine/wappen/' .$vereinarray['id']. '.jpg';
 
 	if(is_file($filePathWappenSvg)){
-        echo '<p class="mb-4"><img src="' . $filePathWappenSvg . '" alt="Wappen" class="img-fluid center-block" /></p>';
+        echo '<p class="mb-4"><img src="' . $filePathWappenSvg . '" alt="Wappen" class="img-fluid mx-auto" /></p>';
 	} else if(is_file($filePathWappenJpg)){
-        echo '<p class="mb-4"><img src="' . $filePathWappenJpg . '" alt="Wappen" class="img-fluid center-block" /></p>';
+        echo '<p class="mb-4"><img src="' . $filePathWappenJpg . '" alt="Wappen" class="img-fluid mx-auto" /></p>';
 	}
 
 	$filePathHausJpg = 'custom/vereine/haus/' .$vereinarray['id']. '.jpg';
 
 	if(is_file($filePathHausJpg)){
-        echo '<p class="mb-4"><img src="' . $filePathHausJpg . '" alt="Haus" class="img-fluid center-block" /></p>';
+        echo '<p class="mb-4"><img src="' . $filePathHausJpg . '" alt="Haus" class="img-fluid mx-auto" /></p>';
 	}
 
 	echo '</div>';
