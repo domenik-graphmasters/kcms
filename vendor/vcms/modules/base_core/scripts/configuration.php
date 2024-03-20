@@ -79,11 +79,11 @@ foreach($storage as $moduleid => $arrays){
             echo '<label class="col-sm-4 col-form-label">' . $array_name . '</label>';
 
 			echo '<div class="col-sm-1">';
-			echo '<input type="text" name="' . $moduleid .'#'. $array_name .'#position' . '" value="' .$position. '" disabled="disabled" class="form-control input-sm" />';
+            echo '<input type="text" name="' . $moduleid . '#' . $array_name . '#position' . '" value="' . $position . '" disabled="disabled" class="form-control form-control-sm" />';
 			echo '</div>';
 
 			echo '<div class="col-sm-6">';
-			echo '<input type="text" name="'. $moduleid .'#'. $array_name .'#'. $position .'#value" value="' .$value. '" class="form-control input-sm" />';
+            echo '<input type="text" name="' . $moduleid . '#' . $array_name . '#' . $position . '#value" value="' . $value . '" class="form-control form-control-sm" />';
 			echo '</div>';
 
 			echo '<div class="col-sm-1">';
