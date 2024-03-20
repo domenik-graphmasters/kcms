@@ -99,11 +99,11 @@ echo '<div class="form-group">';
 echo '<label class="col-sm-3 col-form-label">Adressaten</label>';
 echo '<div class="col-sm-4">';
 
-echo '<div class="checkbox"><label><input type="checkbox" name="fuchsia" checked="checked">';
+echo '<div class="form-check"><label><input type="checkbox" name="fuchsia" checked="checked">';
 echo $anzahlFuechse. ' Füchse &amp; Fuchsmajor';
 echo '</label></div>';
 
-echo '<div class="checkbox"><label><input type="checkbox" name="burschen" checked="checked">';
+echo '<div class="form-check"><label><input type="checkbox" name="burschen" checked="checked">';
 echo $anzahlBurschen. ' Burschen';
 echo '</label></div>';
 
@@ -113,34 +113,34 @@ if($libGenericStorage->loadValueInCurrentModule('preselect_int_ahah') == 1){
 	$ahahInteressiertChecked = 'checked="checked"';
 }
 
-echo '<div class="checkbox"><label><input type="checkbox" name="ahah_interessiert" ' .$ahahInteressiertChecked. '>';
+echo '<div class="form-check"><label><input type="checkbox" name="ahah_interessiert" ' . $ahahInteressiertChecked . '>';
 echo $anzahlBesondersInteressierteAhah. ' besonders interessierte alte Herren';
 echo '</label></div>';
 
-echo '<div class="checkbox"><label><input type="checkbox" name="ahah">';
+echo '<div class="form-check"><label><input type="checkbox" name="ahah">';
 echo $anzahlAhah. ' alte Herren';
 echo '</label></div>';
 
 echo '</div>';
 echo '<div class="col-sm-4">';
 
-echo '<div class="checkbox"><label><input type="checkbox" name="hausbewohner">';
+echo '<div class="form-check"><label><input type="checkbox" name="hausbewohner">';
 echo $anzahlHausbewohner. ' Hausbewohner';
 echo '</label></div>';
 
-echo '<div class="checkbox"><label><input type="checkbox" name="couleurdamen">';
+echo '<div class="form-check"><label><input type="checkbox" name="couleurdamen">';
 echo $anzahlCouleurdamen. ' Couleurdamen';
 echo '</label></div>';
 
-echo '<div class="checkbox"><label><input type="checkbox" name="gattinnen_interessiert">';
+echo '<div class="form-check"><label><input type="checkbox" name="gattinnen_interessiert">';
 echo $anzahlBesondersInteressierteGattinnen. ' besonders interessierte Gattinnen';
 echo '</label></div>';
 
-echo '<div class="checkbox"><label><input type="checkbox" name="gattinnen">';
+echo '<div class="form-check"><label><input type="checkbox" name="gattinnen">';
 echo $anzahlGattinnen. ' Gattinnen';
 echo '</label></div>';
 
-echo '<div class="checkbox"><label><input type="checkbox" name="vereinsfreunde">';
+echo '<div class="form-check"><label><input type="checkbox" name="vereinsfreunde">';
 echo $anzahlVereinsfreunde. ' Vereinsfreunde';
 echo '</label></div>';
 

@@ -153,7 +153,7 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         if ($row['bezeichnung'] != "X" && $row['bezeichnung'] != "T" && $row['bezeichnung'] != "V") {
-            echo '<div class="checkbox"><label><input type="checkbox" name="gruppen[]" value="' . $row['bezeichnung'] . '"';
+            echo '<div class="form-check"><label><input type="checkbox" name="gruppen[]" value="' . $row['bezeichnung'] . '"';
 
             if ($libGenericStorage->loadValueInCurrentModule('preselect_rights') == 1) {
                 echo 'checked="checked"';
