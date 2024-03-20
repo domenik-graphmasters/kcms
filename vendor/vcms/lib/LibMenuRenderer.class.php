@@ -127,7 +127,7 @@ class LibMenuRenderer{
 
 				echo '" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">';
 				echo $folderElement->getName();
-				echo '<span class="caret"></span></a>' . PHP_EOL;
+                echo '</a>' . PHP_EOL;
 
 				//menu folder with elements?
 				if($folderElement->hasElements()){
