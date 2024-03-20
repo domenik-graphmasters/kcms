@@ -131,7 +131,7 @@ echo '</div>';
 echo '</div>';
 
 
-echo '<div class="card panel-default">';
+echo '<div class="card">';
 echo '<div class="panel-body">';
 echo '<table class="table table-bordered table-sm">';
 
@@ -210,7 +210,7 @@ $agesAhAh = fetchAges('P');
 $ageClassesAhAh = calculateAgeClasses($agesAhAh, $classWidth);
 
 
-echo '<div class="card panel-default">';
+echo '<div class="card">';
 echo '<div class="panel-body">';
 
 if(empty($ageClassesAhAh)){

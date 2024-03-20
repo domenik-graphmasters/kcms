@@ -197,7 +197,7 @@ printPersonSignature($row, $ownprofile);
 echo '</div>';
 
 echo '<div class="col-sm-9">';
-echo '<div class="card panel-default">';
+echo '<div class="card">';
 echo '<div class="panel-body">';
 printPersonData($row);
 
@@ -211,7 +211,7 @@ printAssociationDetails($row);
 echo '</div>';
 echo '</div>';
 
-echo '<div class="card panel-default">';
+echo '<div class="card">';
 echo '<div class="panel-body">';
 printVita($row);
 echo '</div>';
@@ -227,7 +227,7 @@ echo '</div>';
 if($ownprofile){
 	echo '<h2>Passwort ändern</h2>';
 
-    echo '<div class="card panel-default">';
+    echo '<div class="card">';
 	echo '<div class="panel-body">';
     echo '<form action="index.php?pid=intranet_person&amp;id=' . $id . '" method="post" class="">';
 	echo '<fieldset>';
@@ -251,7 +251,7 @@ if($ownprofile){
 
 	echo '<h2>Stammdaten ändern</h2>';
 
-    echo '<div class="card panel-default">';
+    echo '<div class="card">';
 	echo '<div class="panel-body">';
     echo '<form action="index.php?pid=intranet_person" method="post" class="">';
 	echo '<fieldset>';

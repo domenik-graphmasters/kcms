@@ -45,7 +45,7 @@ echo $libString->getNotificationBoxText();
 
 echo '<h2>Galerie anlegen</h2>';
 
-echo '<div class="card panel-default">';
+echo '<div class="card">';
 echo '<div class="panel-body">';
 echo '<form action="index.php?pid=event_admin_galerie" method="post" class="">';
 echo '<fieldset>';

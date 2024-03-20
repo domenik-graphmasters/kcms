@@ -56,7 +56,7 @@ if($semesterCoverAvailable || $numberOfNextEvents > 0){
 
 		while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 			echo '<div class="col-sm-4">';
-            echo '<div class="card panel-default reveal">';
+            echo '<div class="card reveal">';
 			echo '<div class="panel-body">';
 			echo '<div class="thumbnail">';
 
@@ -94,7 +94,7 @@ if($semesterCoverAvailable || $numberOfNextEvents > 0){
 
 	if($semesterCoverAvailable){
 		echo '<div class="col-sm-4">';
-        echo '<div class="card panel-default reveal">';
+        echo '<div class="card reveal">';
 		echo '<div class="panel-body">';
 		echo '<div class="thumbnail">';
 

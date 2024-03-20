@@ -140,7 +140,7 @@ if($libAuth->isLoggedin()){
 		$extraActionParam = '&amp;aktion=update';
 	}
 
-    echo '<div class="card panel-default">';
+    echo '<div class="card">';
 	echo '<div class="panel-body">';
     echo '<form action="index.php?pid=intranet_admin_event' . $extraActionParam . '" method="post" class="">';
 	echo '<fieldset>';

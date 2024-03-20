@@ -90,7 +90,7 @@ class LibTimelineEvent {
 		}
 
 		$panelTypeClass = $this->isFullWidth() ? 'full-width' : 'with-badge';
-        $retstr .= '<div class="timeline-panel ' . $panelTypeClass . ' card panel-default mb-2">';
+        $retstr .= '<div class="timeline-panel ' . $panelTypeClass . ' card mb-2">';
 
 		/*
 		* heading

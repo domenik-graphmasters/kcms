@@ -62,7 +62,7 @@ echo $libString->getNotificationBoxText();
 
 $storage = $libGenericStorage->listAllArrayValues();
 
-echo '<div class="card panel-default">';
+echo '<div class="card">';
 echo '<div class="panel-body">';
 echo '<form action="index.php?pid=configuration" method="post" class="">';
 echo '<fieldset>';

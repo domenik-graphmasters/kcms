@@ -22,7 +22,7 @@ if(!is_object($libGlobal) || !$libAuth->isLoggedin())
 
 echo '<h1>Neuer Nachrichtenbeitrag</h1>';
 
-echo '<div class="card panel-default">';
+echo '<div class="card">';
 echo '<div class="panel-body">';
 echo '<form action="index.php?pid=intranet_news" method="post" class="">';
 echo '<fieldset>';

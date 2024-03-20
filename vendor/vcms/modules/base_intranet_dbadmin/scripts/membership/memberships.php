@@ -40,7 +40,7 @@ if($libAuth->isLoggedin()){
 	echo $libString->getNotificationBoxText();
 
 
-    echo '<div class="card panel-default">';
+    echo '<div class="card">';
 	echo '<div class="panel-body">';
 	echo '<div class="btn-toolbar">';
     echo '<a href="index.php?pid=intranet_admin_membership&amp;aktion=blank" class="btn btn-secondary">Eine neue Vereinsmitgliedschaft anlegen</a>';
@@ -49,7 +49,7 @@ if($libAuth->isLoggedin()){
 	echo '</div>';
 
 
-    echo '<div class="card panel-default">';
+    echo '<div class="card">';
 	echo '<div class="panel-body">';
 
     echo '<div class="table-responsive">';

@@ -168,7 +168,7 @@ if($formSent && !$formError){
 		}
 	}
 
-    echo '<div class="card panel-default">';
+    echo '<div class="card">';
 	echo '<div class="panel-body">';
     echo '<form method="post" action="' . $urlPrefix . 'index.php?pid=registration" class="">';
 	echo '<fieldset>';
