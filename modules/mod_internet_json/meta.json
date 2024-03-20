@@ -23,29 +23,22 @@
   ],
   "menuElementsInternet": [
     {
-      "name": "Winfridia",
-      "type": "menu_folder",
-      "position": 600,
-      "elements": [
-        {
-          "pid": "wf_home",
-          "name": "Home",
-          "type": "menu_entry",
-          "position": 100
-        },
-        {
-          "pid": "wf_verein",
-          "name": "Verein",
-          "type": "menu_entry",
-          "position": 200
-        },
-        {
-          "pid": "wf_wohnen",
-          "name": "Wohnen",
-          "type": "menu_entry",
-          "position": 300
-        }
-      ]
+      "pid": "wf_home",
+      "name": "Home",
+      "type": "menu_entry",
+      "position": 30
+    },
+    {
+      "pid": "wf_verein",
+      "name": "Verein",
+      "type": "menu_entry",
+      "position": 31
+    },
+    {
+      "pid": "wf_wohnen",
+      "name": "Wohnen",
+      "type": "menu_entry",
+      "position": 32
     }
   ],
   "headerStrings": [

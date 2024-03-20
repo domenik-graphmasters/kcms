@@ -1,6 +1,11 @@
 <?php
 
 namespace vcms;
+
+use vcms\components\Stat;
+use function vcms\components\renderStatisticsStrip;
+use function vcms\components\renderStatisticsWithExplainer;
+
 include_once "components/faq.php";
 include_once "components/features.php";
 include_once "components/gallery.php";

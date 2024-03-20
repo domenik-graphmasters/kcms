@@ -1,5 +1,7 @@
 <?php
 
+namespace vcms\components;
+
 readonly class Stat
 {
     public function __construct(
