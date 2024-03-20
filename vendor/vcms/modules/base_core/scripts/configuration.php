@@ -87,7 +87,7 @@ foreach($storage as $moduleid => $arrays){
 			echo '</div>';
 
 			echo '<div class="col-sm-1">';
-			echo '<div class="form-control-static">';
+            echo '<div class="form-control-plaintext">';
 			echo '<a href="index.php?pid=configuration&amp;action=delete&amp;moduleid=' .$moduleid. '&amp;array_name=' .$array_name. '&amp;position=' .$position. '" onclick="return confirm(\'Willst Du den Eintrag wirklich löschen?\')"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>';
 			echo '</div>';
 			echo '</div>';
