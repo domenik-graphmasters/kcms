@@ -95,7 +95,7 @@ class LibTimelineEvent {
 		/*
 		* heading
 		*/
-		$retstr .= '<div class="panel-heading">';
+        $retstr .= '<div class="card-header">';
 		$retstr .= '<h3 class="panel-title">';
 
 		if($this->datetime != ''){

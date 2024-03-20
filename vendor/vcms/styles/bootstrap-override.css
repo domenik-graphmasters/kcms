@@ -48,16 +48,16 @@ label {
 	overflow: hidden;
 }
 
-.panel .panel-heading {
+.panel .card-header {
 	padding-bottom: 1.5em;
 	border-bottom: 0;
 }
 
-.panel .panel-heading .panel-title {
+.panel .card-header .panel-title {
 	font-weight: normal;
 }
 
-.panel .panel-heading,
+.panel .card-header,
 .panel .panel-body {
 	padding: 1em;
 	background-color: inherit;
