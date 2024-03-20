@@ -58,7 +58,7 @@ if($libAuth->isLoggedin()){
 	echo $libString->getErrorBoxText();
 	echo $libString->getNotificationBoxText();
 
-	echo '<div class="panel panel-default">';
+    echo '<div class="card panel-default">';
 	echo '<div class="panel-body">';
 
     echo '<div class="table-responsive">';
@@ -95,7 +95,7 @@ if($libAuth->isLoggedin()){
 
 	echo '<h2>Neue Gruppe anlegen</h2>';
 
-	echo '<div class="panel panel-default">';
+    echo '<div class="card panel-default">';
 	echo '<div class="panel-body">';
     echo '<form action="index.php?pid=intranet_admin_groups" method="post" class="">';
 	echo '<fieldset>';

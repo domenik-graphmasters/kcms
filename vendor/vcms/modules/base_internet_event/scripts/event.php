@@ -98,7 +98,7 @@ if($row['intern'] && !$libAuth->isLoggedIn()){
 
 	// date and time panel
 	echo '<div class="col-sm-4 col-lg-3">';
-	echo '<div class="panel panel-default reveal">';
+    echo '<div class="card panel-default reveal">';
 	echo '<div class="panel-body">';
 
 	printEventDateTime($row);
@@ -132,7 +132,7 @@ if($row['intern'] && !$libAuth->isLoggedIn()){
 	if($hasPictures){
 		if($descriptionText){
 			echo '<div class="col-sm-8 col-lg-9">';
-			echo '<div class="panel panel-default reveal">';
+            echo '<div class="card panel-default reveal">';
 			echo '<div class="panel-body">';
 			echo $descriptionText;
 			echo '</div>';
@@ -157,7 +157,7 @@ if($row['intern'] && !$libAuth->isLoggedIn()){
 				echo '<div class="col-sm-8 col-lg-9">';
 			}
 
-			echo '<div class="panel panel-default reveal">';
+            echo '<div class="card panel-default reveal">';
 			echo '<div class="panel-body">';
 			echo $descriptionText;
 			echo '</div>';

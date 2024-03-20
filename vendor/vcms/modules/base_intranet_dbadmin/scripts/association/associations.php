@@ -59,7 +59,7 @@ if($libAuth->isLoggedin()){
 	echo $libString->getNotificationBoxText();
 
 
-	echo '<div class="panel panel-default">';
+    echo '<div class="card panel-default">';
 	echo '<div class="panel-body">';
 	echo '<div class="btn-toolbar">';
     echo '<a href="index.php?pid=intranet_admin_associations&amp;aktion=import" onclick="return confirm(\'Willst den Import wirklich durchführen?\')" class="btn btn-secondary"><i class="fa fa-cloud-download" aria-hidden="true"></i> KV-Vereine von ' . $libGlobal->mkHostname . ' importieren</a>';
@@ -69,7 +69,7 @@ if($libAuth->isLoggedin()){
 	echo '</div>';
 
 
-	echo '<div class="panel panel-default">';
+    echo '<div class="card panel-default">';
 	echo '<div class="panel-body">';
 
     echo '<div class="table-responsive">';

@@ -34,7 +34,7 @@ if(isset($_GET['id'])){
 	echo '<div class="row">';
 	echo '<div class="col-sm-9">';
 
-	echo '<div class="panel panel-default">';
+    echo '<div class="card panel-default">';
 	echo '<div class="panel-body">';
 	echo '<address>';
 
@@ -67,7 +67,7 @@ if(isset($_GET['id'])){
 	echo '</div>';
 
 
-	echo '<div class="panel panel-default">';
+    echo '<div class="card panel-default">';
 	echo '<div class="panel-body">';
 
 	if($vereinarray['farbe1']){
@@ -172,7 +172,7 @@ if(isset($_GET['id'])){
 	if($vereinarray['farbenstrophe']){
 		echo '<h3>Farbenstrophe</h3>';
 
-		echo '<div class="panel panel-default">';
+        echo '<div class="card panel-default">';
 		echo '<div class="panel-body">';
 		echo '<p class="mb-4">';
 		echo nl2br($vereinarray['farbenstrophe']);
@@ -184,7 +184,7 @@ if(isset($_GET['id'])){
 	if($vereinarray['farbenstrophe_inoffiziell']){
 		echo '<h3>Inoffizielle Farbenstrophe</h3>';
 
-		echo '<div class="panel panel-default">';
+        echo '<div class="card panel-default">';
 		echo '<div class="panel-body">';
 		echo '<p class="mb-4">';
 		echo nl2br($vereinarray['farbenstrophe_inoffiziell']);
@@ -196,7 +196,7 @@ if(isset($_GET['id'])){
 	if($vereinarray['fuchsenstrophe']){
 		echo '<h3>Fuchsenstrophe</h3>';
 
-		echo '<div class="panel panel-default">';
+        echo '<div class="card panel-default">';
 		echo '<div class="panel-body">';
 		echo '<p class="mb-4">';
 		echo nl2br($vereinarray['fuchsenstrophe']);
@@ -208,7 +208,7 @@ if(isset($_GET['id'])){
 	if($vereinarray['bundeslied']){
 		echo '<h3>Bundeslied</h3>';
 
-		echo '<div class="panel panel-default">';
+        echo '<div class="card panel-default">';
 		echo '<div class="panel-body">';
 		echo '<p class="mb-4">';
 		echo nl2br($vereinarray['bundeslied']);
@@ -218,7 +218,7 @@ if(isset($_GET['id'])){
 	}
 
 	if($vereinarray['beschreibung']){
-		echo '<div class="panel panel-default">';
+        echo '<div class="card panel-default">';
 		echo '<div class="panel-body">';
 		echo '<p class="mb-4">';
 		echo nl2br($vereinarray['beschreibung']);
@@ -230,7 +230,7 @@ if(isset($_GET['id'])){
 	echo '</div>';
 
 	echo '<div class="col-sm-3">';
-	echo '<div class="panel panel-default">';
+    echo '<div class="card panel-default">';
 	echo '<div class="panel-body">';
 
 	$filePathZirkelSvg = 'custom/vereine/zirkel/' .$vereinarray['id']. '.svg';
@@ -273,7 +273,7 @@ if(isset($_GET['id'])){
 	if($anzahl > 0){
 		echo '<h2>Mitglieder</h2>';
 
-		echo '<div class="panel panel-default">';
+        echo '<div class="card panel-default">';
 		echo '<div class="panel-body">';
 		echo '<div class="persons-grid">';
 

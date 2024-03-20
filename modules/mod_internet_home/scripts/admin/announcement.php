@@ -128,7 +128,7 @@ if($aktion == 'blank'){
 	$extraActionParam = '&amp;aktion=update';
 }
 
-echo '<div class="panel panel-default">';
+echo '<div class="card panel-default">';
 echo '<div class="panel-body">';
 echo '<form action="index.php?pid=intranet_admin_announcement' . $extraActionParam . '" method="post" class="">';
 echo '<fieldset>';

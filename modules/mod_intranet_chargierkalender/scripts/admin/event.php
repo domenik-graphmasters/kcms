@@ -97,7 +97,7 @@ if(isset($_REQUEST['aktion']) && $_REQUEST['aktion'] == "blank"){
 	$extraActionParam = "&amp;aktion=update";
 }
 
-echo '<div class="panel panel-default">';
+echo '<div class="card panel-default">';
 echo '<div class="panel-body">';
 echo '<form action="index.php?pid=intranet_chargierkalender_adminveranstaltung' . $extraActionParam . '" method="post" class="">';
 echo '<fieldset>';

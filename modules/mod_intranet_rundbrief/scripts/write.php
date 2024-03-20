@@ -90,7 +90,7 @@ echo $libString->getErrorBoxText();
 echo $libString->getNotificationBoxText();
 
 
-echo '<div class="panel panel-default">';
+echo '<div class="card panel-default">';
 echo '<div class="panel-body">';
 echo '<form action="index.php?pid=intranet_rundbrief_senden" method="post" enctype="multipart/form-data" onsubmit="return confirm(\'Willst Du die Nachricht wirklich verschicken?\');" class="">';
 echo '<fieldset>';

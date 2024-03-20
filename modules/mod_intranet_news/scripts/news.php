@@ -88,7 +88,7 @@ echo $libTime->getSemesterMenu($libTime->getSemestersFromDates($daten), $libGlob
 echo '</div>';
 echo '<div class="col-md-6">';
 
-echo '<div class="panel panel-default">';
+echo '<div class="card panel-default">';
 echo '<div class="panel-body">';
 echo '<div class="btn-toolbar">';
 echo '<a href="index.php?pid=intranet_news_write" class="btn btn-secondary"><i class="fa fa-plus" aria-hidden="true"></i> Einen Beitrag hinzufügen</a>';
@@ -116,7 +116,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 		$lastsetmonth = substr($row['eingabedatum'], 0, 7);
 	}
 
-	echo '<div id="' .$row['id']. '" class="panel panel-default' .$libString->getLastInsertId($lastInsertId, $row['id']). '">';
+    echo '<div id="' . $row['id'] . '" class="card panel-default' . $libString->getLastInsertId($lastInsertId, $row['id']) . '">';
 	echo '<div class="panel-heading">';
 	echo '<h3 class="panel-title">';
 	echo $libTime->formatDateString($row['eingabedatum']);

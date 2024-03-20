@@ -169,7 +169,7 @@ echo '</section>';
 echo '</div>';
 
 echo '<aside class="col-sm-6">';
-echo '<div class="panel panel-default reveal mb-5">';
+echo '<div class="card panel-default reveal mb-5">';
 echo '<div class="thumbnail">';
 echo '<img src="' . $libModuleHandler->getModuleDirectory() . '/custom/img/haus.jpg" alt="" class="img-fluid center-block reveal" />';
 echo '</div>';
@@ -212,7 +212,7 @@ if($libGenericStorage->loadValueInCurrentModule('show_form')){
 			$nachricht = $_POST['nachricht'];
 		}
 
-		echo '<div class="panel panel-default">';
+        echo '<div class="card panel-default">';
 		echo '<div class="panel-body">';
         echo '<form action="index.php?pid=kontakt" method="post" class="">';
 		echo '<fieldset>';

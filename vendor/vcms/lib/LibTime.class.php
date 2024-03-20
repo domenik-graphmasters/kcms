@@ -599,7 +599,7 @@ class LibTime{
 		$retstr = '';
 
 		if(count($semesters) > 1 || (count($semesters) == 1 && ($semesters[0] != $globalsemester))){
-			$retstr .= '<div class="panel panel-default">';
+            $retstr .= '<div class="card panel-default">';
 			$retstr .= '<div class="panel-body">';
 			$retstr .= '<form action="index.php" class="form-inline">';
 			$retstr .= '<fieldset>';

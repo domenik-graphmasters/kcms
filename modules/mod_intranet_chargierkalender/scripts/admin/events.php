@@ -50,7 +50,7 @@ echo $libString->getErrorBoxText();
 echo $libString->getNotificationBoxText();
 
 
-echo '<div class="panel panel-default">';
+echo '<div class="card panel-default">';
 echo '<div class="panel-body">';
 echo '<div class="btn-toolbar">';
 echo '<a href="index.php?pid=intranet_chargierkalender_adminveranstaltung&amp;aktion=blank" class="btn btn-secondary">Eine neue Chargierveranstaltung anlegen</a>';
@@ -70,7 +70,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 echo $libTime->getSemesterMenu($libTime->getSemestersFromDates($daten), $libGlobal->semester);
 
 
-echo '<div class="panel panel-default">';
+echo '<div class="card panel-default">';
 echo '<div class="panel-body">';
 
 echo '<table class="table table-sm table-striped table-hover">';
