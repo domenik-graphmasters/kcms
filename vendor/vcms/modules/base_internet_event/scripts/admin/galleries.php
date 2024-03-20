@@ -47,7 +47,7 @@ echo '<h2>Galerie anlegen</h2>';
 
 echo '<div class="panel panel-default">';
 echo '<div class="panel-body">';
-echo '<form action="index.php?pid=event_admin_galerie" method="post" class="form-horizontal">';
+echo '<form action="index.php?pid=event_admin_galerie" method="post" class="">';
 echo '<fieldset>';
 
 $libForm->printVeranstaltungDropDownBox('id', 'Veranstaltung', '', false);

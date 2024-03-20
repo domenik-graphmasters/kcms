@@ -257,7 +257,7 @@ class LibChargierKalenderEvent{
 		}
 
 		if($this->anmeldeButtonEnabled){
-			$retstr .= '<form action="index.php?pid=intranet_chargierkalender" method="post" class="form-horizontal">';
+            $retstr .= '<form action="index.php?pid=intranet_chargierkalender" method="post" class="">';
 			$retstr .= '<input type="hidden" name="eventid" value="' .$this->id. '" />';
 			$retstr .= '<input type="hidden" name="semester" value="' .$libGlobal->semester. '" />';
 

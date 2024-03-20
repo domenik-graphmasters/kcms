@@ -97,7 +97,7 @@ if($libAuth->isLoggedin()){
 
 	echo '<div class="panel panel-default">';
 	echo '<div class="panel-body">';
-	echo '<form action="index.php?pid=intranet_admin_groups" method="post" class="form-horizontal">';
+    echo '<form action="index.php?pid=intranet_admin_groups" method="post" class="">';
 	echo '<fieldset>';
 	echo '<input type="hidden" name="aktion" value="create" />';
 

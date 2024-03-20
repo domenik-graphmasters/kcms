@@ -130,7 +130,7 @@ if($aktion == 'blank'){
 
 echo '<div class="panel panel-default">';
 echo '<div class="panel-body">';
-echo '<form action="index.php?pid=intranet_admin_announcement' .$extraActionParam. '" method="post" class="form-horizontal">';
+echo '<form action="index.php?pid=intranet_admin_announcement' . $extraActionParam . '" method="post" class="">';
 echo '<fieldset>';
 
 echo '<input type="hidden" name="formtyp" value="newsdaten" />';
@@ -176,7 +176,7 @@ if((isset($_REQUEST['id']) && $_REQUEST['id'] != '') || $array['id'] != ''){
 	}
 
 	//image upload form
-	echo '<form action="index.php?pid=intranet_admin_announcement&amp;id=' .$array['id']. '" method="post" enctype="multipart/form-data" class="form-horizontal text-center">';
+    echo '<form action="index.php?pid=intranet_admin_announcement&amp;id=' . $array['id'] . '" method="post" enctype="multipart/form-data" class=" text-center">';
 	echo '<input type="hidden" name="formtyp" value="bildupload" />';
 	$libForm->printFileUpload('bilddatei', 'Bild hochladen', false, false, array(), array('image/jpeg'));
 	echo '</form>';

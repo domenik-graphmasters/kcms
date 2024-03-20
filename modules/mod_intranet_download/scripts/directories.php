@@ -139,7 +139,7 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
 
     echo '<div class="panel panel-default">';
     echo '<div class="panel-body">';
-    echo '<form action="index.php?pid=intranet_directories&aktion=open&hash=' . $currentFolder->getHash() . '" method="post" enctype="multipart/form-data" class="form-horizontal">';
+    echo '<form action="index.php?pid=intranet_directories&aktion=open&hash=' . $currentFolder->getHash() . '" method="post" enctype="multipart/form-data" class="">';
     echo '<fieldset>';
     echo '<input type="hidden" name="aktion" value="upload" />';
     echo '<input type="hidden" id="hash" name="hash" value="' . $currentFolder->getHash() . '">';
@@ -188,7 +188,7 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
 
     echo '<div class="panel panel-default">';
     echo '<div class="panel-body">';
-    echo '<form action="index.php?pid=intranet_directories&aktion=open&hash=' . $currentFolder->getHash() . '" method="post" class="form-horizontal">';
+    echo '<form action="index.php?pid=intranet_directories&aktion=open&hash=' . $currentFolder->getHash() . '" method="post" class="">';
     echo '<fieldset>';
     echo '<input type="hidden" name="aktion" value="newfolder" />';
     echo '<input type="hidden" id="hash" name="hash" value="' . $currentFolder->getHash() . '">';

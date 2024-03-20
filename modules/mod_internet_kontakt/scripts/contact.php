@@ -214,7 +214,7 @@ if($libGenericStorage->loadValueInCurrentModule('show_form')){
 
 		echo '<div class="panel panel-default">';
 		echo '<div class="panel-body">';
-		echo '<form action="index.php?pid=kontakt" method="post" class="form-horizontal">';
+        echo '<form action="index.php?pid=kontakt" method="post" class="">';
 		echo '<fieldset>';
 
 		$libForm->printTextInput('name', 'Name', $libString->protectXSS($name), 'text', false, true);

@@ -115,7 +115,7 @@ if($libAuth->isLoggedin()){
 
 	echo '<div class="panel panel-default">';
 	echo '<div class="panel-body">';
-	echo '<form action="index.php?pid=intranet_admin_vip' .$extraActionParam. '" method="post" class="form-horizontal">';
+    echo '<form action="index.php?pid=intranet_admin_vip' . $extraActionParam . '" method="post" class="">';
 	echo '<fieldset>';
 	echo '<input type="hidden" name="formtyp" value="vipdaten" />';
 	echo '<input type="hidden" name="id" value="' .$array['id']. '" />';

@@ -229,7 +229,7 @@ if($ownprofile){
 
  	echo '<div class="panel panel-default">';
 	echo '<div class="panel-body">';
-	echo '<form action="index.php?pid=intranet_person&amp;id=' .$id. '" method="post" class="form-horizontal">';
+    echo '<form action="index.php?pid=intranet_person&amp;id=' . $id . '" method="post" class="">';
 	echo '<fieldset>';
 	echo '<input type="hidden" name="formtyp" value="personpasswort" />';
 
@@ -253,7 +253,7 @@ if($ownprofile){
 
 	echo '<div class="panel panel-default">';
 	echo '<div class="panel-body">';
-	echo '<form action="index.php?pid=intranet_person" method="post" class="form-horizontal">';
+    echo '<form action="index.php?pid=intranet_person" method="post" class="">';
 	echo '<fieldset>';
 	echo '<input type="hidden" name="formtyp" value="person_data" />';
 
@@ -484,7 +484,7 @@ function printPersonSignature($row, $ownprofile){
 
 	if($ownprofile){
 		//image upload form
-		echo '<form action="index.php?pid=intranet_person" method="post" enctype="multipart/form-data" class="form-horizontal text-center">';
+        echo '<form action="index.php?pid=intranet_person" method="post" enctype="multipart/form-data" class=" text-center">';
 		echo '<input type="hidden" name="formtyp" value="fotodatenupload" />';
 		$libForm->printFileUpload('bilddatei', 'Foto (4x3) hochladen', false, false, array(), array('image/jpeg'));
 		echo '</form>';

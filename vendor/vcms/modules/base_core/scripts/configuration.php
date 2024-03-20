@@ -64,7 +64,7 @@ $storage = $libGenericStorage->listAllArrayValues();
 
 echo '<div class="panel panel-default">';
 echo '<div class="panel-body">';
-echo '<form action="index.php?pid=configuration" method="post" class="form-horizontal">';
+echo '<form action="index.php?pid=configuration" method="post" class="">';
 echo '<fieldset>';
 
 //modules
