@@ -142,7 +142,7 @@ class LibForm{
 
 	function printSubmitButton($label, $classes = array()){
         echo '<div class="form-group row">';
-		echo '<div class="col-sm-offset-' .$this->colLabel. ' col-sm-' .$this->colInput. '">';
+        echo '<div class="offset-sm-' . $this->colLabel . ' col-sm-' . $this->colInput . '">';
         echo '<button type="submit" class="btn btn-secondary';
 
 		$this->printClassesString($classes);

@@ -37,7 +37,7 @@ if($semesterCoverAvailable || $numberOfNextEvents > 0){
 	echo '<div class="container">';
 
 	echo '<div class="row">';
-	echo '<div class="col-lg-8 col-lg-offset-2 text-center">';
+    echo '<div class="col-lg-8 offset-lg-2 text-center">';
 	echo '<h1 class="section-heading">Nächste Veranstaltungen</h1>';
 	echo '</div>';
 	echo '</div>';

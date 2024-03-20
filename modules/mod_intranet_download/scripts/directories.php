@@ -168,7 +168,7 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
     echo '</div></div>';
 
     echo '<div class="form-group row">';
-    echo '<div class="col-sm-offset-3 col-sm-3">';
+    echo '<div class="offset-sm-3 col-sm-3">';
     echo '<label class="btn btn-secondary btn-file"><i class="fa fa-upload" aria-hidden="true"></i> Datei hochladen';
     echo '<input type="file" name="datei" onchange="this.form.submit()" style="display:none">';
     echo '</label>';
@@ -199,7 +199,7 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
     echo '</div>';
 
     echo '<div class="form-group row">';
-    echo '<div class="col-sm-offset-3 col-sm-3">';
+    echo '<div class="offset-sm-3 col-sm-3">';
     echo '<button type="submit" class="btn btn-secondary"><i class="fa fa-plus" aria-hidden="true"></i> anlegen</button>';
     echo '</div>';
     echo '</div>';
