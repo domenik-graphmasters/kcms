@@ -115,7 +115,8 @@ if (isset($_GET['hash'])) {
 }
 
 echo '<div class="row">';
-echo '<ol class="breadcrumb mt-5">';
+echo '<nav aria-label="breadcrumb">';
+echo '<ol class="breadcrumb">';
 echo '<li><a href="index.php?pid=intranet_directories">Dateien</a></li>';
 if ($currentFolder !== $rootFolderObject && $currentFolder != null) {
     $nestingFolder = $currentFolder->nestingFolder;
@@ -126,6 +127,7 @@ if ($currentFolder !== $rootFolderObject && $currentFolder != null) {
     echo '<li class="active">' . $currentFolder->name . '</li>';
 }
 echo '</ol>';
+echo '</nav>';
 displayFolderContents($currentFolder, $libDb);
 
 echo '</div>';

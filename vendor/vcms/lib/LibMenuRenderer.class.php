@@ -36,7 +36,7 @@ class LibMenuRenderer{
 
 		$navbarClass = $this->getNavbarClass();
 
-		echo '    <nav id="nav" class="navbar navbar-default navbar-fixed-top ' .$navbarClass. '">' . PHP_EOL;
+        echo '    <nav id="nav" class="navbar navbar-expand-xl navbar-default navbar-light bg-light navbar-fixed-top ' . $navbarClass . '">' . PHP_EOL;
     echo '      <div class="container">' . PHP_EOL;
 		echo '        <div id="logo" class="pull-left"></div>' . PHP_EOL;
     echo $this->printNavbarCollapsed();
@@ -50,7 +50,7 @@ class LibMenuRenderer{
 		global $libGenericStorage;
 
 		echo '        <div class="navbar-header">' . PHP_EOL;
-		echo '          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-internet,#navbar-intranet" aria-expanded="false">' . PHP_EOL;
+        echo '          <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbar-internet,#navbar-intranet" aria-expanded="false">' . PHP_EOL;
     echo $this->defaultIndent . '<span class="sr-only">Navigation</span>' . PHP_EOL;
     echo $this->defaultIndent . '<span class="icon-bar"></span>' . PHP_EOL;
     echo $this->defaultIndent . '<span class="icon-bar"></span>' . PHP_EOL;
