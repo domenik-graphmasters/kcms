@@ -172,7 +172,7 @@ class LibMenuRenderer{
 
 	function printLiTag($folderElement, $depth, $pid){
 		if($folderElement->getPid() == $pid){
-			echo $this->defaultIndent . $this->indent($depth) . '<li class="active">';
+            echo $this->defaultIndent . $this->indent($depth) . '<li class="active dropdown-item">';
 		} else {
 			echo $this->defaultIndent . $this->indent($depth) . '<li>';
 		}
