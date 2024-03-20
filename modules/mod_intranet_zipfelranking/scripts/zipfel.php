@@ -33,11 +33,11 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 	echo '<div class="panel-body">';
 
 	echo '<div class="row">';
-	echo '<div class="col-xs-6 col-sm-2">';
+    echo '<div class="col-6 col-sm-2">';
 	echo $libPerson->getSignature($row['id']);
 	echo '</div>';
 
-	echo '<div class="col-xs-6 col-sm-2">';
+    echo '<div class="col-6 col-sm-2">';
 	echo '<b>' .$libPerson->formatNameString($row['anrede'], $row['titel'], $row['rang'], $row['vorname'], $row['praefix'], $row['name'], $row['suffix'], 5). '</b>';
 	echo '<p class="mb-4">' .$row['anzahlzipfel']. ' Zipfel</p>';
 	echo '</div>';

@@ -98,7 +98,7 @@ $stmt->execute();
 $stmt->bindColumn('number', $aktive);
 $stmt->fetch();
 
-echo '<div class="col-xs-12 col-sm-4">';
+echo '<div class="col-12 col-sm-4">';
 echo '<p class="mb-4">';
 echo '<span class="badge badge-default">' .$aktive. '</span> Aktive';
 echo '</p>';
@@ -110,7 +110,7 @@ $stmt->execute();
 $stmt->bindColumn('number', $inLoco);
 $stmt->fetch();
 
-echo '<div class="col-xs-12 col-sm-4">';
+echo '<div class="col-12 col-sm-4">';
 echo '<p class="mb-4">';
 echo '<span class="badge badge-default">' .$inLoco. '</span> in loco';
 echo '</p>';
@@ -122,7 +122,7 @@ $stmt->execute();
 $stmt->bindColumn('number', $inaktive);
 $stmt->fetch();
 
-echo '<div class="col-xs-12 col-sm-4">';
+echo '<div class="col-12 col-sm-4">';
 echo '<p class="mb-4">';
 echo '<span class="badge badge-default">' .$inaktive. '</span> ex loco oder inaktiv';
 echo '</p>';

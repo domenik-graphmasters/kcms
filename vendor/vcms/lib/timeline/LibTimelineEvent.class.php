@@ -129,7 +129,7 @@ class LibTimelineEvent {
 				|| ($this->referencedPersonId != '' && !$this->hideReferencedPersonSignature);
 
 		if($this->description != ''){
-			$retstr .= $hasPersonColumn ? '<div class="col-xs-12 col-sm-9">' : '<div class="col-xs-12">';
+            $retstr .= $hasPersonColumn ? '<div class="col-12 col-sm-9">' : '<div class="col-12">';
 			$retstr .= trim($this->description);
 			$retstr .= '</div>';
 		}

@@ -235,21 +235,21 @@ function displayFolderContents(Folder &$folder, \vcms\LibDb $libDb): void
     foreach ($folder->nestedFolderElements as $folderElement) {
         echo '<tr>';
         if ($folderElement->type == 1) { // folder
-            echo '<td class="col-xs-5 col-md-7"><a class="text-truncate" href="index.php?pid=intranet_directories&amp;aktion=open&amp;hash=' . $folderElement->getHash() . '"><i class="fa fa-lg fa-fw fa-folder-o" aria-hidden="true"></i>' . $folderElement->name . '</a></td>';
-            echo '<td class="col-xs-2 col-md-1"></td>';
-            echo '<td class="col-xs-2 col-md-1">';
+            echo '<td class="col-5 col-md-7"><a class="text-truncate" href="index.php?pid=intranet_directories&amp;aktion=open&amp;hash=' . $folderElement->getHash() . '"><i class="fa fa-lg fa-fw fa-folder-o" aria-hidden="true"></i>' . $folderElement->name . '</a></td>';
+            echo '<td class="col-2 col-md-1"></td>';
+            echo '<td class="col-2 col-md-1">';
             if ($folderElement->getSize() > 0) {
                 echo ' <span class="text-muted"><small>' . getSizeString($folderElement->getSize()) . '</small></span>';
             }
             echo '</td>';
-            echo '<td class="col-xs-1">';
+            echo '<td class="col-1">';
             if ($folderElement->isDeleteable() && in_array($folderElement->owningAmt, $libAuth->getAemter())) {
                 $href = 'index.php?pid=intranet_directories&amp;aktion=delete&amp;deleteHash=' . $folderElement->getHash() . '&hash=' . $folder->getHash();
                 echo '<a href="' . $href . '" onclick="return confirm(\'Willst Du den Ordner wirklich löschen?\')"><i class="fa fa-trash" aria-hidden="true"></i></a>';
             }
             echo '</td>';
         } elseif ($folderElement->type == 2 && in_array($libAuth->getGruppe(), $folderElement->readGroups)) { // file
-            echo '<td class="col-xs-5 col-md-7"><a href="api.php?iid=intranet_download&amp;hash=' . $folderElement->getHash() . '">' . getIconForFolder($folderElement) . $folderElement->getFileName() . '</a></td>';
+            echo '<td class="col-5 col-md-7"><a href="api.php?iid=intranet_download&amp;hash=' . $folderElement->getHash() . '">' . getIconForFolder($folderElement) . $folderElement->getFileName() . '</a></td>';
 
             $stmt = $libDb->prepare("SELECT * FROM base_gruppe ORDER BY bezeichnung");
             $stmt->execute();
@@ -262,9 +262,9 @@ function displayFolderContents(Folder &$folder, \vcms\LibDb $libDb): void
             }
             $tooltip = 'Lesbar für: ' . implode(', ', $bezeichnungen);
 
-            echo '<td class="col-xs-2 col-md-1"><span class="text-muted" data-toggle="tooltip" title="' . $tooltip . '">' . implode('', $folderElement->readGroups) . '</span></td>';
-            echo '<td class="col-xs-2 col-md-1"><span class="text-muted">' . getSizeString($folderElement->getSize()) . '</span></td>';
-            echo '<td class="col-xs-1">';
+            echo '<td class="col-2 col-md-1"><span class="text-muted" data-toggle="tooltip" title="' . $tooltip . '">' . implode('', $folderElement->readGroups) . '</span></td>';
+            echo '<td class="col-2 col-md-1"><span class="text-muted">' . getSizeString($folderElement->getSize()) . '</span></td>';
+            echo '<td class="col-1">';
             if (in_array($folderElement->owningAmt, $libAuth->getAemter())) {
                 $href = 'index.php?pid=intranet_directories&amp;aktion=delete&amp;deleteHash=' . $folderElement->getHash() . '&hash=' . $folder->getHash();
                 echo '<a href="' . $href . '" onclick="return confirm(\'Willst Du die Datei wirklich löschen?\')"><i class="fa fa-trash" aria-hidden="true"></i></a>';
