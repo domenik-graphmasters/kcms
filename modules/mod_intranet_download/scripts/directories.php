@@ -145,7 +145,7 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
     echo '<input type="hidden" id="hash" name="hash" value="' . $currentFolder->getHash() . '">';
 
     echo '<div class="form-group">';
-    echo '<label class="col-sm-3 control-label">mit Leserecht für</label>';
+    echo '<label class="col-sm-3 col-form-label">mit Leserecht für</label>';
     echo '<div class="col-sm-9">';
 
     $stmt = $libDb->prepare("SELECT * FROM base_gruppe ORDER BY bezeichnung");
@@ -194,7 +194,7 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
     echo '<input type="hidden" id="hash" name="hash" value="' . $currentFolder->getHash() . '">';
 
     echo '<div class="form-group">';
-    echo '<label for="foldername" class="col-sm-3 control-label">Neuen Ordner</label>';
+    echo '<label for="foldername" class="col-sm-3 col-form-label">Neuen Ordner</label>';
     echo '<div class="col-sm-3"><input type="text" id="foldername" name="foldername" class="form-control" /></div>';
     echo '</div>';
 
