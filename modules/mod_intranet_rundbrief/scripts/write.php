@@ -96,7 +96,7 @@ echo '<form action="index.php?pid=intranet_rundbrief_senden" method="post" encty
 echo '<fieldset>';
 
 echo '<div class="form-group row">';
-echo '<label class="col-sm-3 col-form-label text-right">Adressaten</label>';
+echo '<label class="col-sm-3 col-form-label text-end">Adressaten</label>';
 echo '<div class="col-sm-4">';
 
 echo '<div class="form-check">';

@@ -488,7 +488,7 @@ function printPersonSignature($row, $ownprofile){
 		echo '<input type="hidden" name="formtyp" value="fotodatenupload" />';
         echo '<div class="custom-file">';
         echo '<input type="file" class="custom-file-input" id="bilddatei" name="bilddatei" onchange="this.form.submit()" accept="image/jpeg">';
-        echo '<label class="custom-file-label text-left" for="customFile">Foto (4x3) hochladen</label>';
+        echo '<label class="custom-file-label text-start" for="customFile">Foto (4x3) hochladen</label>';
         echo '</div>';
 		echo '</form>';
 	}
