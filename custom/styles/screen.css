@@ -7,24 +7,5 @@
 
 #brand:hover,
 #brand:focus {
-	color: #146010;
-}
-
-#nav li > a:hover,
-#nav li > a:focus:hover {
-	color: #146010;
-}
-
-#nav li.active > a,
-#nav li.active > a:focus {
-	color: #146010;
-}
-
-a:link:not(.btn),
-a:visited:not(.btn) {
-	color: #146010;
-}
-
-.calendar .today {
-	border-color: #146010;
+    color: var(--bs-primary);
 }

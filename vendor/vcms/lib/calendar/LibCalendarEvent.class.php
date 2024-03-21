@@ -104,7 +104,9 @@ class LibCalendarEvent{
 		return $this->endDateTime;
 	}
 
-	function getEndDate(){
+    function getEndDate(): ?string
+    {
+        if ($this->endDateTime == null) return null;
 		return $this->getDateOfDateTime($this->endDateTime);
 	}
 
