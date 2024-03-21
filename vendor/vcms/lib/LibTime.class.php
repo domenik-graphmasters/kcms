@@ -593,7 +593,8 @@ class LibTime{
 		}
 	}
 
-	function getSemesterMenu($semesters, $globalsemester){
+    function getSemesterMenu($semesters, $globalsemester): string
+    {
 		global $libGlobal;
 
 		$retstr = '';
@@ -602,10 +603,11 @@ class LibTime{
             $retstr .= '<div class="card">';
             $retstr .= '<div class="card-body">';
 			$retstr .= '<form action="index.php" class="form-inline">';
-			$retstr .= '<fieldset>';
+            $retstr .= '<div class="row">';
+            $retstr .= '<div class="col-12 col-xl-2">';
 			$retstr .= '<input type="hidden" name="pid" value="' . $libGlobal->pid . '"/>';
 			$retstr .= '<label for="semester" class="sr-only">Semester</label>';
-			$retstr .= '<select id="semester" name="semester" class="form-control" onchange=\'this.form.submit()\'>';
+            $retstr .= '<select id="semester" name="semester" class="form-select" onchange=\'this.form.submit()\'>';
 
 			foreach($semesters as $semester){
 				if($semester != '' && $this->isValidSemesterString($semester)){
@@ -622,9 +624,12 @@ class LibTime{
 			}
 
 			$retstr .= '</select> ';
-            $retstr .= '<button type="submit" class="hidden-xs btn btn-secondary ms-3"><i class="fa fa-calendar-o" aria-hidden="true"></i> Semester wählen</button>';
-			$retstr .= '</fieldset>';
-			$retstr .= '</form>';
+            $retstr .= '</div>';
+            $retstr .= '<div class="col-12 col-xl-2">';
+            $retstr .= '<button type="submit" class="btn btn-outline-primary mt-3 mt-xl-0"><i class="fa fa-calendar-o" aria-hidden="true"></i> Semester wählen</button>';
+            $retstr .= '</div>';
+            $retstr .= '</div>';
+            $retstr .= '</form>';
 			$retstr .= '</div>';
 			$retstr .= '</div>';
 		}
