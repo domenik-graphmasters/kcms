@@ -96,7 +96,7 @@ class LibMenuRenderer
 
             switch ($item->getType()) {
                 case LibMenuRenderer::ELEMENT_TYPE_INTERNAL_LINK:
-                    echo "<li class='nav-item$active'><a class='nav-link' href='index.php?pid=$targetPid'>$targetName</a></li>" . PHP_EOL;
+                    echo "<li class='nav-item'><a class='nav-link$active' href='index.php?pid=$targetPid'>$targetName</a></li>" . PHP_EOL;
                     break;
                 case LibMenuRenderer::ELEMENT_TYPE_FOLDER:
                     echo '<li class="nav-item dropdown">' . PHP_EOL;
@@ -111,15 +111,15 @@ class LibMenuRenderer
                     echo '</li>' . PHP_EOL;
                     break;
                 case LibMenuRenderer::ELEMENT_TYPE_EXTERNAL_LINK:
-                    echo "<li class='nav-item$active'><a class='nav-link' href='index.php?pid=$targetPid'><i class='fa fa-external-link' aria-hidden='true'></i>$targetName</a></li>" . PHP_EOL;
+                    echo "<li class='nav-item'><a class='nav-link$active' href='index.php?pid=$targetPid'><i class='fa fa-external-link' aria-hidden='true'></i>$targetName</a></li>" . PHP_EOL;
                     break;
                 case LibMenuRenderer::ELEMENT_TYPE_LOGIN:
-                    echo "<li class='nav-item$active'>";
+                    echo "<li class='nav-item'>";
                     if (!$libAuth->isLoggedin()) {
-                        echo "<a class='nav-link' href='index.php?pid=$targetPid'>$targetName</a>";
+                        echo "<a class='nav-link$active' href='index.php?pid=$targetPid'>$targetName</a>";
                     } else {
                         $logoutName = $item->getNameLogout();
-                        echo "<a class='nav-link' href='index.php?logout=1'>$logoutName</a>";
+                        echo "<a class='nav-link$active' href='index.php?logout=1'>$logoutName</a>";
                     }
                     echo '</li>';
                     break;
