@@ -622,7 +622,7 @@ class LibTime{
 			}
 
 			$retstr .= '</select> ';
-            $retstr .= '<button type="submit" class="hidden-xs btn btn-secondary ml-3"><i class="fa fa-calendar-o" aria-hidden="true"></i> Semester wählen</button>';
+            $retstr .= '<button type="submit" class="hidden-xs btn btn-secondary ms-3"><i class="fa fa-calendar-o" aria-hidden="true"></i> Semester wählen</button>';
 			$retstr .= '</fieldset>';
 			$retstr .= '</form>';
 			$retstr .= '</div>';

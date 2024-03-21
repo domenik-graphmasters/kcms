@@ -37,7 +37,7 @@ echo '<div class="card-body">';
 echo '<form action="index.php?pid=intranet_mitglied_listelebende" method="post" class="form-inline">';
 echo '<div class="form-group">';
 echo '<input type="text" class="form-control" id="inlineFormInputName2" placeholder="Suchbegriff">';
-echo '<button type="submit" class="btn btn-secondary ml-3"><i class="fa fa-search" aria-hidden="true"></i> Suchen</button>';
+echo '<button type="submit" class="btn btn-secondary ms-3"><i class="fa fa-search" aria-hidden="true"></i> Suchen</button>';
 echo '</div>';
 echo '</form>';
 echo '</div>';
