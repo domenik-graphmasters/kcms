@@ -116,9 +116,9 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 		$lastsetmonth = substr($row['eingabedatum'], 0, 7);
 	}
 
-    echo '<div id="' . $row['id'] . '" class="card' . $libString->getLastInsertId($lastInsertId, $row['id']) . '">';
+    echo '<div id="' . $row['id'] . '" class="card mb-3' . $libString->getLastInsertId($lastInsertId, $row['id']) . '">';
     echo '<div class="card-header">';
-    echo '<h3 class="card-titl">';
+    echo '<h6 class="card-title">';
 	echo $libTime->formatDateString($row['eingabedatum']);
 	echo ' ';
 	echo $row['bezeichnung'];
@@ -130,7 +130,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 		echo '</a>';
 	}
 
-	echo '</h3>';
+    echo '</h6>';
 	echo '</div>';
 
     echo '<div class="card-body">';

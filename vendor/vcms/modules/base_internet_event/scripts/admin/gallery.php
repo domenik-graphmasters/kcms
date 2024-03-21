@@ -189,7 +189,7 @@ if(is_dir('custom/veranstaltungsfotos/' .$id)){
 	if($mainPictureId != -1){
 		echo '<div class="row gallery">';
         echo '<div class="col-sm-8 coffset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">';
-		echo '<div class="thumbnail reveal">';
+        echo '<div class="thumbnail ">';
 		echo '<div class="img-frame">';
 		echo '<a href="api.php?iid=event_picture&amp;eventid=' .$id. '&amp;id=' .$mainPictureId. '">';
 		echo '<img src="api.php?iid=event_picture&amp;eventid=' .$id. '&amp;id=' .$mainPictureId. '">';
@@ -206,7 +206,7 @@ if(is_dir('custom/veranstaltungsfotos/' .$id)){
 
 	foreach($pictures as $key => $picture){
 		echo '<div class="col-sm-6 col-md-4 col-lg-3">';
-		echo '<div class="thumbnail reveal mb-2">';
+        echo '<div class="thumbnail  mb-2">';
 
 		$visibility = $libGallery->getPublicityLevel($picture);
 		$visibilityClass = '';

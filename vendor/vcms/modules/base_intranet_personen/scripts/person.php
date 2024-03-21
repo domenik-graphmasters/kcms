@@ -211,7 +211,7 @@ printAssociationDetails($row);
 echo '</div>';
 echo '</div>';
 
-echo '<div class="card">';
+echo '<div class="card mt-4">';
 echo '<div class="card-body">';
 printVita($row);
 echo '</div>';
@@ -486,7 +486,10 @@ function printPersonSignature($row, $ownprofile){
 		//image upload form
         echo '<form action="index.php?pid=intranet_person" method="post" enctype="multipart/form-data" class=" text-center">';
 		echo '<input type="hidden" name="formtyp" value="fotodatenupload" />';
-		$libForm->printFileUpload('bilddatei', 'Foto (4x3) hochladen', false, false, array(), array('image/jpeg'));
+        echo '<div class="custom-file">';
+        echo '<input type="file" class="custom-file-input" id="bilddatei" name="bilddatei" onchange="this.form.submit()" accept="image/jpeg">';
+        echo '<label class="custom-file-label text-left" for="customFile">Foto (4x3) hochladen</label>';
+        echo '</div>';
 		echo '</form>';
 	}
 }
@@ -827,7 +830,7 @@ function printAssociationDetails($row){
 function printVita($row){
 	echo '<article>';
 
-	$vita = trim($row['vita']);
+    $vita = trim($row['vita'] ?? '');
 
 	if($vita != ''){
 		echo nl2br($vita);

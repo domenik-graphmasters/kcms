@@ -18,169 +18,121 @@ along with VCMS. If not, see <http://www.gnu.org/licenses/>.
 
 namespace vcms;
 
-class LibMenuRenderer{
+use vcms\menu\LibMenuFolder;
 
-	var $defaultIndent = '            ';
+class LibMenuRenderer
+{
 
-	function printNavbar($menuInternet, $menuIntranet, $menuAdministration, $aktivesPid, $gruppe, $aemter){
-		global $libGlobal;
+    private const ELEMENT_TYPE_INTERNAL_LINK = 1;
 
-		$menuInternet = $menuInternet->copy();
-		$menuInternet->reduceByAccessRestriction($gruppe, $aemter);
+    private const ELEMENT_TYPE_FOLDER = 2;
 
-		$menuIntranet = $menuIntranet->copy();
-		$menuIntranet->reduceByAccessRestriction($gruppe, $aemter);
+    private const ELEMENT_TYPE_EXTERNAL_LINK = 3;
 
-		$menuAdministration = $menuAdministration->copy();
-		$menuAdministration->reduceByAccessRestriction($gruppe, $aemter);
+    private const ELEMENT_TYPE_LOGIN = 4;
 
-		$navbarClass = $this->getNavbarClass();
+    var $defaultIndent = '            ';
+
+    function printNavbar($menuInternet, $menuIntranet, $menuAdministration, $aktivesPid, $gruppe, $aemter)
+    {
+        global $libGenericStorage;
+        global $libAuth;
+
+        $menuInternet = $menuInternet->copy();
+        $menuInternet->reduceByAccessRestriction($gruppe, $aemter);
+
+        $menuIntranet = $menuIntranet->copy();
+        $menuIntranet->reduceByAccessRestriction($gruppe, $aemter);
+
+        $menuAdministration = $menuAdministration->copy();
+        $menuAdministration->reduceByAccessRestriction($gruppe, $aemter);
+
+        $navbarClass = $this->getNavbarClass();
 
         echo '    <nav id="nav" class="navbar navbar-expand-xl navbar-default navbar-light bg-light navbar-fixed-top ' . $navbarClass . '">' . PHP_EOL;
-    echo '      <div class="container">' . PHP_EOL;
-		echo '        <div id="logo" class="pull-left"></div>' . PHP_EOL;
-    echo $this->printNavbarCollapsed();
-    echo $this->printNavbarInternet($menuInternet, $aktivesPid);
-    echo $this->printNavbarIntranet($menuIntranet, $menuAdministration, $aktivesPid);
-		echo '      </div>' . PHP_EOL;
-		echo '    </nav>' . PHP_EOL;
-	}
+        echo '      <div class="container">' . PHP_EOL;
+        $brand = $libGenericStorage->loadValue('base_core', 'brand');
+        echo '    <a class="navbar-brand" href="index.php">';
+        echo '    <div id="logo" class="d-inline-block align-top"></div>';
+        echo $brand;
+        echo '</a>';
+        $this->printNavbarCollapsed();
+        echo '<div class="collapse navbar-collapse flex-md-column w-100" id="navbar-internet">';
+        echo '<ul class="navbar-nav ml-auto small mb-2 mb-md-0">';
+        $this->renderMenuFolder($menuInternet->getRootMenuFolder(), $aktivesPid);
+        echo '</ul>';
+        if ($libAuth->isLoggedIn()) {
+            echo '<hr class="d-xl-none"/>';
+            echo '<ul class="navbar-nav ml-auto small mb-2 mb-md-0">';
+            $this->renderMenuFolder($menuIntranet->getRootMenuFolder(), $aktivesPid);
+            echo '</ul>';
+        }
+        echo '</div>';
+        echo '      </div>' . PHP_EOL;
+        echo '    </nav>' . PHP_EOL;
+    }
 
-	function printNavbarCollapsed(){
-		global $libGenericStorage;
-
-		echo '        <div class="navbar-header">' . PHP_EOL;
+    private function printNavbarCollapsed(): void
+    {
+        echo '        <div class="navbar-header">' . PHP_EOL;
         echo '          <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbar-internet,#navbar-intranet" aria-expanded="false">' . PHP_EOL;
-    echo $this->defaultIndent . '<span class="sr-only">Navigation</span>' . PHP_EOL;
-    echo $this->defaultIndent . '<span class="icon-bar"></span>' . PHP_EOL;
-    echo $this->defaultIndent . '<span class="icon-bar"></span>' . PHP_EOL;
-		echo $this->defaultIndent . '<span class="icon-bar"></span>' . PHP_EOL;
-		echo '          </button>' . PHP_EOL;
+        echo $this->defaultIndent . '<span class="navbar-toggler-icon"></span>' . PHP_EOL;
+        echo '          </button>' . PHP_EOL;
+        echo '        </div>' . PHP_EOL;
+    }
 
-		$brand = $libGenericStorage->loadValue('base_core', 'brand');
-		$brandXs = $libGenericStorage->loadValue('base_core', 'brand_xs');
+    private function renderMenuFolder(LibMenuFolder $folder, string $activePid): void
+    {
+        global $libAuth;
 
-		echo '          <a href="index.php" class="navbar-brand hidden-xs">' .$brand. '</a>' . PHP_EOL;
-		echo '          <a href="index.php" class="navbar-brand visible-xs">' .$brandXs. '</a>' . PHP_EOL;
-		echo '        </div>' . PHP_EOL;
-	}
+        foreach ($folder->getElements() as $item) {
+            $active = '';
+            if ($item->getPid() == $activePid) {
+                $active = ' active';
+            }
 
-	function printNavbarInternet($menuInternet, $aktivesPid){
-		global $libAuth, $libPerson;
+            $targetPid = $item->getPid();
+            $targetName = $item->getName();
 
-		$rootMenuFolderInternet = $menuInternet->getRootMenuFolder();
+            switch ($item->getType()) {
+                case LibMenuRenderer::ELEMENT_TYPE_INTERNAL_LINK:
+                    echo "<li class='nav-item$active'><a class='nav-link' href='index.php?pid=$targetPid'>$targetName</a></li>" . PHP_EOL;
+                    break;
+                case LibMenuRenderer::ELEMENT_TYPE_FOLDER:
+                    echo '<li class="nav-item dropdown">' . PHP_EOL;
+                    echo "<a class='nav-link dropdown-toggle' href='#' role='button' data-toggle='dropdown' aria-expanded='false'>$targetName</a>";
+                    echo '<div class="dropdown-menu">' . PHP_EOL;
+                    foreach ($item->getElements() as $dropdownElement) {
+                        $dropdownElementPid = $dropdownElement->getPid();
+                        $dropdownElementName = $dropdownElement->getName();
+                        echo "<a class='dropdown-item' href='index.php?pid=$dropdownElementPid'>$dropdownElementName</a>";
+                    }
+                    echo '</div>';
+                    echo '</li>' . PHP_EOL;
+                    break;
+                case LibMenuRenderer::ELEMENT_TYPE_EXTERNAL_LINK:
+                    echo "<li class='nav-item$active'><a class='nav-link' href='index.php?pid=$targetPid'><i class='fa fa-external-link' aria-hidden='true'></i>$targetName</a></li>" . PHP_EOL;
+                    break;
+                case LibMenuRenderer::ELEMENT_TYPE_LOGIN:
+                    echo "<li class='nav-item$active'>";
+                    if (!$libAuth->isLoggedin()) {
+                        echo "<a class='nav-link' href='index.php?pid=$targetPid'>$targetName</a>";
+                    } else {
+                        $logoutName = $item->getNameLogout();
+                        echo "<a class='nav-link' href='index.php?logout=1'>$logoutName</a>";
+                    }
+                    echo '</li>';
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
-		if($rootMenuFolderInternet->hasElements()){
-			echo '        <div id="navbar-internet" class="collapse navbar-collapse navbar-internet">' . PHP_EOL;
-			echo '          <ul class="nav navbar-nav navbar-right">' . PHP_EOL;
-			echo $this->printNavbarLevel($rootMenuFolderInternet, 0, $aktivesPid);
+    function getNavbarClass(): string
+    {
+        global $libAuth;
 
-			if($libAuth->isLoggedin() && $libPerson->hasImageFile($libAuth->getId())){
-				echo '            <li class="visible-lg">' .$libPerson->getImage($libAuth->getId(), 'xs'). '</li>' . PHP_EOL;
-			}
-
-			echo '          </ul>' . PHP_EOL;
-			echo '        </div>' . PHP_EOL;
-		}
-	}
-
-	function printNavbarIntranet($menuIntranet, $menuAdministration, $aktivesPid){
-		$rootMenuFolderIntranet = $menuIntranet->getRootMenuFolder();
-		$rootMenuFolderAdministration = $menuAdministration->getRootMenuFolder();
-
-		if($rootMenuFolderIntranet->hasElements()){
-			echo '        <div id="navbar-intranet" class="collapse navbar-collapse navbar-intranet">' . PHP_EOL;
-			echo '          <ul class="nav navbar-nav navbar-right">' . PHP_EOL;
-			echo $this->printNavbarLevel($rootMenuFolderIntranet, 0, $aktivesPid);
-			echo $this->printNavbarLevel($rootMenuFolderAdministration, 0, $aktivesPid);
-			echo '          </ul>' . PHP_EOL;
-			echo '        </div>' . PHP_EOL;
-		}
-	}
-
-	function printNavbarLevel($menuFolder, $depth, $pid){
-		global $libAuth;
-
-		//for all menu elements
-		foreach($menuFolder->getElements() as $folderElement){
-			//internal link?
-			if($folderElement->getType() == 1){
-				$this->printLiTag($folderElement, $depth, $pid);
-
-				echo '<a href="index.php?pid=' . $folderElement->getPid() . '">';
-				echo $folderElement->getName();
-				echo '</a></li>' . PHP_EOL;
-			}
-			//folder?
-			elseif($folderElement->getType() == 2){
-				echo $this->defaultIndent . $this->indent($depth) . '<li class="dropdown">' . PHP_EOL;
-				echo $this->defaultIndent . $this->indent($depth) . '  <a href="index.php?';
-
-				//does the folder have an associated page?
-				if($folderElement->getPid() != ''){
-					echo 'pid='.$folderElement->getPid();
-				}
-				//else show current page
-				else {
-					echo 'pid='.$pid;
-				}
-
-				echo '" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">';
-				echo $folderElement->getName();
-                echo '</a>' . PHP_EOL;
-
-				//menu folder with elements?
-				if($folderElement->hasElements()){
-					echo $this->defaultIndent . $this->indent($depth) . '  <ul class="dropdown-menu">' . PHP_EOL;
-					echo $this->printNavbarLevel($folderElement, $depth+1, $pid);
-					echo $this->defaultIndent . $this->indent($depth) . '  </ul>' . PHP_EOL;
-				}
-
-				echo $this->defaultIndent . $this->indent($depth) . '</li>' . PHP_EOL;
-			}
-			//external link?
-			elseif($folderElement->getType() == 3){
-				$this->printLiTag($folderElement, $depth, $pid);
-
-				echo '<a href="' .$folderElement->getPid(). '">';
-				echo '<i class="fa fa-external-link" aria-hidden="true"></i> ';
-				echo $folderElement->getName();
-				echo '</a></li>' . PHP_EOL;
-			}
-			//login / logout
-			elseif($folderElement->getType() == 4){
-				$this->printLiTag($folderElement, $depth, $pid);
-
-				if(!$libAuth->isLoggedin()){
-					echo '<a href="index.php?pid=' . $folderElement->getPid() . '">';
-					echo $folderElement->getName();
-					echo '</a>';
-				} else {
-					echo '<a href="index.php?logout=1">' .$folderElement->getNameLogout(). '</a>';
-				}
-
-				echo '</li>' . PHP_EOL;
-			}
-		}
-	}
-
-	function indent($depth = 0){
-		for($i=0; $i < $depth; $i++){
-			echo '    ';
-		}
-	}
-
-	function printLiTag($folderElement, $depth, $pid){
-		if($folderElement->getPid() == $pid){
-            echo $this->defaultIndent . $this->indent($depth) . '<li class="active dropdown-item">';
-		} else {
-			echo $this->defaultIndent . $this->indent($depth) . '<li>';
-		}
-	}
-
-	function getNavbarClass(){
-		global $libAuth;
-
-		return !$libAuth->isLoggedin() ? 'navbar-internet-only' : 'navbar-internet-intranet';
-	}
+        return !$libAuth->isLoggedin() ? 'navbar-internet-only' : 'navbar-internet-intranet';
+    }
 }

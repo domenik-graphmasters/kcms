@@ -70,7 +70,7 @@ $stmt->execute();
 while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     echo '<div id="' . $row['id'] . '" class="card' . $libString->getLastInsertId($lastInsertId, $row['id']) . '">';
     echo '<div class="card-header">';
-    echo '<h3 class="card-titl">';
+    echo '<h3 class="card-title">';
 	echo $libTime->formatDateString($row['datum']);
 	echo ' ';
 	echo '<a href="index.php?pid=intranet_person&amp;id=' .$row['person']. '">';

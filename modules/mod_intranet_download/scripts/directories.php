@@ -115,16 +115,16 @@ if (isset($_GET['hash'])) {
 }
 
 echo '<div class="row">';
-echo '<nav aria-label="breadcrumb">';
+echo '<nav aria-label="breadcrumb" class="w-100">';
 echo '<ol class="breadcrumb">';
-echo '<li><a href="index.php?pid=intranet_directories">Dateien</a></li>';
+echo '<li class="breadcrumb-item"><a href="index.php?pid=intranet_directories">Dateien</a></li>';
 if ($currentFolder !== $rootFolderObject && $currentFolder != null) {
     $nestingFolder = $currentFolder->nestingFolder;
     while ($nestingFolder !== $rootFolderObject) {
-        echo '<li><a href="index.php?pid=intranet_directories&amp;aktion=open&amp;hash=' . $nestingFolder->getHash() . '">' . $nestingFolder->name . '</a></li>';
+        echo '<li class="breadcrumb-item"><a href="index.php?pid=intranet_directories&amp;aktion=open&amp;hash=' . $nestingFolder->getHash() . '">' . $nestingFolder->name . '</a></li>';
         $nestingFolder = $nestingFolder->nestingFolder;
     }
-    echo '<li class="active">' . $currentFolder->name . '</li>';
+    echo '<li class="breadcrumb-item active" aria-current="page">' . $currentFolder->name . '</li>';
 }
 echo '</ol>';
 echo '</nav>';

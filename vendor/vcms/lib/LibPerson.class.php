@@ -22,8 +22,11 @@ use PDO;
 
 class LibPerson{
 
-	function getNameString($id, $mode){
+    function getNameString(?string $id, $mode): string
+    {
 		global $libDb;
+
+        if ($id == null) return "";
 
 		$stmt = $libDb->prepare("SELECT anrede, titel, rang, vorname, praefix, name, suffix FROM base_person WHERE id=:id");
 		$stmt->bindValue(':id', $id, PDO::PARAM_INT);

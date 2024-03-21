@@ -85,7 +85,7 @@ class LibTimelineEvent {
 
 		if(!$this->isFullWidth()){
 			$retstr .= '<div class="timeline-badge ' .$this->getBadgeClass(). '">';
-			$retstr .= '<span class="reveal">' .$this->getBadgeIcon(). '</span>';
+            $retstr .= '<span class="">' . $this->getBadgeIcon() . '</span>';
 			$retstr .= '</div>';
 		}
 
@@ -96,7 +96,7 @@ class LibTimelineEvent {
 		* heading
 		*/
         $retstr .= '<div class="card-header">';
-        $retstr .= '<h3 class="card-titl">';
+        $retstr .= '<h6 class="card-title">';
 
 		if($this->datetime != ''){
 			$retstr .= '<time datetime="' .$libTime->formatUtcString($this->datetime). '">';
@@ -114,7 +114,7 @@ class LibTimelineEvent {
 			$retstr .=  '</a>';
 		}
 
-		$retstr .= '</h3>';
+        $retstr .= '</h6>';
 		$retstr .= '</div>';
 
 		/*
