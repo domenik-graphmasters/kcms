@@ -75,7 +75,7 @@ class LibMenuRenderer
     private function printNavbarCollapsed(): void
     {
         echo '        <div class="navbar-header">' . PHP_EOL;
-        echo '          <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbar-internet,#navbar-intranet" aria-expanded="false">' . PHP_EOL;
+        echo '          <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#navbar-internet,#navbar-intranet" aria-expanded="false">' . PHP_EOL;
         echo $this->defaultIndent . '<span class="navbar-toggler-icon"></span>' . PHP_EOL;
         echo '          </button>' . PHP_EOL;
         echo '        </div>' . PHP_EOL;
@@ -100,7 +100,7 @@ class LibMenuRenderer
                     break;
                 case LibMenuRenderer::ELEMENT_TYPE_FOLDER:
                     echo '<li class="nav-item dropdown">' . PHP_EOL;
-                    echo "<a class='nav-link dropdown-toggle' href='#' role='button' data-toggle='dropdown' aria-expanded='false'>$targetName</a>";
+                    echo "<a class='nav-link dropdown-toggle' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>$targetName</a>";
                     echo '<div class="dropdown-menu">' . PHP_EOL;
                     foreach ($item->getElements() as $dropdownElement) {
                         $dropdownElementPid = $dropdownElement->getPid();

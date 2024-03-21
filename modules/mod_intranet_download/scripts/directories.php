@@ -104,7 +104,7 @@ elseif (isset($_POST['aktion']) && $_POST['aktion'] == "newfolder" && isset($_PO
 * output
 */
 
-echo '<script>$(function () {$(\'[data-toggle="tooltip"]\').tooltip()})</script>';
+echo '<script>$(function () {$(\'[data-bs-toggle="tooltip"]\').tooltip()})</script>';
 
 echo $libString->getErrorBoxText();
 echo $libString->getNotificationBoxText();
@@ -264,7 +264,7 @@ function displayFolderContents(Folder &$folder, \vcms\LibDb $libDb): void
             }
             $tooltip = 'Lesbar für: ' . implode(', ', $bezeichnungen);
 
-            echo '<td class="col-2 col-md-1"><span class="text-muted" data-toggle="tooltip" title="' . $tooltip . '">' . implode('', $folderElement->readGroups) . '</span></td>';
+            echo '<td class="col-2 col-md-1"><span class="text-muted" data-bs-toggle="tooltip" title="' . $tooltip . '">' . implode('', $folderElement->readGroups) . '</span></td>';
             echo '<td class="col-2 col-md-1"><span class="text-muted">' . getSizeString($folderElement->getSize()) . '</span></td>';
             echo '<td class="col-1">';
             if (in_array($folderElement->owningAmt, $libAuth->getAemter())) {
