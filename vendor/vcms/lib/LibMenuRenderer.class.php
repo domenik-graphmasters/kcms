@@ -58,12 +58,12 @@ class LibMenuRenderer
         echo '</a>';
         $this->printNavbarCollapsed();
         echo '<div class="collapse navbar-collapse flex-md-column w-100" id="navbar-internet">';
-        echo '<ul class="navbar-nav ml-auto small mb-2 mb-md-0">';
+        echo '<ul class="navbar-nav ml-auto mb-2 mb-md-0">';
         $this->renderMenuFolder($menuInternet->getRootMenuFolder(), $aktivesPid);
         echo '</ul>';
         if ($libAuth->isLoggedIn()) {
             echo '<hr class="d-xl-none"/>';
-            echo '<ul class="navbar-nav ml-auto small mb-2 mb-md-0">';
+            echo '<ul class="navbar-nav ml-auto mb-2 mb-md-0">';
             $this->renderMenuFolder($menuIntranet->getRootMenuFolder(), $aktivesPid);
             echo '</ul>';
         }
