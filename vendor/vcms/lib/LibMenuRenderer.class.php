@@ -52,9 +52,11 @@ class LibMenuRenderer
         echo '    <nav id="nav" class="navbar navbar-expand-xl navbar-default navbar-light bg-light navbar-fixed-top ' . $navbarClass . '">' . PHP_EOL;
         echo '      <div class="container">' . PHP_EOL;
         $brand = $libGenericStorage->loadValue('base_core', 'brand');
+        $brandShort = $libGenericStorage->loadValue('base_core', 'brand_xs');
         echo '    <a class="navbar-brand" href="index.php">';
-        echo '    <div id="logo" class="d-inline-block align-top"></div>';
-        echo $brand;
+        echo '    <div id="logo" class="d-inline-block align-middle"></div>';
+        echo "<span class='d-inline d-xl-none'>$brandShort</span>";
+        echo "<span class='d-none d-xl-inline'>$brand</span>";
         echo '</a>';
         $this->printNavbarCollapsed();
         echo '<div class="collapse navbar-collapse flex-md-column w-100" id="navbar-internet">';
