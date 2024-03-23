@@ -67,6 +67,7 @@ class LibMenuRenderer
             echo '<hr class="d-xl-none"/>';
             echo '<ul class="navbar-nav ms-auto mb-2 mb-md-0">';
             $this->renderMenuFolder($menuIntranet->getRootMenuFolder(), $aktivesPid);
+            $this->renderMenuFolder($menuAdministration->getRootMenuFolder(), $aktivesPid);
             echo '</ul>';
         }
         echo '</div>';
