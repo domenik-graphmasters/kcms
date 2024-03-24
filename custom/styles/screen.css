@@ -14,11 +14,35 @@
 	--bs-navbar-active-color: var(--bs-primary) !important;
 }
 
-.circular-progress {
-	border-radius: 50%;
-	background: hsla(180, 100%, 50%, .5);
-	--mask: linear-gradient(red, red) padding-box,
-	conic-gradient(red var(--p, 17%), transparent 0%) border-box;
-	-webkit-mask: var(--mask);
-	mask: var(--mask)
+:root {
+	--pcms-primary: #067e00;
+	--pcms-primary-rgb: 6, 126, 0;
+
+	--pcms-primary-m1: #056700;
+	--pcms-primary-m1-rgb: 5, 103, 0;
+
+	--pcms-primary-m2: #044d00;
+	--pcms-primary-m2-rgb: 4, 77, 0;
+
+	--pcms-primary-p1: #3aa034;
+	--pcms-primary-p1-rgb: 58, 160, 52;
+
+	--pcms-primary-p2: #5dbf57;
+	--pcms-primary-p2-rgb: 93, 191, 87;
+
+	--pcms-secondary: white;
+	--pcms-secondary-rgb: 255, 255, 255;
+
+	--pcms-tertrary: #d4a217;
+	--pcms-tertrary-rgb: 212, 162, 23;
+
+	--bs-primary: var(--pcms-primary);
+	--bs-primary-rgb: var(--pcms-primary-rgb);
+	--bs-primary-text-emphasis: var(--pcms-primary-m2);
+	--bs-primary-bg-subtle: #a9c4a8;
+	--bs-primary-border-subtle: #86be82;
+	--bs-link-color: var(--bs-primary);
+	--bs-link-color-rgb: var(--bs-primary-rgb);
+	--bs-link-hover-color: #044d00;
+	--bs-link-hover-color-rgb: 4 77 255;
 }
