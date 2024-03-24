@@ -46,6 +46,31 @@ label {
 	max-height: 80vh;
 }
 
+#brand:hover,
+#brand:focus {
+	color: var(--bs-primary);
+}
+
+.navbar {
+	--bs-navbar-active-color: var(--bs-primary) !important;
+}
+
+/**
+Bootstrap theming
+ */
+
+:root {
+	--bs-primary: var(--pcms-primary);
+	--bs-primary-rgb: var(--pcms-primary-rgb);
+	--bs-primary-text-emphasis: var(--pcms-primary-m2);
+	--bs-primary-bg-subtle: var(--pcms-primary-bg-subtle);
+	--bs-primary-border-subtle: var(--pcms-primary-bg-subtle);
+	--bs-link-color: var(--pcms-primary);
+	--bs-link-color-rgb: var(--pcms-primary-rgb);
+	--bs-link-hover-color: var(--pcms-primary-m2);
+	--bs-link-hover-color-rgb: var(--pcms-primary-m2-rgb);
+}
+
 /**
 The following should be provided from bootstrap at some point
  */
@@ -92,4 +117,20 @@ a {
 	--bs-btn-disabled-color: #fff;
 	--bs-btn-disabled-bg: var(--bs-primary);
 	--bs-btn-disabled-border-color: var(--bs-primary);
+}
+
+.btn-outline-primary .fa {
+	color: var(--bs-btn-color);
+}
+
+.btn-outline-primary:hover .fa {
+	color: var(--bs-btn-hover-color);
+}
+
+.btn-primary .fa {
+	color: var(--bs-btn-color);
+}
+
+.btn-primary:hover .fa {
+	color: var(--bs-btn-hover-color);
 }
