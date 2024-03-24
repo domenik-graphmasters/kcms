@@ -42,10 +42,6 @@ label {
 	font-weight: normal;
 }
 
-.modal .modal-body .carousel-inner img {
-	max-height: 80vh;
-}
-
 #brand:hover,
 #brand:focus {
 	color: var(--bs-primary);
@@ -133,4 +129,27 @@ a {
 
 .btn-primary:hover .fa {
 	color: var(--bs-btn-hover-color);
+}
+
+.form-control:focus {
+	border-color: var(--bs-primary-border-subtle);
+	box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), .25);
+}
+
+.dropdown-menu {
+	--bs-dropdown-link-active-bg: var(--bs-primary)
+}
+
+.form-check-input:checked {
+	background-color: var(--bs-primary);
+	border-color: var(--bs-primary);
+}
+
+.form-check-input:focus {
+	border-color: var(--bs-primary-border-subtle);
+	box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), .25);
+}
+
+.progress {
+	--bs-progress-bar-bg: var(--bs-primary);
 }

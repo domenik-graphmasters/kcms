@@ -91,7 +91,7 @@ class LibForm{
 	}
 
 	function printFileInput($name, $label, $disabled = false, $required = false, $classes = array(), $accepts = array()){
-        echo '<div class="form-group row">';
+        echo '<div class="form-group row mb-3">';
         echo '<label for="' . $name . '" class="col-sm-' . $this->colLabel . ' col-form-label text-start text-xl-end">' . $label . '</label>';
 		echo '<div class="col-sm-' .$this->colInput. '">';
         echo '<label class="btn btn-outline-primary btn-file';

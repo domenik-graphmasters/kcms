@@ -93,7 +93,7 @@ class LibTimelineEvent {
         $retstr .= '<div class="timeline-panel ' . $panelTypeClass . ' card mb-2">';
 
         $retstr .= '<div class="card-body">';
-        $retstr .= '<h6 class="card-title mt-2">';
+        $retstr .= '<h6 class="card-title mt-3">';
 
 		if($this->datetime != ''){
 			$retstr .= '<time datetime="' .$libTime->formatUtcString($this->datetime). '">';
