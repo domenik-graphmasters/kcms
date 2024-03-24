@@ -5,10 +5,6 @@
 	background-position: center;
 }
 
-.calendar .today {
-	border-color: var(--bs-primary);
-}
-
 :root {
 	--pcms-primary: #067e00;
 	--pcms-primary-rgb: 6, 126, 0;

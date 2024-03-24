@@ -57,3 +57,7 @@
 .calendar .calendar-day .calendar-event time {
 	font-weight: bold;
 }
+
+.calendar .today {
+	border-color: var(--bs-primary);
+}
