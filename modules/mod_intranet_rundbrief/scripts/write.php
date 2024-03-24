@@ -173,7 +173,7 @@ $libForm->printStaticText('Absender', $formattedSenderString);
 $libForm->printTextInput('subject', 'Betreff', '');
 $libForm->printFileInput('anhang', 'Anhang');
 $libForm->printTextarea('nachricht', 'Nachricht', '');
-$libForm->printSubmitButton('<i class="fa fa-envelope-o" aria-hidden="true"></i> Nachricht verschicken');
+$libForm->printSubmitButton('<i class="fa fa-envelope-o" aria-hidden="true"></i> Nachricht verschicken', ['mt-4']);
 
 echo '</fieldset>';
 echo '</form>';

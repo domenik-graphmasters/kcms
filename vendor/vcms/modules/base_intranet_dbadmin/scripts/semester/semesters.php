@@ -59,13 +59,13 @@ if($libAuth->isLoggedin()){
     echo '<div class="card">';
     echo '<div class="card-body">';
 	echo '<div class="btn-toolbar">';
-    echo '<a href="index.php?pid=intranet_admin_semester&amp;aktion=blank" class="btn btn-secondary">Ein neues Semester anlegen</a>';
+    echo '<a href="index.php?pid=intranet_admin_semester&amp;aktion=blank" class="btn btn-outline-primary">Ein neues Semester anlegen</a>';
 	echo '</div>';
 	echo '</div>';
 	echo '</div>';
 
 
-    echo '<div class="card">';
+    echo '<div class="card mt-3">';
     echo '<div class="card-body">';
 
     echo '<div class="table-responsive">';

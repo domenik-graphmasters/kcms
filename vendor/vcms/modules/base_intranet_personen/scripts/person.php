@@ -242,7 +242,7 @@ if($ownprofile){
 	echo '<div class="col-sm-9">' .$libAuth->getPasswordRequirements(). '</div>';
 	echo '</div>';
 
-	$libForm->printSubmitButton('<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Passwort speichern');
+    $libForm->printSubmitButton('<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Passwort speichern', ['mt-3']);
 
 	echo '</fieldset>';
 	echo '</form>';
@@ -337,7 +337,7 @@ if($ownprofile){
 	}
 
 	$libForm->printTextarea('vita', 'Vita', $row['vita']);
-	$libForm->printSubmitButton('<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Speichern');
+    $libForm->printSubmitButton('<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Speichern', ['mt-3']);
 
 	echo '</fieldset>';
 	echo '</form>';

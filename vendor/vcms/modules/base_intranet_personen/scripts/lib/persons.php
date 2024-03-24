@@ -21,7 +21,7 @@ function printPersons($stmt){
 
 	$stmt->execute();
 
-    echo '<div class="card">';
+    echo '<div class="card mt-4">';
     echo '<div class="card-body">';
 	echo '<div class="persons-grid">';
 

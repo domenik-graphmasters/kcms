@@ -104,7 +104,10 @@ elseif (isset($_POST['aktion']) && $_POST['aktion'] == "newfolder" && isset($_PO
 * output
 */
 
-echo '<script>$(function () {$(\'[data-bs-toggle="tooltip"]\').tooltip()})</script>';
+echo "<script>" . PHP_EOL;
+echo "const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle=\"tooltip\"]')" . PHP_EOL;
+echo "const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))" . PHP_EOL;
+echo "</script>" . PHP_EOL;
 
 echo $libString->getErrorBoxText();
 echo $libString->getNotificationBoxText();
@@ -115,8 +118,8 @@ if (isset($_GET['hash'])) {
 }
 
 echo '<div class="row">';
-echo '<nav aria-label="breadcrumb" class="w-100">';
-echo '<ol class="breadcrumb">';
+echo '<nav aria-label="breadcrumb" class="w-100 rounded bg-body-secondary my-5">';
+echo '<ol class="breadcrumb mt-3">';
 echo '<li class="breadcrumb-item"><a href="index.php?pid=intranet_directories">Dateien</a></li>';
 if ($currentFolder !== $rootFolderObject && $currentFolder != null) {
     $nestingFolder = $currentFolder->nestingFolder;
@@ -147,21 +150,21 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
     echo '<input type="hidden" id="hash" name="hash" value="' . $currentFolder->getHash() . '">';
 
     echo '<div class="form-group row">';
-    echo '<label class="col-sm-3 col-form-label">mit Leserecht für</label>';
-    echo '<div class="col-sm-9">';
+    echo '<label class="col-xl-3 col-form-label text-xl-end">mit Leserecht für</label>';
+    echo '<div class="col-xl-9">';
 
     $stmt = $libDb->prepare("SELECT * FROM base_gruppe ORDER BY bezeichnung");
     $stmt->execute();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         if ($row['bezeichnung'] != "X" && $row['bezeichnung'] != "T" && $row['bezeichnung'] != "V") {
-            echo '<div class="form-check"><label><input type="checkbox" name="gruppen[]" value="' . $row['bezeichnung'] . '"';
+            echo '<div class="form-check"><input class="form-check-input" type="checkbox" name="gruppen[]" value="' . $row['bezeichnung'] . '"';
 
             if ($libGenericStorage->loadValueInCurrentModule('preselect_rights') == 1) {
                 echo 'checked="checked"';
             }
 
-            echo '/>';
+            echo '/><label class="form-check-label">';
             echo $row['bezeichnung'] . ' - ' . $row['beschreibung'];
             echo '</label></div>';
         }
@@ -170,8 +173,8 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
     echo '</div></div>';
 
     echo '<div class="form-group row">';
-    echo '<div class="offset-sm-3 col-sm-3">';
-    echo '<label class="btn btn-secondary btn-file"><i class="fa fa-upload" aria-hidden="true"></i> Datei hochladen';
+    echo '<div class="offset-xl-3 col-xl-9 mt-4">';
+    echo '<label class="btn btn-outline-primary btn-file"><i class="fa fa-upload" aria-hidden="true"></i> Datei hochladen';
     echo '<input type="file" name="datei" onchange="this.form.submit()" style="display:none">';
     echo '</label>';
     echo '</div>';
@@ -191,19 +194,24 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
     echo '<div class="card">';
     echo '<div class="card-body">';
     echo '<form action="index.php?pid=intranet_directories&aktion=open&hash=' . $currentFolder->getHash() . '" method="post" class="">';
-    echo '<fieldset>';
     echo '<input type="hidden" name="aktion" value="newfolder" />';
     echo '<input type="hidden" id="hash" name="hash" value="' . $currentFolder->getHash() . '">';
 
     echo '<div class="form-group row">';
-    echo '<label for="foldername" class="col-sm-3 col-form-label">Neuen Ordner</label>';
-    echo '<div class="col-sm-3"><input type="text" id="foldername" name="foldername" class="form-control" /></div>';
+    echo '<div class="col-3 mb-3 text-xl-end">';
+    echo '<label for="foldername" class="form-label">Neuer Ordner</label>';
+    echo '</div>';
+    echo '<div class="col"><input type="text" class="form-control" id="foldername" name="foldername" aria-describedby="emailHelp"></div>';
     echo '</div>';
 
-    echo '<div class="form-group row">';
-    echo '<div class="offset-sm-3 col-sm-3">';
-    echo '<button type="submit" class="btn btn-secondary"><i class="fa fa-plus" aria-hidden="true"></i> anlegen</button>';
+    echo '<div class="row">';
+    echo '<div class="col-xl-9 offset-xl-3 d-grid d-xl-block">';
+    echo '<button type="submit" class="btn btn-outline-primary"><i class="fa fa-plus" aria-hidden="true"></i> anlegen</button>';
     echo '</div>';
+    echo '</div>';
+
+    echo '</div>';
+
     echo '</div>';
 
     echo '</form>';
@@ -264,7 +272,7 @@ function displayFolderContents(Folder &$folder, \vcms\LibDb $libDb): void
             }
             $tooltip = 'Lesbar für: ' . implode(', ', $bezeichnungen);
 
-            echo '<td class="col-2 col-md-1"><span class="text-muted" data-bs-toggle="tooltip" title="' . $tooltip . '">' . implode('', $folderElement->readGroups) . '</span></td>';
+            echo '<td class="col-2 col-md-1"><span class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="' . $tooltip . '">' . implode('', $folderElement->readGroups) . '</span></td>';
             echo '<td class="col-2 col-md-1"><span class="text-muted">' . getSizeString($folderElement->getSize()) . '</span></td>';
             echo '<td class="col-1">';
             if (in_array($folderElement->owningAmt, $libAuth->getAemter())) {

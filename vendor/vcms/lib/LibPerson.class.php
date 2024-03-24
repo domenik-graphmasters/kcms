@@ -33,12 +33,22 @@ class LibPerson{
 		$stmt->execute();
 		$mitgliedarray = $stmt->fetch(PDO::FETCH_ASSOC);
 
-		$mitgliedstring = $this->formatNameString($mitgliedarray['anrede'], $mitgliedarray['titel'], $mitgliedarray['rang'], $mitgliedarray['vorname'], $mitgliedarray['praefix'], $mitgliedarray['name'], $mitgliedarray['suffix'], $mode);
+        $mitgliedstring = $this->formatNameString(
+            $mitgliedarray['anrede'] ?? "",
+            $mitgliedarray['titel'] ?? "",
+            $mitgliedarray['rang'] ?? "",
+            $mitgliedarray['vorname'] ?? "",
+            $mitgliedarray['praefix'] ?? "",
+            $mitgliedarray['name'] ?? "",
+            $mitgliedarray['suffix'] ?? "",
+            $mode
+        );
 
 		return $mitgliedstring;
 	}
 
-	function formatNameString($anrede, $titel, $rang, $vorname, $praefix, $name, $suffix, $mode = 0){
+    function formatNameString(?string $anrede, ?string $titel, ?string $rang, ?string $vorname, ?string $praefix, ?string $name, ?string $suffix, $mode = 0): string
+    {
 		$string = '';
 
 		if ($suffix != ''){
@@ -69,9 +79,7 @@ class LibPerson{
 			$string .= substr($vorname, 0, 1). '. ' .$name;
 		}
 
-		$string = str_replace('  ', ' ', str_replace('  ', ' ', trim($string)));
-
-		return $string;
+        return str_replace('  ', ' ', str_replace('  ', ' ', trim($string)));
 	}
 
 	function getIntranetActivity($id){

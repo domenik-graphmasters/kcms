@@ -103,12 +103,12 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
 		if($angemeldet){
 			$form .= '<input type="hidden" name="veranstaltungenchangeanmeldenstate" value="abmelden" />';
-            $form .= '<button type="submit" class="btn btn-secondary btn-sm">';
+            $form .= '<button type="submit" class="btn btn-outline-primary btn-sm">';
 			$form .= '<i class="fa fa-check-square-o" aria-hidden="true"></i> Abmelden';
 			$form .= '</button>';
 		} else {
 			$form .= '<input type="hidden" name="veranstaltungenchangeanmeldenstate" value="anmelden" />';
-            $form .= '<button type="submit" class="btn btn-secondary btn-sm">';
+            $form .= '<button type="submit" class="btn btn-outline-primary btn-sm">';
 			$form .= '<i class="fa fa-square-o" aria-hidden="true"></i> Anmelden';
 			$form .= '</button>';
 		}

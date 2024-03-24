@@ -92,11 +92,8 @@ class LibTimelineEvent {
 		$panelTypeClass = $this->isFullWidth() ? 'full-width' : 'with-badge';
         $retstr .= '<div class="timeline-panel ' . $panelTypeClass . ' card mb-2">';
 
-		/*
-		* heading
-		*/
-        $retstr .= '<div class="card-header">';
-        $retstr .= '<h6 class="card-title">';
+        $retstr .= '<div class="card-body">';
+        $retstr .= '<h6 class="card-title mt-2">';
 
 		if($this->datetime != ''){
 			$retstr .= '<time datetime="' .$libTime->formatUtcString($this->datetime). '">';
@@ -115,12 +112,6 @@ class LibTimelineEvent {
 		}
 
         $retstr .= '</h6>';
-		$retstr .= '</div>';
-
-		/*
-		* body
-		*/
-        $retstr .= '<div class="card-body">';
 
 		// description
 		$retstr .= '<div class="row">';

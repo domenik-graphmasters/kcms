@@ -13,3 +13,12 @@
 .navbar {
 	--bs-navbar-active-color: var(--bs-primary) !important;
 }
+
+.circular-progress {
+	border-radius: 50%;
+	background: hsla(180, 100%, 50%, .5);
+	--mask: linear-gradient(red, red) padding-box,
+	conic-gradient(red var(--p, 17%), transparent 0%) border-box;
+	-webkit-mask: var(--mask);
+	mask: var(--mask)
+}

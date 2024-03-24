@@ -51,7 +51,7 @@ echo '<form action="index.php?pid=event_admin_galerie" method="post" class="">';
 echo '<fieldset>';
 
 $libForm->printVeranstaltungDropDownBox('id', 'Veranstaltung', '', false);
-$libForm->printSubmitButton('Galerie anlegen &frasl; bearbeiten');
+$libForm->printSubmitButton('Galerie anlegen &frasl; bearbeiten', ['mt-3']);
 
 echo '</fieldset>';
 echo '</form>';

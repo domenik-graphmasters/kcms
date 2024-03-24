@@ -604,7 +604,7 @@ class LibTime{
             $retstr .= '<div class="card-body">';
 			$retstr .= '<form action="index.php" class="form-inline">';
             $retstr .= '<div class="row">';
-            $retstr .= '<div class="col-12 col-xl-2">';
+            $retstr .= '<div class="col-12">';
 			$retstr .= '<input type="hidden" name="pid" value="' . $libGlobal->pid . '"/>';
 			$retstr .= '<label for="semester" class="sr-only">Semester</label>';
             $retstr .= '<select id="semester" name="semester" class="form-select" onchange=\'this.form.submit()\'>';
@@ -624,9 +624,6 @@ class LibTime{
 			}
 
 			$retstr .= '</select> ';
-            $retstr .= '</div>';
-            $retstr .= '<div class="col-12 col-xl-2">';
-            $retstr .= '<button type="submit" class="btn btn-outline-primary mt-3 mt-xl-0"><i class="fa fa-calendar-o" aria-hidden="true"></i> Semester wählen</button>';
             $retstr .= '</div>';
             $retstr .= '</div>';
             $retstr .= '</form>';

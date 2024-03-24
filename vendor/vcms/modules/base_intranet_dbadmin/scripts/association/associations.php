@@ -61,15 +61,19 @@ if($libAuth->isLoggedin()){
 
     echo '<div class="card">';
     echo '<div class="card-body">';
-	echo '<div class="btn-toolbar">';
-    echo '<a href="index.php?pid=intranet_admin_associations&amp;aktion=import" onclick="return confirm(\'Willst den Import wirklich durchführen?\')" class="btn btn-secondary"><i class="fa fa-cloud-download" aria-hidden="true"></i> KV-Vereine von ' . $libGlobal->mkHostname . ' importieren</a>';
-    echo '<a href="index.php?pid=intranet_admin_association&amp;aktion=blank" class="btn btn-secondary">Einen neuen Verein anlegen</a>';
-	echo '</div>';
-	echo '</div>';
+    echo '<div class="row">';
+    echo '<div class="col-12 col-xl-6">';
+    echo '<a href="index.php?pid=intranet_admin_associations&amp;aktion=import" onclick="return confirm(\'Willst den Import wirklich durchführen?\')" class="btn btn-outline-primary"><i class="fa fa-cloud-download" aria-hidden="true"></i> KV-Vereine von ' . $libGlobal->mkHostname . ' importieren</a>';
+    echo '</div>';
+    echo '<div class="col-12 col-xl-6 mt-3 mt-xl-0">';
+    echo '<a href="index.php?pid=intranet_admin_association&amp;aktion=blank" class="btn btn-outline-primary">Einen neuen Verein anlegen</a>';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
 	echo '</div>';
 
 
-    echo '<div class="card">';
+    echo '<div class="card mt-3">';
     echo '<div class="card-body">';
 
     echo '<div class="table-responsive">';

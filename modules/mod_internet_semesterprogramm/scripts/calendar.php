@@ -43,10 +43,10 @@ echo $libTime->getSemesterMenu($libTime->getSemestersFromDates($daten), $libGlob
 echo '</div>';
 
 echo '<div class="col-12 col-sm-6">';
-echo '<div class="card">';
+echo '<div class="card mt-4 mt-xl-0">';
 echo '<div class="card-body">';
 echo '<div class="btn-toolbar">';
-echo '<a href="webcal://' . $libGlobal->getSiteUrlAuthority() . '/api.php?iid=semesterprogramm_icalendar" class="btn btn-secondary"><i class="fa fa-calendar" aria-hidden="true"></i> Semesterprogramm abonnieren</a>';
+echo '<a href="webcal://' . $libGlobal->getSiteUrlAuthority() . '/api.php?iid=semesterprogramm_icalendar" class="btn btn-outline-primary"><i class="fa fa-calendar" aria-hidden="true"></i> Semesterprogramm abonnieren</a>';
 echo '</div>';
 echo '</div>';
 echo '</div>';

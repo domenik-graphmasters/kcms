@@ -41,7 +41,7 @@ if(isset($_REQUEST['action'])){
 	echo $libString->getErrorBoxText();
 	echo $libString->getNotificationBoxText();
 
-    echo '<p class="mb-4"><a href="index.php?pid=modules" class="btn btn-secondary" role="button">Module zeigen</a></p>';
+    echo '<p class="mb-4"><a href="index.php?pid=modules" class="btn btn-outline-primary" role="button">Module zeigen</a></p>';
 } else {
 	echo '<p class="mb-4">Das VCMS besteht aus einer Engine und mehreren Modulen, die auf dieser Seite aktualisiert werden können. Die folgende Liste zeigt die im System installierten sowie die im Repository verfügbaren Versionen.</p>';
 	echo '<p class="mb-4">Auto-Update: <a href="index.php?pid=configuration">';

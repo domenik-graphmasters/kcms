@@ -45,3 +45,8 @@ label {
 .modal .modal-body .carousel-inner img {
 	max-height: 80vh;
 }
+
+a {
+    color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+    text-decoration: none !important;
+}

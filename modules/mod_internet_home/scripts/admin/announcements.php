@@ -46,10 +46,10 @@ echo $libString->getErrorBoxText();
 echo $libString->getNotificationBoxText();
 
 
-echo '<div class="card">';
+echo '<div class="card mb-4">';
 echo '<div class="card-body">';
 echo '<div class="btn-toolbar">';
-echo '<a href="index.php?pid=intranet_admin_announcement&amp;aktion=blank" class="btn btn-secondary">Eine neue Ankündigung anlegen</a>';
+echo '<a href="index.php?pid=intranet_admin_announcement&amp;aktion=blank" class="btn btn-outline-primary">Eine neue Ankündigung anlegen</a>';
 echo '</div>';
 echo '</div>';
 echo '</div>';

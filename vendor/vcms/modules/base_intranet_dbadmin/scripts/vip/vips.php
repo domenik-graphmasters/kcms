@@ -41,13 +41,13 @@ if($libAuth->isLoggedin()){
     echo '<div class="card">';
     echo '<div class="card-body">';
 	echo '<div class="btn-toolbar">';
-    echo '<a href="index.php?pid=intranet_admin_vip&amp;aktion=blank" class="btn btn-secondary">Einen neuen Vip anlegen</a>';
+    echo '<a href="index.php?pid=intranet_admin_vip&amp;aktion=blank" class="btn btn-outline-primary">Einen neuen Vip anlegen</a>';
 	echo '</div>';
 	echo '</div>';
 	echo '</div>';
 
 
-    echo '<div class="card">';
+    echo '<div class="card  mt-4">';
     echo '<div class="card-body">';
 
     echo '<div class="table-responsive">';

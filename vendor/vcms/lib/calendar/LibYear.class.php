@@ -57,7 +57,7 @@ class LibYear{
 		$monthNames = array('Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember');
 
 		$retstr = '';
-		$retstr .= '<div class="calendar">'.PHP_EOL;
+        $retstr .= '<div class="calendar mt-4">' . PHP_EOL;
 
 		foreach($this->months as $month){
 			$hasEvents = $month->hasEvents($eventSet);
