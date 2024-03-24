@@ -93,7 +93,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 	echo nl2br($row['beschreibung']);
 	echo '</div>';
 
-	echo '<div class="hidden-xs col-sm-3 col-md-2">';
+    echo '<div class="d-none d-sm-block col-sm-3 col-md-2">';
 	echo $libPerson->getSignature($row['person']);
 	echo '</div>';
 

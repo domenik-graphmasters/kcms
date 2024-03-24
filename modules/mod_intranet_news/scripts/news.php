@@ -141,7 +141,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 	echo '</div>';
 
 	if(($row['autor'] != '' && $row['autor'] > 0) || ($row['betroffenesmitglied'] != '' && $row['betroffenesmitglied'] > 0)){
-		echo '<div class="hidden-xs col-sm-3 col-md-2">';
+        echo '<div class="d-none d-sm-block col-sm-3 col-md-2">';
 
 		if($row['autor'] != '' && $row['autor'] > 0){
 			echo $libPerson->getSignature($row['autor']);

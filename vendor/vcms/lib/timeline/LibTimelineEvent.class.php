@@ -126,7 +126,7 @@ class LibTimelineEvent {
 		}
 
 		if($hasPersonColumn){
-			$retstr .= '<div class="hidden-xs col-sm-3">';
+            $retstr .= '<div class="d-none d-sm-block col-sm-3">';
 
 			if($this->authorId != '' && !$this->hideAuthorSignature){
 				$retstr .= $libPerson->getSignature($this->authorId);
