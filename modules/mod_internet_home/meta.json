@@ -5,10 +5,9 @@
 	"pages": [
 		{
 			"pid": "home",
-			"file": "home.php",
+			"file": "wf_home.json",
 			"directory": "scripts",
-			"title": "Startseite",
-			"containerEnabled": false
+			"title": "Startseite"
 		},
 		{
 			"pid": "intranet_admin_announcements",

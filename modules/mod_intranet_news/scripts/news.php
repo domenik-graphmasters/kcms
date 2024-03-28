@@ -88,10 +88,10 @@ echo $libTime->getSemesterMenu($libTime->getSemestersFromDates($daten), $libGlob
 echo '</div>';
 echo '<div class="col-md-6">';
 
-echo '<div class="panel panel-default">';
-echo '<div class="panel-body">';
+echo '<div class="card">';
+echo '<div class="card-body">';
 echo '<div class="btn-toolbar">';
-echo '<a href="index.php?pid=intranet_news_write" class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i> Einen Beitrag hinzufügen</a>';
+echo '<a href="index.php?pid=intranet_news_write" class="btn btn-outline-primary"><i class="fa fa-plus" aria-hidden="true"></i> Einen Beitrag hinzufügen</a>';
 echo '</div>';
 echo '</div>';
 echo '</div>';
@@ -116,9 +116,9 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 		$lastsetmonth = substr($row['eingabedatum'], 0, 7);
 	}
 
-	echo '<div id="' .$row['id']. '" class="panel panel-default' .$libString->getLastInsertId($lastInsertId, $row['id']). '">';
-	echo '<div class="panel-heading">';
-	echo '<h3 class="panel-title">';
+    echo '<div id="' . $row['id'] . '" class="card mb-3' . $libString->getLastInsertId($lastInsertId, $row['id']) . '">';
+    echo '<div class="card-header">';
+    echo '<h6 class="card-title">';
 	echo $libTime->formatDateString($row['eingabedatum']);
 	echo ' ';
 	echo $row['bezeichnung'];
@@ -130,18 +130,18 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 		echo '</a>';
 	}
 
-	echo '</h3>';
+    echo '</h6>';
 	echo '</div>';
 
-	echo '<div class="panel-body">';
+    echo '<div class="card-body">';
 	echo '<div class="row">';
 
-	echo '<div class="col-xs-12 col-sm-9 col-md-10">';
+    echo '<div class="col-12 col-sm-9 col-md-10">';
 	echo nl2br($row['text']);
 	echo '</div>';
 
 	if(($row['autor'] != '' && $row['autor'] > 0) || ($row['betroffenesmitglied'] != '' && $row['betroffenesmitglied'] > 0)){
-		echo '<div class="hidden-xs col-sm-3 col-md-2">';
+        echo '<div class="d-none d-sm-block col-sm-3 col-md-2">';
 
 		if($row['autor'] != '' && $row['autor'] > 0){
 			echo $libPerson->getSignature($row['autor']);

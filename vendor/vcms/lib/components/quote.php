@@ -9,13 +9,13 @@ function renderQuoteCarousel(
     echo '<div class="row">';
     if ($headline) {
         echo '<div class="col-xs-12 col-md-10">';
-        echo "<h2 class='text-left'>$headline</h2>";
+        echo "<h2 class='text-start'>$headline</h2>";
         echo "</div>";
     }
 
     echo '<div class="col-md-2 col-xs-12">';
-    echo '<a class="btn btn-default m-4" href="#carousel-example-generic" role="button" data-slide="prev"><</a>';
-    echo '<a class="btn btn-default" href="#carousel-example-generic" role="button" data-slide="next">></a>';
+    echo '<a class="btn btn-outline-primary m-4" href="#carousel-example-generic" role="button" data-slide="prev"><</a>';
+    echo '<a class="btn btn-outline-primary" href="#carousel-example-generic" role="button" data-slide="next">></a>';
     echo '</div>';
     echo '</div>';
 

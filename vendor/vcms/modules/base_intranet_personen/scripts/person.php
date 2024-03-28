@@ -197,8 +197,8 @@ printPersonSignature($row, $ownprofile);
 echo '</div>';
 
 echo '<div class="col-sm-9">';
-echo '<div class="panel panel-default">';
-echo '<div class="panel-body">';
+echo '<div class="card">';
+echo '<div class="card-body">';
 printPersonData($row);
 
 echo '<div class="row">';
@@ -211,8 +211,8 @@ printAssociationDetails($row);
 echo '</div>';
 echo '</div>';
 
-echo '<div class="panel panel-default">';
-echo '<div class="panel-body">';
+echo '<div class="card mt-4">';
+echo '<div class="card-body">';
 printVita($row);
 echo '</div>';
 
@@ -227,9 +227,9 @@ echo '</div>';
 if($ownprofile){
 	echo '<h2>Passwort ändern</h2>';
 
- 	echo '<div class="panel panel-default">';
-	echo '<div class="panel-body">';
-	echo '<form action="index.php?pid=intranet_person&amp;id=' .$id. '" method="post" class="form-horizontal">';
+    echo '<div class="card">';
+    echo '<div class="card-body">';
+    echo '<form action="index.php?pid=intranet_person&amp;id=' . $id . '" method="post" class="">';
 	echo '<fieldset>';
 	echo '<input type="hidden" name="formtyp" value="personpasswort" />';
 
@@ -237,12 +237,12 @@ if($ownprofile){
 	$libForm->printTextInput('newpwd1', 'Neues Passwort', '', 'password', false, true);
 	$libForm->printTextInput('newpwd2', 'Neues Passwort (Wiederholung)', '', 'password', false, true);
 
-	echo '<div class="form-group">';
+    echo '<div class="form-group row">';
 	echo '<div class="col-sm-3"></div>';
 	echo '<div class="col-sm-9">' .$libAuth->getPasswordRequirements(). '</div>';
 	echo '</div>';
 
-	$libForm->printSubmitButton('<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Passwort speichern');
+    $libForm->printSubmitButton('<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Passwort speichern', ['mt-3']);
 
 	echo '</fieldset>';
 	echo '</form>';
@@ -251,9 +251,9 @@ if($ownprofile){
 
 	echo '<h2>Stammdaten ändern</h2>';
 
-	echo '<div class="panel panel-default">';
-	echo '<div class="panel-body">';
-	echo '<form action="index.php?pid=intranet_person" method="post" class="form-horizontal">';
+    echo '<div class="card">';
+    echo '<div class="card-body">';
+    echo '<form action="index.php?pid=intranet_person" method="post" class="">';
 	echo '<fieldset>';
 	echo '<input type="hidden" name="formtyp" value="person_data" />';
 
@@ -337,7 +337,7 @@ if($ownprofile){
 	}
 
 	$libForm->printTextarea('vita', 'Vita', $row['vita']);
-	$libForm->printSubmitButton('<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Speichern');
+    $libForm->printSubmitButton('<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Speichern', ['mt-3']);
 
 	echo '</fieldset>';
 	echo '</form>';
@@ -465,7 +465,7 @@ SELECT vopxxxx.id, vopxxxx.anrede, vopxxxx.titel, vopxxxx.rang, vopxxxx.vorname,
 function printPersonSignature($row, $ownprofile){
 	global $libPerson, $libForm;
 
-	echo '<div class="center-block person-signature-box mb-3">';
+    echo '<div class="mx-auto person-signature-box mb-3">';
 	echo '<div class="img-box">';
 
 	if($ownprofile){
@@ -484,9 +484,12 @@ function printPersonSignature($row, $ownprofile){
 
 	if($ownprofile){
 		//image upload form
-		echo '<form action="index.php?pid=intranet_person" method="post" enctype="multipart/form-data" class="form-horizontal text-center">';
+        echo '<form action="index.php?pid=intranet_person" method="post" enctype="multipart/form-data" class=" text-center">';
 		echo '<input type="hidden" name="formtyp" value="fotodatenupload" />';
-		$libForm->printFileUpload('bilddatei', 'Foto (4x3) hochladen', false, false, array(), array('image/jpeg'));
+        echo '<div class="custom-file">';
+        echo '<input type="file" class="custom-file-input" id="bilddatei" name="bilddatei" onchange="this.form.submit()" accept="image/jpeg">';
+        echo '<label class="custom-file-label text-start" for="customFile">Foto (4x3) hochladen</label>';
+        echo '</div>';
 		echo '</form>';
 	}
 }
@@ -827,7 +830,7 @@ function printAssociationDetails($row){
 function printVita($row){
 	echo '<article>';
 
-	$vita = trim($row['vita']);
+    $vita = trim($row['vita'] ?? '');
 
 	if($vita != ''){
 		echo nl2br($vita);

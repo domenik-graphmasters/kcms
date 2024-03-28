@@ -45,13 +45,13 @@ echo $libString->getNotificationBoxText();
 
 echo '<h2>Galerie anlegen</h2>';
 
-echo '<div class="panel panel-default">';
-echo '<div class="panel-body">';
-echo '<form action="index.php?pid=event_admin_galerie" method="post" class="form-horizontal">';
+echo '<div class="card">';
+echo '<div class="card-body">';
+echo '<form action="index.php?pid=event_admin_galerie" method="post" class="">';
 echo '<fieldset>';
 
 $libForm->printVeranstaltungDropDownBox('id', 'Veranstaltung', '', false);
-$libForm->printSubmitButton('Galerie anlegen &frasl; bearbeiten');
+$libForm->printSubmitButton('Galerie anlegen &frasl; bearbeiten', ['mt-3']);
 
 echo '</fieldset>';
 echo '</form>';
@@ -91,7 +91,7 @@ echo $libTime->getSemesterMenu($libTime->getSemestersFromDates($daten), $libGlob
 
 
 //list events
-echo '<table class="table table-condensed table-striped table-hover">';
+echo '<table class="table table-sm table-striped table-hover">';
 echo '<thead>';
 echo '<tr><th>Bild</th><th>Titel</th><th>Datum</th><th></th></tr>';
 echo '</thead>';

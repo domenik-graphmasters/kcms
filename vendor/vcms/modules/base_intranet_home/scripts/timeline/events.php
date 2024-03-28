@@ -98,17 +98,17 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 	* attend
 	*/
 	if(date('Y-m-d H:i:s') < $row['datum']){
-		$form .= '<form action="index.php?pid=intranet_home" method="post" class="form-horizontal">';
+        $form .= '<form action="index.php?pid=intranet_home" method="post" class="">';
 		$form .= '<input type="hidden" name="eventid" value="' .$row['id']. '" />';
 
 		if($angemeldet){
 			$form .= '<input type="hidden" name="veranstaltungenchangeanmeldenstate" value="abmelden" />';
-			$form .= '<button type="submit" class="btn btn-default btn-sm">';
+            $form .= '<button type="submit" class="btn btn-outline-primary btn-sm">';
 			$form .= '<i class="fa fa-check-square-o" aria-hidden="true"></i> Abmelden';
 			$form .= '</button>';
 		} else {
 			$form .= '<input type="hidden" name="veranstaltungenchangeanmeldenstate" value="anmelden" />';
-			$form .= '<button type="submit" class="btn btn-default btn-sm">';
+            $form .= '<button type="submit" class="btn btn-outline-primary btn-sm">';
 			$form .= '<i class="fa fa-square-o" aria-hidden="true"></i> Anmelden';
 			$form .= '</button>';
 		}

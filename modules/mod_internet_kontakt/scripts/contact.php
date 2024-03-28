@@ -168,14 +168,6 @@ echo '</p>';
 echo '</section>';
 echo '</div>';
 
-echo '<aside class="col-sm-6">';
-echo '<div class="panel panel-default reveal mb-5">';
-echo '<div class="thumbnail">';
-echo '<img src="' .$libModuleHandler->getModuleDirectory(). '/custom/img/haus.jpg" alt="" class="img-responsive center-block reveal" />';
-echo '</div>';
-echo '</div>';
-echo '</aside>';
-
 echo '</div>';
 
 if($libGenericStorage->loadValueInCurrentModule('show_form')){
@@ -212,9 +204,9 @@ if($libGenericStorage->loadValueInCurrentModule('show_form')){
 			$nachricht = $_POST['nachricht'];
 		}
 
-		echo '<div class="panel panel-default">';
-		echo '<div class="panel-body">';
-		echo '<form action="index.php?pid=kontakt" method="post" class="form-horizontal">';
+        echo '<div class="card">';
+        echo '<div class="card-body">';
+        echo '<form action="index.php?pid=kontakt" method="post" class="">';
 		echo '<fieldset>';
 
 		$libForm->printTextInput('name', 'Name', $libString->protectXSS($name), 'text', false, true);

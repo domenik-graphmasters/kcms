@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License
 along with VCMS. If not, see <http://www.gnu.org/licenses/>.
 */
 
+global $libPerson;
 if(!is_object($libGlobal) || !$libAuth->isLoggedin())
 	exit();
 
@@ -55,20 +56,20 @@ if($libAuth->isLoggedin()){
 	echo $libString->getNotificationBoxText();
 
 
-	echo '<div class="panel panel-default">';
-	echo '<div class="panel-body">';
+    echo '<div class="card">';
+    echo '<div class="card-body">';
 	echo '<div class="btn-toolbar">';
-	echo '<a href="index.php?pid=intranet_admin_semester&amp;aktion=blank" class="btn btn-default">Ein neues Semester anlegen</a>';
+    echo '<a href="index.php?pid=intranet_admin_semester&amp;aktion=blank" class="btn btn-outline-primary">Ein neues Semester anlegen</a>';
 	echo '</div>';
 	echo '</div>';
 	echo '</div>';
 
 
-	echo '<div class="panel panel-default">';
-	echo '<div class="panel-body">';
+    echo '<div class="card mt-3">';
+    echo '<div class="card-body">';
 
     echo '<div class="table-responsive">';
-	echo '<table class="table table-condensed table-striped table-hover">';
+    echo '<table class="table table-sm table-striped table-hover">';
 	echo '<thead>';
 	echo '<tr><th>Semester</th><th>Senior</th><th>Fuchsmajor</th><th>Internetwart</th><th></th></tr>';
 	echo '</thead>';

@@ -3,12 +3,6 @@
   "version": 1.00,
   "pages": [
     {
-      "pid": "wf_home",
-      "file": "wf_home.json",
-      "directory": "scripts",
-      "title": "Home"
-    },
-    {
       "pid": "wf_wohnen",
       "file": "wf_wohnen.json",
       "directory": "scripts",
@@ -22,12 +16,6 @@
     }
   ],
   "menuElementsInternet": [
-    {
-      "pid": "wf_home",
-      "name": "Home",
-      "type": "menu_entry",
-      "position": 30
-    },
     {
       "pid": "wf_verein",
       "name": "Verein",

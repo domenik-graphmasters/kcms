@@ -2,14 +2,20 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
-        <div id="modal-carousel" class="carousel">
+        <div id="modal-carousel" class="carousel slide">
           <div class="carousel-inner"></div>
-          <a class="carousel-control left" href="#modal-carousel" data-slide="prev"></a>
-          <a class="carousel-control right" href="#modal-carousel" data-slide="next"></a>
+          <button class="carousel-control-prev" type="button" data-bs-target="#modal-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Vorheriges</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#modal-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Nächstes</span>
+          </button>
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-default" data-dismiss="modal">Schließen</button>
+          <button class="btn btn-outline-primary" data-bs-dismiss="modal">Schließen</button>
       </div>
     </div>
   </div>

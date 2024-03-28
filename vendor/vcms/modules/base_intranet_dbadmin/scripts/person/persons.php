@@ -114,24 +114,29 @@ if($libAuth->isLoggedin()){
 	echo $libString->getErrorBoxText();
 	echo $libString->getNotificationBoxText();
 
+    echo '<div class="row">';
+
 	if(in_array('internetwart', $libAuth->getAemter()) || in_array('datenpflegewart', $libAuth->getAemter())){
-		echo '<div class="panel panel-default">';
-		echo '<div class="panel-body">';
+        echo '<div class="col-12 col-xl-6">';
+        echo '<div class="card mt-3">';
+        echo '<div class="card-body">';
 		echo '<div class="btn-toolbar">';
-		echo '<a href="index.php?pid=intranet_admin_person&amp;aktion=blank" class="btn btn-default">Eine neue Person anlegen</a>';
+        echo '<a href="index.php?pid=intranet_admin_person&amp;aktion=blank" class="btn btn-outline-primary">Eine neue Person anlegen</a>';
+        echo '</div>';
 		echo '</div>';
 		echo '</div>';
-		echo '</div>';
+        echo '</div>';
 	}
 
-	echo '<div class="panel panel-default">';
-	echo '<div class="panel-body">';
+    echo '<div class="col-12 col-xl-6">';
+    echo '<div class="card mt-3">';
+    echo '<div class="card-body">';
 	echo '<form action="index.php?pid=intranet_admin_persons" method="post" class="form-inline">';
 	echo '<fieldset>';
-	echo '<div class="form-group">';
+    echo '<div class="form-group row">';
 
-	echo '<label class="sr-only" for="sortierung">Sortierung</label>';
-	echo '<select id="orderby" name="orderby" class="form-control" onchange="this.form.submit()">';
+    echo '<div class="col-12"><label class="sr-only" for="sortierung">Sortierung</label>';
+    echo '<select id="orderby" name="orderby" class="form-select" onchange="this.form.submit()">';
 	echo '<option value="0" ';
 
 	if (isset($_POST['orderby']) && $_POST['orderby'] == 0){
@@ -160,22 +165,22 @@ if($libAuth->isLoggedin()){
 	}
 
 	echo '>Id</option>';
-	echo '</select> ';
-
-	$libForm->printSubmitButtonInline('Sortieren');
+    echo '</select> </div>';
 
 	echo '</div>';
 	echo '</fieldset>';
 	echo '</form>';
 	echo '</div>';
 	echo '</div>';
+    echo '</div>';
+    echo '</div>';
 
-
-	echo '<div class="panel panel-default">';
-	echo '<div class="panel-body">';
+    echo '<div class="row"><div class="col">';
+    echo '<div class="card mt-3">';
+    echo '<div class="card-body">';
 
     echo '<div class="table-responsive">';
-	echo '<table class="table table-condensed table-striped table-hover">';
+    echo '<table class="table table-sm table-striped table-hover">';
 	echo '<thead>';
 	echo '<tr><th>Id</th><th>Präfix</th><th>Name</th><th>Suffix</th><th>Vorname</th><th>Gruppe</th><th>Status</th><th>Reception</th><th></th></tr>';
 	echo '</thead>';
@@ -205,5 +210,6 @@ if($libAuth->isLoggedin()){
     echo '</div>';
 
 	echo '</div>';
-	echo '</div>';
+    echo '</div>';
+    echo '</div>';
 }

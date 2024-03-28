@@ -104,7 +104,10 @@ elseif (isset($_POST['aktion']) && $_POST['aktion'] == "newfolder" && isset($_PO
 * output
 */
 
-echo '<script>$(function () {$(\'[data-toggle="tooltip"]\').tooltip()})</script>';
+echo "<script>" . PHP_EOL;
+echo "const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle=\"tooltip\"]')" . PHP_EOL;
+echo "const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))" . PHP_EOL;
+echo "</script>" . PHP_EOL;
 
 echo $libString->getErrorBoxText();
 echo $libString->getNotificationBoxText();
@@ -115,17 +118,19 @@ if (isset($_GET['hash'])) {
 }
 
 echo '<div class="row">';
-echo '<ol class="breadcrumb mt-5">';
-echo '<li><a href="index.php?pid=intranet_directories">Dateien</a></li>';
+echo '<nav aria-label="breadcrumb" class="w-100 rounded bg-body-secondary my-5">';
+echo '<ol class="breadcrumb mt-3">';
+echo '<li class="breadcrumb-item"><a href="index.php?pid=intranet_directories">Dateien</a></li>';
 if ($currentFolder !== $rootFolderObject && $currentFolder != null) {
     $nestingFolder = $currentFolder->nestingFolder;
     while ($nestingFolder !== $rootFolderObject) {
-        echo '<li><a href="index.php?pid=intranet_directories&amp;aktion=open&amp;hash=' . $nestingFolder->getHash() . '">' . $nestingFolder->name . '</a></li>';
+        echo '<li class="breadcrumb-item"><a href="index.php?pid=intranet_directories&amp;aktion=open&amp;hash=' . $nestingFolder->getHash() . '">' . $nestingFolder->name . '</a></li>';
         $nestingFolder = $nestingFolder->nestingFolder;
     }
-    echo '<li class="active">' . $currentFolder->name . '</li>';
+    echo '<li class="breadcrumb-item active" aria-current="page">' . $currentFolder->name . '</li>';
 }
 echo '</ol>';
+echo '</nav>';
 displayFolderContents($currentFolder, $libDb);
 
 echo '</div>';
@@ -137,29 +142,29 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
     */
     echo '<h2>Datei hochladen</h2>';
 
-    echo '<div class="panel panel-default">';
-    echo '<div class="panel-body">';
-    echo '<form action="index.php?pid=intranet_directories&aktion=open&hash=' . $currentFolder->getHash() . '" method="post" enctype="multipart/form-data" class="form-horizontal">';
+    echo '<div class="card">';
+    echo '<div class="card-body">';
+    echo '<form action="index.php?pid=intranet_directories&aktion=open&hash=' . $currentFolder->getHash() . '" method="post" enctype="multipart/form-data" class="">';
     echo '<fieldset>';
     echo '<input type="hidden" name="aktion" value="upload" />';
     echo '<input type="hidden" id="hash" name="hash" value="' . $currentFolder->getHash() . '">';
 
-    echo '<div class="form-group">';
-    echo '<label class="col-sm-3 control-label">mit Leserecht für</label>';
-    echo '<div class="col-sm-9">';
+    echo '<div class="form-group row">';
+    echo '<label class="col-xl-3 col-form-label text-xl-end">mit Leserecht für</label>';
+    echo '<div class="col-xl-9">';
 
     $stmt = $libDb->prepare("SELECT * FROM base_gruppe ORDER BY bezeichnung");
     $stmt->execute();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         if ($row['bezeichnung'] != "X" && $row['bezeichnung'] != "T" && $row['bezeichnung'] != "V") {
-            echo '<div class="checkbox"><label><input type="checkbox" name="gruppen[]" value="' . $row['bezeichnung'] . '"';
+            echo '<div class="form-check"><input class="form-check-input" type="checkbox" name="gruppen[]" value="' . $row['bezeichnung'] . '"';
 
             if ($libGenericStorage->loadValueInCurrentModule('preselect_rights') == 1) {
                 echo 'checked="checked"';
             }
 
-            echo '/>';
+            echo '/><label class="form-check-label">';
             echo $row['bezeichnung'] . ' - ' . $row['beschreibung'];
             echo '</label></div>';
         }
@@ -167,9 +172,9 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
 
     echo '</div></div>';
 
-    echo '<div class="form-group">';
-    echo '<div class="col-sm-offset-3 col-sm-3">';
-    echo '<label class="btn btn-default btn-file"><i class="fa fa-upload" aria-hidden="true"></i> Datei hochladen';
+    echo '<div class="form-group row">';
+    echo '<div class="offset-xl-3 col-xl-9 mt-4">';
+    echo '<label class="btn btn-outline-primary btn-file"><i class="fa fa-upload" aria-hidden="true"></i> Datei hochladen';
     echo '<input type="file" name="datei" onchange="this.form.submit()" style="display:none">';
     echo '</label>';
     echo '</div>';
@@ -186,22 +191,27 @@ if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
     */
     echo '<h2>Ordner anlegen</h2>';
 
-    echo '<div class="panel panel-default">';
-    echo '<div class="panel-body">';
-    echo '<form action="index.php?pid=intranet_directories&aktion=open&hash=' . $currentFolder->getHash() . '" method="post" class="form-horizontal">';
-    echo '<fieldset>';
+    echo '<div class="card">';
+    echo '<div class="card-body">';
+    echo '<form action="index.php?pid=intranet_directories&aktion=open&hash=' . $currentFolder->getHash() . '" method="post" class="">';
     echo '<input type="hidden" name="aktion" value="newfolder" />';
     echo '<input type="hidden" id="hash" name="hash" value="' . $currentFolder->getHash() . '">';
 
-    echo '<div class="form-group">';
-    echo '<label for="foldername" class="col-sm-3 control-label">Neuen Ordner</label>';
-    echo '<div class="col-sm-3"><input type="text" id="foldername" name="foldername" class="form-control" /></div>';
+    echo '<div class="form-group row">';
+    echo '<div class="col-3 mb-3 text-xl-end">';
+    echo '<label for="foldername" class="form-label">Neuer Ordner</label>';
+    echo '</div>';
+    echo '<div class="col"><input type="text" class="form-control" id="foldername" name="foldername" aria-describedby="emailHelp"></div>';
     echo '</div>';
 
-    echo '<div class="form-group">';
-    echo '<div class="col-sm-offset-3 col-sm-3">';
-    echo '<button type="submit" class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i> anlegen</button>';
+    echo '<div class="row">';
+    echo '<div class="col-xl-9 offset-xl-3 d-grid d-xl-block">';
+    echo '<button type="submit" class="btn btn-outline-primary"><i class="fa fa-plus" aria-hidden="true"></i> anlegen</button>';
     echo '</div>';
+    echo '</div>';
+
+    echo '</div>';
+
     echo '</div>';
 
     echo '</form>';
@@ -235,21 +245,21 @@ function displayFolderContents(Folder &$folder, \vcms\LibDb $libDb): void
     foreach ($folder->nestedFolderElements as $folderElement) {
         echo '<tr>';
         if ($folderElement->type == 1) { // folder
-            echo '<td class="col-xs-5 col-md-7"><a class="text-truncate" href="index.php?pid=intranet_directories&amp;aktion=open&amp;hash=' . $folderElement->getHash() . '"><i class="fa fa-lg fa-fw fa-folder-o" aria-hidden="true"></i>' . $folderElement->name . '</a></td>';
-            echo '<td class="col-xs-2 col-md-1"></td>';
-            echo '<td class="col-xs-2 col-md-1">';
+            echo '<td class="col-5 col-md-7"><a class="text-truncate" href="index.php?pid=intranet_directories&amp;aktion=open&amp;hash=' . $folderElement->getHash() . '"><i class="fa fa-lg fa-fw fa-folder-o" aria-hidden="true"></i>' . $folderElement->name . '</a></td>';
+            echo '<td class="col-2 col-md-1"></td>';
+            echo '<td class="col-2 col-md-1">';
             if ($folderElement->getSize() > 0) {
                 echo ' <span class="text-muted"><small>' . getSizeString($folderElement->getSize()) . '</small></span>';
             }
             echo '</td>';
-            echo '<td class="col-xs-1">';
+            echo '<td class="col-1">';
             if ($folderElement->isDeleteable() && in_array($folderElement->owningAmt, $libAuth->getAemter())) {
                 $href = 'index.php?pid=intranet_directories&amp;aktion=delete&amp;deleteHash=' . $folderElement->getHash() . '&hash=' . $folder->getHash();
                 echo '<a href="' . $href . '" onclick="return confirm(\'Willst Du den Ordner wirklich löschen?\')"><i class="fa fa-trash" aria-hidden="true"></i></a>';
             }
             echo '</td>';
         } elseif ($folderElement->type == 2 && in_array($libAuth->getGruppe(), $folderElement->readGroups)) { // file
-            echo '<td class="col-xs-5 col-md-7"><a href="api.php?iid=intranet_download&amp;hash=' . $folderElement->getHash() . '">' . getIconForFolder($folderElement) . $folderElement->getFileName() . '</a></td>';
+            echo '<td class="col-5 col-md-7"><a href="api.php?iid=intranet_download&amp;hash=' . $folderElement->getHash() . '">' . getIconForFolder($folderElement) . $folderElement->getFileName() . '</a></td>';
 
             $stmt = $libDb->prepare("SELECT * FROM base_gruppe ORDER BY bezeichnung");
             $stmt->execute();
@@ -262,9 +272,9 @@ function displayFolderContents(Folder &$folder, \vcms\LibDb $libDb): void
             }
             $tooltip = 'Lesbar für: ' . implode(', ', $bezeichnungen);
 
-            echo '<td class="col-xs-2 col-md-1"><span class="text-muted" data-toggle="tooltip" title="' . $tooltip . '">' . implode('', $folderElement->readGroups) . '</span></td>';
-            echo '<td class="col-xs-2 col-md-1"><span class="text-muted">' . getSizeString($folderElement->getSize()) . '</span></td>';
-            echo '<td class="col-xs-1">';
+            echo '<td class="col-2 col-md-1"><span class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="' . $tooltip . '">' . implode('', $folderElement->readGroups) . '</span></td>';
+            echo '<td class="col-2 col-md-1"><span class="text-muted">' . getSizeString($folderElement->getSize()) . '</span></td>';
+            echo '<td class="col-1">';
             if (in_array($folderElement->owningAmt, $libAuth->getAemter())) {
                 $href = 'index.php?pid=intranet_directories&amp;aktion=delete&amp;deleteHash=' . $folderElement->getHash() . '&hash=' . $folder->getHash();
                 echo '<a href="' . $href . '" onclick="return confirm(\'Willst Du die Datei wirklich löschen?\')"><i class="fa fa-trash" aria-hidden="true"></i></a>';

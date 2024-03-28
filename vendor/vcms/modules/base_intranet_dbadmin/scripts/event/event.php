@@ -101,7 +101,7 @@ if($libAuth->isLoggedin()){
 		$varray = $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 
-	if($libEvent->hasBannedTitle($id)){
+    if ($id != '' && $libEvent->hasBannedTitle($id)) {
 		$libGlobal->errorTexts[] = 'Der Veranstaltungstitel ist nicht optimal.';
 	}
 
@@ -140,9 +140,9 @@ if($libAuth->isLoggedin()){
 		$extraActionParam = '&amp;aktion=update';
 	}
 
-	echo '<div class="panel panel-default">';
-	echo '<div class="panel-body">';
-	echo '<form action="index.php?pid=intranet_admin_event' .$extraActionParam. '" method="post" class="form-horizontal">';
+    echo '<div class="card">';
+    echo '<div class="card-body">';
+    echo '<form action="index.php?pid=intranet_admin_event' . $extraActionParam . '" method="post" class="">';
 	echo '<fieldset>';
 	echo '<input type="hidden" name="formtyp" value="veranstaltungsdaten" />';
 	echo '<input type="hidden" name="id" value="' .$varray['id']. '" />';

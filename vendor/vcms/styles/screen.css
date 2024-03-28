@@ -21,14 +21,6 @@ body {
 	min-height: 100%;
 }
 
-.navbar-internet-only + #content {
-	padding-top: 125px;
-}
-
-.navbar-internet-intranet + #content {
-	padding-top: 158px;
-}
-
 main,
 footer {
 	padding: 0.6em;
@@ -71,10 +63,6 @@ a .fa {
 
 .last-insert-id {
 	display: none;
-}
-
-.reveal {
-	visibility: hidden;
 }
 
 tiny {

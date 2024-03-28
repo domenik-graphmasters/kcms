@@ -98,8 +98,8 @@ if($row['intern'] && !$libAuth->isLoggedIn()){
 
 	// date and time panel
 	echo '<div class="col-sm-4 col-lg-3">';
-	echo '<div class="panel panel-default reveal">';
-	echo '<div class="panel-body">';
+    echo '<div class="card ">';
+    echo '<div class="card-body">';
 
 	printEventDateTime($row);
 
@@ -132,8 +132,8 @@ if($row['intern'] && !$libAuth->isLoggedIn()){
 	if($hasPictures){
 		if($descriptionText){
 			echo '<div class="col-sm-8 col-lg-9">';
-			echo '<div class="panel panel-default reveal">';
-			echo '<div class="panel-body">';
+            echo '<div class="card ">';
+            echo '<div class="card-body">';
 			echo $descriptionText;
 			echo '</div>';
 			echo '</div>';
@@ -157,8 +157,8 @@ if($row['intern'] && !$libAuth->isLoggedIn()){
 				echo '<div class="col-sm-8 col-lg-9">';
 			}
 
-			echo '<div class="panel panel-default reveal">';
-			echo '<div class="panel-body">';
+            echo '<div class="card ">';
+            echo '<div class="card-body">';
 			echo $descriptionText;
 			echo '</div>';
 			echo '</div>';
@@ -299,7 +299,7 @@ function printGallery($id, $pictures){
 
 	foreach($pictures as $key => $value){
 		echo '<div class="col-sm-6 col-lg-4">';
-		echo '<div class="thumbnail reveal mb-2">';
+        echo '<div class="thumbnail  mb-2">';
 		echo '<div class="img-frame">';
 		echo '<a href="api.php?iid=event_picture&amp;eventid=' .$id. '&amp;id=' .$key. '">';
 		echo '<img src="api.php?iid=event_picture&amp;eventid=' .$id. '&amp;id=' .$key. '" alt="" />';

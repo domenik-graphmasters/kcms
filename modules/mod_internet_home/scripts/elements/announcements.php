@@ -27,14 +27,14 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 	echo '<section class="announcement-box">';
 	echo '<div class="container">';
 	echo '<div class="row">';
-	echo '<div class="col-lg-8 col-lg-offset-2">';
+    echo '<div class="col-lg-8 offset-lg-2">';
 	echo '<div class="thumbnail">';
 
 	$image = $libModuleHandler->getModuleDirectory(). '/custom/img/' .$row['id']. '.jpg';
 	$imageExists = is_file($image);
 
 	if($imageExists){
-		echo '<img src="' .$image. '" class="img-responsive center-block reveal" alt="" />';
+        echo '<img src="' . $image . '" class="img-fluid mx-auto" alt="" />';
 	}
 
 	echo '<p class="caption mb-3">';

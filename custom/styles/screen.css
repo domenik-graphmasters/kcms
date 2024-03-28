@@ -5,26 +5,23 @@
 	background-position: center;
 }
 
-#brand:hover,
-#brand:focus {
-	color: #146010;
-}
+:root {
+	--pcms-primary: #78B2D2;
+	--pcms-primary-rgb: 120, 178, 210;
 
-#nav li > a:hover,
-#nav li > a:focus:hover {
-	color: #146010;
-}
+	--pcms-primary-m1: #6c9fb6;
+	--pcms-primary-m1-rgb: 108, 159, 182;
 
-#nav li.active > a,
-#nav li.active > a:focus {
-	color: #146010;
-}
+	--pcms-primary-m2: #416778;
+	--pcms-primary-m2-rgb: 65, 103, 120;
 
-a:link:not(.btn),
-a:visited:not(.btn) {
-	color: #146010;
-}
+	--pcms-primary-p1: #8ec6e5;
+	--pcms-primary-p1-rgb: 142, 198, 229;
 
-.calendar .today {
-	border-color: #146010;
+	--pcms-primary-p2: #a5d6f1;
+	--pcms-primary-p2-rgb: 165, 214, 241;
+
+	--pcms-primary-bg-subtle: #a5d6f1;
+
+	--pcms-primary-border-subtle: #6c9fb6;
 }

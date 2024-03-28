@@ -47,13 +47,16 @@ if($libAuth->isLoggedin()){
 	echo $libString->getNotificationBoxText();
 
 
-	echo '<div class="panel panel-default">';
-	echo '<div class="panel-body">';
+    echo '<div class="row">';
+    echo '<div class="col-12 col-xl-6">';
+    echo '<div class="card">';
+    echo '<div class="card-body">';
 	echo '<div class="btn-toolbar">';
-	echo '<a href="index.php?pid=intranet_admin_event&amp;aktion=blank" class="btn btn-default">Eine neue Veranstaltung anlegen</a>';
+    echo '<a href="index.php?pid=intranet_admin_event&amp;aktion=blank" class="btn btn-outline-primary">Eine neue Veranstaltung anlegen</a>';
 	echo '</div>';
 	echo '</div>';
 	echo '</div>';
+    echo '</div>';
 
 
 	//Semesterauswahl
@@ -66,14 +69,19 @@ if($libAuth->isLoggedin()){
 		$daten[] = $row['datum'];
 	}
 
+    echo '<div class="col-12 col-xl-6">';
 	echo $libTime->getSemesterMenu($libTime->getSemestersFromDates($daten),$libGlobal->semester);
+    echo '</div>';
+    echo '</div>';
 
 
-	echo '<div class="panel panel-default">';
-	echo '<div class="panel-body">';
+    echo '<div class="row">';
+    echo '<div class="col-12">';
+    echo '<div class="card mt-4">';
+    echo '<div class="card-body">';
 
     echo '<div class="table-responsive">';
-	echo '<table class="table table-condensed table-striped table-hover">';
+    echo '<table class="table table-sm table-striped table-hover">';
 	echo '<thead>';
 	echo '<tr><th>Id</th><th>Datum</th><th>Titel</th><th>Status</th><th>Intern</th><th></th></tr>';
 	echo '</thead>';
@@ -112,4 +120,6 @@ if($libAuth->isLoggedin()){
 
 	echo '</div>';
 	echo '</div>';
+    echo '</div>';
+    echo '</div>';
 }

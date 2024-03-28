@@ -22,9 +22,9 @@ function renderStatisticsWithExplainer(
 {
     echo '<div class="row py-5 my-5">';
 
-    echo "<h2 class='text-left'>$heading</h2>";
+    echo "<h2 class='text-start'>$heading</h2>";
     if ($paragraph) {
-        echo "<p class='text-left'>$paragraph</p>";
+        echo "<p class='text-start'>$paragraph</p>";
     }
 
     echo "<div class='col-xs-12 col-md-3 mt-4'>";

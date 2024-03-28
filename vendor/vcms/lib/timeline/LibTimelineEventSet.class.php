@@ -19,19 +19,22 @@ along with VCMS. If not, see <http://www.gnu.org/licenses/>.
 namespace vcms\timeline;
 
 class LibTimelineEventSet {
-	var $events = array();
+    var array $events = array();
 
-	function addEvent($event){
+    function addEvent($event): void
+    {
 		$this->events[] = $event;
 	}
 
-	function sortEvents(){
+    function sortEvents(): void
+    {
 		usort($this->events, function($a, $b){
     		return strcmp($b->datetime, $a->datetime);
 		});
 	}
 
-	function getEvents(){
+    function getEvents(): array
+    {
 		return $this->events;
 	}
 }

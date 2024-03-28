@@ -205,9 +205,9 @@ if($libAuth->isLoggedin()){
 		$extraActionParam = '&amp;aktion=update';
 	}
 
-	echo '<div class="panel panel-default">';
-	echo '<div class="panel-body">';
-	echo '<form action="index.php?pid=intranet_admin_person' .$extraActionParam. '" method="post" class="form-horizontal">';
+    echo '<div class="card">';
+    echo '<div class="card-body">';
+    echo '<form action="index.php?pid=intranet_admin_person' . $extraActionParam . '" method="post" class="">';
 	echo '<fieldset>';
 	echo '<input type="hidden" name="formtyp" value="personendaten" />';
 	echo '<input type="hidden" name="id" value="' .$mgarray['id']. '" />';
@@ -296,7 +296,7 @@ if($libAuth->isLoggedin()){
 	echo '<div class="col-sm-3">';
 
 	if($mgarray['id'] != ''){
-		echo '<div class="center-block person-signature-box mb-3">';
+        echo '<div class="mx-auto person-signature-box mb-3">';
 		echo '<div class="img-box">';
 
 		echo '<span class="delete-icon-box">';
@@ -310,7 +310,7 @@ if($libAuth->isLoggedin()){
 		echo '</div>';
 
 		//image upload form
-		echo '<form action="index.php?pid=intranet_admin_person&amp;id='. $mgarray['id'] .'" method="post" enctype="multipart/form-data" class="form-horizontal text-center">';
+        echo '<form action="index.php?pid=intranet_admin_person&amp;id=' . $mgarray['id'] . '" method="post" enctype="multipart/form-data" class=" text-center">';
 		echo '<input type="hidden" name="formtyp" value="fotoupload" />';
 		$libForm->printFileUpload('bilddatei', 'Foto (4x3) hochladen', false, false, array(), array('image/jpeg'));
 		echo '</form>';

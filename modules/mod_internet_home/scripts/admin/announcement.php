@@ -128,9 +128,9 @@ if($aktion == 'blank'){
 	$extraActionParam = '&amp;aktion=update';
 }
 
-echo '<div class="panel panel-default">';
-echo '<div class="panel-body">';
-echo '<form action="index.php?pid=intranet_admin_announcement' .$extraActionParam. '" method="post" class="form-horizontal">';
+echo '<div class="card">';
+echo '<div class="card-body">';
+echo '<form action="index.php?pid=intranet_admin_announcement' . $extraActionParam . '" method="post" class="">';
 echo '<fieldset>';
 
 echo '<input type="hidden" name="formtyp" value="newsdaten" />';
@@ -161,7 +161,7 @@ if((isset($_REQUEST['id']) && $_REQUEST['id'] != '') || $array['id'] != ''){
 	$posssibleImage = $libModuleHandler->getModuleDirectory(). '/custom/img/' .$array['id']. '.jpg';
 
 	if(is_file($posssibleImage)){
-		echo '<div class="center-block">';
+        echo '<div class="mx-auto">';
 		echo '<div class="img-box">';
 
 		echo '<span class="delete-icon-box">';
@@ -170,13 +170,13 @@ if((isset($_REQUEST['id']) && $_REQUEST['id'] != '') || $array['id'] != ''){
 		echo '</a>';
 		echo '</span>';
 
-		echo '<img src="' .$posssibleImage. '" class="img-responsive center-block" alt="Veranstaltungsbild" />';
+        echo '<img src="' . $posssibleImage . '" class="img-fluid mx-auto" alt="Veranstaltungsbild" />';
 		echo '</div>';
 		echo '</div>';
 	}
 
 	//image upload form
-	echo '<form action="index.php?pid=intranet_admin_announcement&amp;id=' .$array['id']. '" method="post" enctype="multipart/form-data" class="form-horizontal text-center">';
+    echo '<form action="index.php?pid=intranet_admin_announcement&amp;id=' . $array['id'] . '" method="post" enctype="multipart/form-data" class=" text-center">';
 	echo '<input type="hidden" name="formtyp" value="bildupload" />';
 	$libForm->printFileUpload('bilddatei', 'Bild hochladen', false, false, array(), array('image/jpeg'));
 	echo '</form>';

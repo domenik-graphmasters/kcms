@@ -57,13 +57,13 @@ class LibYear{
 		$monthNames = array('Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember');
 
 		$retstr = '';
-		$retstr .= '<div class="calendar">'.PHP_EOL;
+        $retstr .= '<div class="calendar mt-4">' . PHP_EOL;
 
 		foreach($this->months as $month){
 			$hasEvents = $month->hasEvents($eventSet);
-			$hiddenClass = $hasEvents ? '' : ' hidden-xs';
+            $hiddenClass = $hasEvents ? '' : ' d-none d-sm-block';
 
-			$retstr .= '<div class="calendar-month-name reveal' .$hiddenClass. '">';
+            $retstr .= '<div class="calendar-month-name ' . $hiddenClass . '">';
 			$retstr .= '<h2>' . $monthNames[$month->getNumber()-1]. ' ' .$this->number. '</h2>';
 			$retstr .= '</div>';
 			$retstr .= $month->toString($eventSet);
