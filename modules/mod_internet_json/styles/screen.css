@@ -1,0 +1,16 @@
+
+html {
+    --vcms-gallery-height: 50vh;
+}
+
+.img-gallery .gallery-img-stack img {
+    height: calc(var(--vcms-gallery-height) / 2 - 0.75rem);
+    width: 100%;
+    object-fit: cover;
+}
+
+.img-gallery .gallery-img-prominent {
+    height: var(--vcms-gallery-height);
+    object-fit: cover;
+    width: 100%;
+}
