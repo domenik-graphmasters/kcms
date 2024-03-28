@@ -116,8 +116,8 @@ class LibComponentRenderer
                 case 'gallery-quintet':
                     renderGalleryQuintet(
                         prominentImageUrl: $item['prominentImageUrl'],
-                        topLeftImageUrl: $item['topLeftImageUrl'] ?? "",
-                        bottomLeftImageUrl: $item['bottomLeftImageUrl'] ?? "",
+                        topstartImageUrl: $item['topstartImageUrl'] ?? "",
+                        bottomstartImageUrl: $item['bottomstartImageUrl'] ?? "",
                         topRightImageUrl: $item['topRightImageUrl'] ?? "",
                         bottomRightImageUrl: $item['bottomRightImageUrl'] ?? ""
                     );
@@ -250,10 +250,10 @@ class LibComponentRenderer
     {
         echo '<div class="row py-5 my-5">';
         echo '<div class="col-xs-12 col-md-6">';
-        echo "<h2 class='mt-4 mb-3 text-left'>$headline</h2>";
-        echo "<p class='text-left'>$paragraph</p>";
+        echo "<h2 class='mt-4 mb-3 text-start'>$headline</h2>";
+        echo "<p class='text-start'>$paragraph</p>";
         if ($buttonText && $buttonUrl) {
-            echo "<a href=$buttonUrl class='btn btn-default mt-2'>$buttonText</a>";
+            echo "<a href=$buttonUrl class='btn btn-outline-primary mt-2'>$buttonText</a>";
         }
 
         echo '<div class="my-4">';
@@ -264,7 +264,7 @@ class LibComponentRenderer
         echo '</div>';
         echo '</div>';
         echo '<div class="col-xs-12 col-md-6">';
-        echo "<img src=$imageUrl class='img-responsive img-rounded' />";
+        echo "<img src=$imageUrl class='img-fluid rounded' />";
         echo '</div>';
         echo '</div>';
     }
@@ -278,22 +278,22 @@ class LibComponentRenderer
     {
         echo '<div class="row pt-5 mt-5">';
         echo '<div class="col-xs-12">';
-        echo "<h2 class='mt-4 mb-3 text-left'>$headline</h2>";
+        echo "<h2 class='mt-4 mb-3 text-start'>$headline</h2>";
         echo '</div>';
         echo '</div>';
 
         echo '<div class="row pb-5 mb-5">';
-        echo '<div class="col-xs-12 col-md-6 col-md-push-6">';
-        echo "<img src=$imageUrl class='img-responsive img-rounded' />";
+        echo '<div class="col-xs-12 col-md-6 order-md-1">';
+        echo "<img src=$imageUrl class='img-fluid rounded' />";
         echo '</div>';
-        echo '<div class="col-xs-12 col-md-6 col-md-pull-6">';
-        echo "<p class='text-left'>$paragraph</p>";
+        echo '<div class="col-xs-12 col-md-6 order-md-0">';
+        echo "<p class='text-start'>$paragraph</p>";
 
         foreach ($entries as $entry) {
             $entryHeadline = $entry['headline'];
             $entryParagraph = $entry['paragraph'];
-            echo "<h3 class='mt-5 mb-2 text-left'>$entryHeadline</h3>";
-            echo "<p class='text-left'>$entryParagraph</p>";
+            echo "<h3 class='mt-5 mb-2 text-start'>$entryHeadline</h3>";
+            echo "<p class='text-start'>$entryParagraph</p>";
         }
 
         echo '</div>';
@@ -308,8 +308,8 @@ class LibComponentRenderer
         echo '<div class="row py-5 my-5">';
 
         echo '<div class="col-xs-12">';
-        echo "<h2 class='mt-4 mb-3 text-left'>$headline</h2>";
-        echo "<p class='text-left'>$paragraph</p>";
+        echo "<h2 class='mt-4 mb-3 text-start'>$headline</h2>";
+        echo "<p class='text-start'>$paragraph</p>";
         echo '</div>';
 
         echo '</div>';
@@ -323,8 +323,8 @@ class LibComponentRenderer
         echo '<div class="row py-5 my-5">';
 
         echo '<div class="col-xs-12 col-md-5">';
-        echo "<h2 class='mt-4 mb-3 text-left'>$headline</h2>";
-        echo "<p class='text-left'>$paragraph</p>";
+        echo "<h2 class='mt-4 mb-3 text-start'>$headline</h2>";
+        echo "<p class='text-start'>$paragraph</p>";
         echo '</div>';
 
         echo '<div class="col-xs-12 col-md-7">';
@@ -357,24 +357,24 @@ class LibComponentRenderer
         echo '<div class="row py-5 my-5">';
 
         echo '<div class="col-xs-12">';
-        echo "<h2 class='mt-4 mb-3 text-left'>$headline</h2>";
+        echo "<h2 class='mt-4 mb-3 text-start'>$headline</h2>";
         echo '</div>';
 
         echo '<div class="col-xs-12 col-md-6">';
-        echo "<p class='mt-4 mb-3 text-left'>$paragraph</p>";
+        echo "<p class='mt-4 mb-3 text-start'>$paragraph</p>";
         echo '</div>';
 
         echo '<div class="col-xs-12 col-md-6">';
-        echo "<h3 class='mt-0 mb-3 text-left mb-5'>Veranstaltungen</h3>";
+        echo "<h3 class='mt-0 mb-3 text-start mb-5'>Veranstaltungen</h3>";
 
         // TODO(enhancement): Fetch actual events
-        echo "<h4 class='mt-4 mb-3 text-left'>Nikolauskneipe</h4>";
-        echo "<p class='text-left'>Kurz vor der Abreise in die Heimat wollen wir noch einmal einen festlichen Abend genießen</p>";
-        echo "<p class='text-muted text-left'><i class='fa fa-clock-o m-2'></i>6.12.2023 um 20 c.t.</p>";
+        echo "<h4 class='mt-4 mb-3 text-start'>Nikolauskneipe</h4>";
+        echo "<p class='text-start'>Kurz vor der Abreise in die Heimat wollen wir noch einmal einen festlichen Abend genießen</p>";
+        echo "<p class='text-muted text-start'><i class='fa fa-clock-o m-2'></i>6.12.2023 um 20 c.t.</p>";
 
-        echo "<h4 class='mt-4 mb-3 text-left'>Nikolauskneipe</h4>";
-        echo "<p class='text-left'>Kurz vor der Abreise in die Heimat wollen wir noch einmal einen festlichen Abend genießen</p>";
-        echo "<p class='text-left text-muted'><i class='fa fa-clock-o m-2'></i>6.12.2023 um 20 c.t.</p>";
+        echo "<h4 class='mt-4 mb-3 text-start'>Nikolauskneipe</h4>";
+        echo "<p class='text-start'>Kurz vor der Abreise in die Heimat wollen wir noch einmal einen festlichen Abend genießen</p>";
+        echo "<p class='text-start text-muted'><i class='fa fa-clock-o m-2'></i>6.12.2023 um 20 c.t.</p>";
 
         echo '</div>';
 

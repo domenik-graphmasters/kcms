@@ -8,9 +8,9 @@ function renderFeaturesHangingIcons(
 {
     echo '<div class="row py-5 my-5">';
 
-    echo "<h2 class='text-left'>$headline</h2>";
+    echo "<h2 class='text-start'>$headline</h2>";
     if ($paragraph) {
-        echo "<p class='text-left'>$paragraph</p>";
+        echo "<p class='text-start'>$paragraph</p>";
     }
 
     echo "<div class='col-xs-12 col-md-4 mt-4'>";
@@ -34,10 +34,10 @@ function hangingFeature(
 {
     echo "<div style='display: flex; justify-content: flex-start;'>";
 
-    echo "<i class='fa fa-$iconId me-3 p-4 bg-info img-rounded mt-3' aria-hidden='true' style='display: inline-flex; justify-content: center; align-items: center; width: 3rem; height: 3rem;'></i>";
+    echo "<i class='fa fa-$iconId me-3 p-4 bg-info rounded mt-3' aria-hidden='true' style='display: inline-flex; justify-content: center; align-items: center; width: 3rem; height: 3rem;'></i>";
     echo "<div>";
-    echo "<h3 class='text-left'>$headline</h3>";
-    echo "<p class='text-left'>$paragraph</p>";
+    echo "<h3 class='text-start'>$headline</h3>";
+    echo "<p class='text-start'>$paragraph</p>";
     echo "<a href='$buttonUrl'class='btn btn-primary mt-2'>$buttonText</a>";
     echo "</div>";
 
@@ -52,9 +52,9 @@ function renderFeaturesCards(
 {
     echo '<div class="row py-5 my-5">';
 
-    echo "<h2 class='text-left'>$headline</h2>";
+    echo "<h2 class='text-start'>$headline</h2>";
     if ($paragraph) {
-        echo "<p class='text-left'>$paragraph</p>";
+        echo "<p class='text-start'>$paragraph</p>";
     }
 
     echo "<div class='col-xs-12 col-md-4'>";
@@ -76,7 +76,7 @@ function card(string $iconId, string $headline, string $paragraph, string $butto
 {
     echo "<div class='panel panel-default'>";
     echo "<div class='panel-body text-center'>";
-    echo "<i class='fa fa-$iconId p-4 bg-info img-rounded' aria-hidden='true'></i>";
+    echo "<i class='fa fa-$iconId p-4 bg-info rounded' aria-hidden='true'></i>";
     echo "<h3 class='text-center'>$headline</h3>";
     echo "<p class='text-center'>$paragraph</p>";
     echo "<a href='$buttonUrl'class='btn btn-primary'>$buttonText</a>";

@@ -168,14 +168,6 @@ echo '</p>';
 echo '</section>';
 echo '</div>';
 
-echo '<aside class="col-sm-6">';
-echo '<div class="card mb-5">';
-echo '<div class="thumbnail">';
-echo '<img src="' . $libModuleHandler->getModuleDirectory() . '/custom/img/haus.jpg" alt="" class="img-fluid mx-auto" />';
-echo '</div>';
-echo '</div>';
-echo '</aside>';
-
 echo '</div>';
 
 if($libGenericStorage->loadValueInCurrentModule('show_form')){

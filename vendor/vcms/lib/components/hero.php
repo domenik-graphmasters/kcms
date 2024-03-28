@@ -21,7 +21,7 @@ function renderHeroCenteredSmallImage(
     echo "<div class=''>";
     if ($secondaryButtonText) {
         echo "<a href='$primaryButtonUrl' class='btn btn-primary btn-lg mx-2'>$primaryButtonText</a>";
-        echo "<a href='$secondaryButtonUrl' class='btn btn-default btn-lg mx-2'>$secondaryButtonText</a>";
+        echo "<a href='$secondaryButtonUrl' class='btn btn-outline-primary btn-lg mx-2'>$secondaryButtonText</a>";
     } else {
         echo "<a href='$primaryButtonUrl' class='btn btn-primary btn-lg'>$primaryButtonText</a>";
 
@@ -49,7 +49,7 @@ function renderHeroCenteredLargeImage(
     echo "<div class='mb-5'>";
     if ($secondaryButtonText) {
         echo "<a href='$primaryButtonUrl' class='btn btn-primary btn-lg mx-2'>$primaryButtonText</a>";
-        echo "<a href='$secondaryButtonUrl' class='btn btn-default btn-lg mx-2'>$secondaryButtonText</a>";
+        echo "<a href='$secondaryButtonUrl' class='btn btn-outline-primary btn-lg mx-2'>$secondaryButtonText</a>";
     } else {
         echo "<a href='$primaryButtonUrl' class='btn btn-primary btn-lg'>$primaryButtonText</a>";
 
@@ -59,7 +59,7 @@ function renderHeroCenteredLargeImage(
 
     if ($imageUrl) {
         echo "<div class='px-5 center-block' style='max-height: 30vh; overflow: clip'>";
-        echo "<img src=$imageUrl class='mb-4 img-responsive center-block shadow-lg' loading='lazy' width='700' height='500'>";
+        echo "<img src=$imageUrl class='mb-4 img-fluid center-block shadow-lg' loading='lazy' width='700' height='500'>";
         echo "</div>";
     }
 
@@ -79,17 +79,17 @@ function renderHeroRightImage(
 ): void
 {
     echo '<div class="row py-5 my-5">';
-    echo "<div class='col-xs-12 col-md-6 col-md-push-6'>";
-    echo "<img src=$imageUrl class='mb-4 img-responsive center-block' loading='lazy' width='700' height='500'>";
+    echo "<div class='col-xs-12 col-md-6 order-md-1'>";
+    echo "<img src=$imageUrl class='mb-4 img-fluid center-block' loading='lazy' width='700' height='500'>";
     echo '</div>';
-    echo "<div class='col-sx-12 col-md-6 col-md-pull-6'>";
-    echo "<h1 class='mt-4 mb-3 text-left'>$title</h1>";
+    echo "<div class='col-sx-12 col-md-6 order-md-0'>";
+    echo "<h1 class='mt-4 mb-3 text-start'>$title</h1>";
     echo "<div class=''>";
-    echo "<p class='lead text-left'>$paragraph</p>";
+    echo "<p class='lead text-start'>$paragraph</p>";
     echo "<div class='mb-5'>";
     if ($secondaryButtonText) {
         echo "<a href='$primaryButtonUrl' class='btn btn-primary btn-lg'>$primaryButtonText</a>";
-        echo "<a href='$secondaryButtonUrl' class='btn btn-default btn-lg mx-3'>$secondaryButtonText</a>";
+        echo "<a href='$secondaryButtonUrl' class='btn btn-outline-primary btn-lg mx-3'>$secondaryButtonText</a>";
     } else {
         echo "<a href='$primaryButtonUrl' class='btn btn-primary btn-lg'>$primaryButtonText</a>";
     }
@@ -107,9 +107,9 @@ function renderHeroRightContact(
 {
     echo '<div class="row py-5 my-5">';
     echo "<div class='col-sx-12 col-md-6'>";
-    echo "<h1 class='mt-4 mb-3 text-left'>$title</h1>";
+    echo "<h1 class='mt-4 mb-3 text-start'>$title</h1>";
     echo "<div class=''>";
-    echo "<p class='lead text-left'>$paragraph</p>";
+    echo "<p class='lead text-start'>$paragraph</p>";
     echo '</div>';
     echo '</div>';
     echo "<div class='col-xs-12 col-md-6'>";
@@ -137,7 +137,7 @@ function renderHeroRightContact(
 
 function formGroup(string $id, string $label, callable $input, string $inputClass = ""): void
 {
-    echo "<div class='form-group'>";
+    echo "<div class='form-group mb-3'>";
     echo "<label for=$id class='col-sm-3 control-label'>$label</label>";
     echo "<div class='col-sm-9 $inputClass'>";
     echo $input($id);
