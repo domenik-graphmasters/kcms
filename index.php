@@ -72,8 +72,32 @@ $libGlobal->module = $libModuleHandler->getModuleByPageid($libGlobal->pid);
 require_once('vendor/vcms/layout/header.php');
 
 if(is_object($libGlobal->page) && $libSecurityManager->hasAccess($libGlobal->page, $libAuth)){
-	if(is_file($libGlobal->page->getPath())){
-		require_once($libGlobal->page->getPath());
+    global $libComponentRenderer;
+    $pagePath = $libGlobal->page->getPath();
+    if (is_file($pagePath)) {
+        $explodedPath = explode(".", $pagePath);
+        $fileExtension = end($explodedPath);
+        switch ($fileExtension) {
+            case 'json':
+                $content = file_get_contents($pagePath);
+                if (!$content) {
+                    echo "failed to read contents of " . $pagePath;
+                    return;
+                }
+
+                $json = json_decode($content, associative: true);
+
+                if (json_last_error()) {
+                    echo json_last_error_msg();
+                    return;
+                }
+
+                $libComponentRenderer->render($json);
+                break;
+            default:
+                require_once($libGlobal->page->getPath());
+                break;
+        }
 	}
 } else {
 	echo '<h1>Zugriffsfehler</h1>';

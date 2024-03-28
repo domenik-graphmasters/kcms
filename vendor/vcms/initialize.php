@@ -76,7 +76,7 @@ $libRepositoryClient = new \vcms\LibRepositoryClient();
 $libSecurityManager = new \vcms\LibSecurityManager();
 $libString = new \vcms\LibString();
 $libTime = new \vcms\LibTime();
-
+$libComponentRenderer = new \vcms\LibComponentRenderer();
 
 /*
 * init modules
