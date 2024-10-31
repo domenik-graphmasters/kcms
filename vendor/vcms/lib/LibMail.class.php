@@ -34,7 +34,7 @@ class LibMail{
 		$mail->Port = $smtpPort;
 		$mail->Username = $libGenericStorage->loadValue('base_core', 'smtp_username');
 		$mail->Password = $libGenericStorage->loadValue('base_core', 'smtp_password');
-		$mail->SMTPDebug = 2;
+		$mail->SMTPDebug = \PHPMailer\PHPMailer\SMTP::DEBUG_CONNECTION;
 
 		if($smtpPort == 465) {
 			$mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
