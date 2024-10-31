@@ -101,13 +101,13 @@ if($formSent && !$formError){
 
     $stmt = $libDb->prepare('SELECT internetwart FROM base_semester ORDER BY SUBSTRING(semester, 3) DESC LIMIT 1');
     $stmt->bindValue(':semester', $currentSemester);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC)
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     $internetwartId = $row['internetwart'];
 
     $stmt = $libDb->prepare('SELECT email FROM base_personen WHERE id=:internetwartId');
     $stmt->bindValue(':internetwartId', $internetwartId);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC)
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     $internetwartEmail = $row['email'];
 
