@@ -100,15 +100,19 @@ if($formSent && !$formError){
     global $libDb;
 
     $stmt = $libDb->prepare('SELECT internetwart FROM base_semester ORDER BY SUBSTRING(semester, 3) DESC LIMIT 1');
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $internetwartId = $row['internetwart'];
+    $internetwartId = null;
+    if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $internetwartId = $row['internetwart'];
+    }
 
     $stmt = $libDb->prepare('SELECT email FROM base_personen WHERE id=:internetwartId');
     $stmt->bindValue(':internetwartId', $internetwartId);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $internetwartEmail = $row['email'];
+    $internetwartEmail = null;
+    if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $internetwartEmail = $row['email'];
+    }
 
 	$mail = $libMail->createPHPMailer();
 
