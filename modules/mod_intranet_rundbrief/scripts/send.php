@@ -34,39 +34,39 @@ if(!isset($_POST['nachricht']) || $_POST['nachricht'] == '' || !isset($_POST['su
 } else {
 	$subjectGroups = array();
 
-	if(isset($_POST['fuchsia']) && $_POST['fuchsia'] == 'on'){
+	if(isset($_POST['fuchsia'])){
 		$subjectGroups[] = 'Füchse';
 	}
 
-	if(isset($_POST['burschen']) && $_POST['burschen'] == 'on'){
+	if(isset($_POST['burschen'])){
 		$subjectGroups[] = 'Burschen';
 	}
 
-	if(isset($_POST['ahah_interessiert']) && $_POST['ahah_interessiert'] == 'on' && (!isset($_POST['ahah']) || $_POST['ahah'] != 'on')){
+	if(isset($_POST['ahah_interessiert']) && (!isset($_POST['ahah']))){
 		$subjectGroups[] = 'Int. AHAH';
 	}
 
-	if(isset($_POST['ahah']) && $_POST['ahah'] == 'on'){
+	if(isset($_POST['ahah'])){
 		$subjectGroups[] = 'AHAH';
 	}
 
-	if(isset($_POST['hausbewohner']) && $_POST['hausbewohner'] == 'on'){
+	if(isset($_POST['hausbewohner'])){
 		$subjectGroups[] = 'Hausbewohner';
 	}
 
-	if(isset($_POST['couleurdamen']) && $_POST['couleurdamen'] == 'on'){
+	if(isset($_POST['couleurdamen'])){
 		$subjectGroups[] = 'Couleurdamen';
 	}
 
-	if(isset($_POST['gattinnen_interessiert']) && $_POST['gattinnen_interessiert'] == 'on' && (!isset($_POST['gattinnen']) || $_POST['gattinnen'] != 'on')){
+	if(isset($_POST['gattinnen_interessiert']) && (!isset($_POST['gattinnen']))){
 		$subjectGroups[] = 'Int. Gattinnen';
 	}
 
-	if(isset($_POST['gattinnen']) && $_POST['gattinnen'] == 'on'){
+	if(isset($_POST['gattinnen'])){
 		$subjectGroups[] = 'Gattinnen';
 	}
 
-	if(isset($_POST['vereinsfreunde']) && $_POST['vereinsfreunde'] == 'on'){
+	if(isset($_POST['vereinsfreunde'])){
 		$subjectGroups[] = 'Vereinsfreunde';
 	}
 
@@ -105,39 +105,39 @@ if(!isset($_POST['nachricht']) || $_POST['nachricht'] == '' || !isset($_POST['su
 	*/
 	$sqlGroups = array();
 
-	if(isset($_POST['fuchsia']) && $_POST['fuchsia'] == 'on'){
+	if(isset($_POST['fuchsia'])){
 		$sqlGroups[] = "gruppe='F'";
 	}
 
-	if(isset($_POST['burschen']) && $_POST['burschen'] == 'on'){
+	if(isset($_POST['burschen'])){
 		$sqlGroups[] = "gruppe='B'";
 	}
 
-	if(isset($_POST['ahah_interessiert']) && $_POST['ahah_interessiert'] == 'on'){
+	if(isset($_POST['ahah_interessiert'])){
 		$sqlGroups[] = "(gruppe = 'P' AND interessiert = 1)";
 	}
 
-	if(isset($_POST['ahah']) && $_POST['ahah'] == 'on'){
+	if(isset($_POST['ahah'])){
 		$sqlGroups[] = "gruppe='P'";
 	}
 
-	if(isset($_POST['hausbewohner']) && $_POST['hausbewohner'] == 'on'){
+	if(isset($_POST['hausbewohner'])){
 		$sqlGroups[] = "((gruppe='F' OR gruppe='B') AND plz1=:plz AND strasse1 LIKE :street)";
 	}
 
-	if(isset($_POST['couleurdamen']) && $_POST['couleurdamen'] == 'on'){
+	if(isset($_POST['couleurdamen'])){
 		$sqlGroups[] = "gruppe='C'";
 	}
 
-	if(isset($_POST['gattinnen_interessiert']) && $_POST['gattinnen_interessiert'] == 'on'){
+	if(isset($_POST['gattinnen_interessiert'])){
 		$sqlGroups[] = "((gruppe='G' OR gruppe='W') AND interessiert = 1)";
 	}
 
-	if(isset($_POST['gattinnen']) && $_POST['gattinnen'] == 'on'){
+	if(isset($_POST['gattinnen'])){
 		$sqlGroups[] = "(gruppe='G' OR gruppe='W')";
 	}
 
-	if(isset($_POST['vereinsfreunde']) && $_POST['vereinsfreunde'] == 'on'){
+	if(isset($_POST['vereinsfreunde'])){
 		$subjectGroups[] = "gruppe='Y'";
 	}
 
@@ -179,7 +179,7 @@ if(!isset($_POST['nachricht']) || $_POST['nachricht'] == '' || !isset($_POST['su
 	}
 
 	//add Fuchsmajor
-	if(isset($_POST['fuchsia']) && $_POST['fuchsia'] == 'on' && (!isset($_POST['burschen']) || $_POST['burschen'] != 'on')){
+	if(isset($_POST['fuchsia']) && (!isset($_POST['burschen']))){
 		$vorstand = $libAssociation->getAnsprechbarerAktivenVorstandIds();
 
 		$stmt = $libDb->prepare("SELECT anrede, titel, rang, vorname, praefix, name, suffix, email FROM base_person, mod_rundbrief_empfaenger WHERE (base_person.id = :fuchsmajor OR base_person.id = :fuchsmajor2) AND base_person.id = mod_rundbrief_empfaenger.id AND gruppe != 'X' AND gruppe != 'T' AND gruppe != 'V' AND empfaenger=1");
