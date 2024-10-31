@@ -107,5 +107,3 @@ if(is_object($libGlobal->page) && $libSecurityManager->hasAccess($libGlobal->pag
 }
 
 require_once('vendor/vcms/layout/footer.php');
-
-phpinfo();

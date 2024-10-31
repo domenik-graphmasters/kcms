@@ -97,9 +97,27 @@ if($formSent && !$formError){
 	$text .= PHP_EOL;
 	$text .= 'MBuH,';
 
+    global $libDb;
+
+    $stmt = $libDb->prepare('SELECT internetwart FROM base_semester ORDER BY SUBSTRING(semester, 3) DESC LIMIT 1');
+    $stmt->bindValue(':semester', $currentSemester);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC)
+
+    $internetwartId = $row['internetwart'];
+
+    $stmt = $libDb->prepare('SELECT email FROM base_personen WHERE id=:internetwartId');
+    $stmt->bindValue(':internetwartId', $internetwartId);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC)
+
+    $internetwartEmail = $row['email'];
+
 	$mail = $libMail->createPHPMailer();
 
-	$mail->addAddress($libConfig->emailWebmaster);
+    if ($internetwartEmail != null) {
+        $mail->addAddress($internetwartEmail);
+    } else {
+        $mail->addAddress($libConfig->emailWebmaster);
+    }
 	$mail->Subject = '[' .$libConfig->verbindungName. '] Intranet-Registrierung';
 	$mail->Body = $text;
 	$mail->addReplyTo($_POST['registrierung_emailadresse']);
