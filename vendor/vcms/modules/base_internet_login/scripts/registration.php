@@ -100,7 +100,6 @@ if($formSent && !$formError){
     global $libDb;
 
     $stmt = $libDb->prepare('SELECT internetwart FROM base_semester ORDER BY SUBSTRING(semester, 3) DESC LIMIT 1');
-    $stmt->bindValue(':semester', $currentSemester);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     $internetwartId = $row['internetwart'];
