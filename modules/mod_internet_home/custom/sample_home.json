@@ -1,0 +1,23 @@
+[
+  {
+    "id": "hero-right-image",
+    "title": "K.St.V. Buxodia",
+    "paragraph": "Der K.St.V. Buxodia ist eine fake Studentenverbindung. Unsere Geschichte reicht bis in das Jahr 1337 zurück, was uns zum ältesten Bund Deutschlands macht.\n",
+    "primaryButtonText": "Mehr erfahren",
+    "primaryButtonUrl": "#",
+    "secondaryButtonText": null,
+    "secondaryButtonUrl": null,
+    "imageUrl": "https://placehold.it/700x500"
+  },
+  {
+    "id": "coming-events",
+    "headline": "Veranstaltungen",
+    "paragraph": "Egal ob Kneipe, gemütlicher Abend oder wissenschaftlicher Vortrag: Hier findest du eine Übersicht unseres Semesterprogramms und unserer Veranstaltungen.",
+    "eventCount": 2
+  },
+  {
+    "id": "contact-us",
+    "headline": "Noch weitere Fragen? Interesse geweckt?",
+    "paragraph": "Hier findest du alle Möglichkeiten, mit uns in Kontakt zu treten"
+  }
+]

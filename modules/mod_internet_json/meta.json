@@ -3,30 +3,18 @@
   "version": 1.00,
   "pages": [
     {
-      "pid": "wf_wohnen",
-      "file": "wf_wohnen.json",
-      "directory": "scripts",
-      "title": "Wohnen"
-    },
-    {
-      "pid": "wf_verein",
-      "file": "wf_verein.json",
-      "directory": "scripts",
-      "title": "Home"
+      "pid": "showcase",
+      "file": "showcase.json",
+      "directory": "custom",
+      "title": "Showcase"
     }
   ],
   "menuElementsInternet": [
     {
-      "pid": "wf_verein",
-      "name": "Verein",
+      "pid": "showcase",
+      "name": "Showcase",
       "type": "menu_entry",
       "position": 31
-    },
-    {
-      "pid": "wf_wohnen",
-      "name": "Wohnen",
-      "type": "menu_entry",
-      "position": 32
     }
   ],
   "headerStrings": [

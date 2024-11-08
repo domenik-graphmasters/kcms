@@ -1,35 +1,33 @@
 name: Deploy to update server
 on:
-    push:
-        branches:
-          - 'release'
-
-env:
-  FTP_SERVER: ${{ secrets.FTP_SERVER }}
-  FTP_USER: ${{ secrets.FTP_USER }}
-  FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+  push:
+    branches:
+      - 'release'
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-        steps:
-            - uses: actions/checkout@v4
-            
-            - name: creates output
-              run:  sh ./build.sh
-    
-            - name: Upload to server
-              uses: Dylan700/sftp-upload-action@latest
-              with:
-                server: ${{ secrets.FTP_SERVER }}
-                username: ${{ secrets.FTP_USER }}
-                password: ${{ secrets.FTP_PASSWORD }}
-                port: 22
-                uploads: |
-                  ./custom/ => ./custom/
-                  ./modules/ => ./modules/
-                  ./vendor/ => ./vendor/
-                  ./api.php => ./api.php
-                  ./index.php => ./index.php
-                  ./redirect.php => ./redirect.php
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: creates output
+        run:  sh ./build.sh
+
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+        with:
+          source-directory: 'build'
+          destination-github-username: 'kcms'
+          destination-repository-name: 'kcms-api'
+
+      - name: Notify internetwart about changes
+        uses: dawidd6/action-send-mail@v3
+        with:
+          connection_url: ${{secrets.MAIL_CONNECTION}}
+          subject: Neues vcms update
+          to: iw@avgothia.de
+          from: noreply@avgothia.de
+          body: file://build/manifest.json

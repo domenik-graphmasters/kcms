@@ -2,6 +2,7 @@
 
 namespace vcms;
 
+use PDO;
 use vcms\components\Stat;
 use function vcms\components\renderStatisticsStrip;
 use function vcms\components\renderStatisticsWithExplainer;
@@ -367,14 +368,34 @@ class LibComponentRenderer
         echo '<div class="col-xs-12 col-md-6">';
         echo "<h3 class='mt-0 mb-3 text-start mb-5'>Veranstaltungen</h3>";
 
-        // TODO(enhancement): Fetch actual events
-        echo "<h4 class='mt-4 mb-3 text-start'>Nikolauskneipe</h4>";
-        echo "<p class='text-start'>Kurz vor der Abreise in die Heimat wollen wir noch einmal einen festlichen Abend genießen</p>";
-        echo "<p class='text-muted text-start'><i class='fa fa-clock-o m-2'></i>6.12.2023 um 20 c.t.</p>";
+        global $libDb, $libTime, $libGlobal;
+        $zeitraum = $libTime->getZeitraum($libGlobal->semester);
+        $calendar = new \vcms\calendar\LibCalendar($zeitraum[0], $zeitraum[1]);
 
-        echo "<h4 class='mt-4 mb-3 text-start'>Nikolauskneipe</h4>";
-        echo "<p class='text-start'>Kurz vor der Abreise in die Heimat wollen wir noch einmal einen festlichen Abend genießen</p>";
-        echo "<p class='text-start text-muted'><i class='fa fa-clock-o m-2'></i>6.12.2023 um 20 c.t.</p>";
+        $stmt = $libDb->prepare("SELECT * FROM base_veranstaltung WHERE intern <= :intern AND ((DATEDIFF(datum, :startdatum1) >= 0 AND DATEDIFF(datum, :startdatum2) <= 0) OR (DATEDIFF(datum_ende, :enddatum1) >= 0 AND DATEDIFF(datum_ende, :enddatum2) <= 0)) ORDER BY datum LIMIT 2");
+        $stmt->bindValue(':startdatum1', $zeitraum[0]);
+        $stmt->bindValue(':startdatum2', $zeitraum[1]);
+        $stmt->bindValue(':enddatum1', $zeitraum[0]);
+        $stmt->bindValue(':enddatum2', $zeitraum[1]);
+        $stmt->bindValue(':intern', 0);
+        $stmt->execute();
+
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            $id = $row['id'];
+            $ort = $row['ort'];
+            $title = $row['titel'];
+            $spruch = $row['spruch'];
+            $startDateTime = $row['datum'];
+
+            echo "<h4 class='mt-4 mb-3 text-start'>$title</h4>";
+            if ($spruch != null) {
+                echo "<p class='text-start'$spruch</p>";
+            }
+
+            $date = $libTime->formatDateString($startDateTime);
+            $time = $libTime->formatTimeString($startDateTime);
+            echo "<p class='text-muted text-start'><i class='fa fa-clock-o m-2'></i>$date um $time</p>";
+        }
 
         echo '</div>';
 

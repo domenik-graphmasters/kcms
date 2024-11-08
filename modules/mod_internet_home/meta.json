@@ -5,8 +5,8 @@
 	"pages": [
 		{
 			"pid": "home",
-			"file": "wf_home.json",
-			"directory": "scripts",
+			"file": "sample_home.json",
+			"directory": "custom",
 			"title": "Startseite"
 		},
 		{

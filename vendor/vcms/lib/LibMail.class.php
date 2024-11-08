@@ -28,12 +28,18 @@ class LibMail{
 		$mail->setFrom($libConfig->emailInfo, $fromName);
 		$mail->CharSet = 'UTF-8';
 
+		if ($libGenericStorage->loadValue('base_core', 'smtp_debug') == '1') {
+		    $mail->SMTPDebug = \PHPMailer\PHPMailer\SMTP::DEBUG_SERVER;
+        }
+
 		$mail->isSMTP();
 		$mail->SMTPAuth = true;
 		$mail->Host = $libGenericStorage->loadValue('base_core', 'smtp_host');
 		$mail->Port = $smtpPort;
 		$mail->Username = $libGenericStorage->loadValue('base_core', 'smtp_username');
 		$mail->Password = $libGenericStorage->loadValue('base_core', 'smtp_password');
+
+
 
 		if($smtpPort == 465) {
 			$mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;

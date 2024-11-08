@@ -37,7 +37,7 @@ class LibGlobal{
 	var $mkHostname;
 
 	function __construct() {
-		$this->vcmsHostname = 'avgothia.github.io/vcms-api';
+		$this->vcmsHostname = 'domenik-graphmasters.github.io/kcms-api';
 		$this->mkHostname = 'www' . '.' . 'mar' . 'kom' . 'ann' . 'ia' . '.' . 'org';
 	}
 
