@@ -1,23 +1,21 @@
 {
-	"moduleName": "Kontakt",
-	"version": 3.02,
-	"pages": [
-		{
-			"pid": "kontakt",
-			"file": "contact.php",
-			"directory": "scripts",
-			"title": "Kontakt"
-		}
-	],
-	"menuElementsInternet": [
-		{
-			"pid": "kontakt",
-			"name": "Kontakt",
-			"type": "menu_entry",
-			"position": 30000
-		}
-	],
-	"headerStrings": [
-		"<meta name='robots' content='noindex' />"
-	]
+  "moduleName": "Kontakt",
+  "version": 4.0,
+  "pages": [
+    {
+      "pid": "kontakt",
+      "file": "contact.php",
+      "directory": "scripts",
+      "title": "Kontakt"
+    }
+  ],
+  "menuElementsInternet": [
+    {
+      "pid": "kontakt",
+      "name": "Kontakt",
+      "type": "menu_entry",
+      "position": 30000
+    }
+  ],
+  "headerStrings": ["<meta name='robots' content='noindex' />"]
 }

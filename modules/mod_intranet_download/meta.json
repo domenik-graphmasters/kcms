@@ -1,33 +1,33 @@
 {
-	"moduleName": "Downloads",
-	"version": 3.20,
-	"pages": [
-		{
-			"pid": "intranet_directories",
-			"file": "directories.php",
-			"directory": "scripts",
-			"title": "Dateien",
-			"accessRestriction": {
-				"gruppen": ["F", "B", "P", "C", "G", "W", "Y"]
-			}
-		}
-	],
-	"includes": [
-		{
-			"iid": "intranet_download",
-			"file": "download.php",
-			"directory": "scripts",
-			"accessRestriction": {
-				"gruppen": ["F", "B", "P", "C", "G", "W", "Y"]
-			}
-		}
-	],
-	"menuElementsIntranet": [
-		{
-			"pid": "intranet_directories",
-			"name": "Dateien",
-			"type": "menu_entry",
-			"position": 10050
-		}
-	]
+  "moduleName": "Downloads",
+  "version": 4.0,
+  "pages": [
+    {
+      "pid": "intranet_directories",
+      "file": "directories.php",
+      "directory": "scripts",
+      "title": "Dateien",
+      "accessRestriction": {
+        "gruppen": ["F", "B", "P", "C", "G", "W", "Y"]
+      }
+    }
+  ],
+  "includes": [
+    {
+      "iid": "intranet_download",
+      "file": "download.php",
+      "directory": "scripts",
+      "accessRestriction": {
+        "gruppen": ["F", "B", "P", "C", "G", "W", "Y"]
+      }
+    }
+  ],
+  "menuElementsIntranet": [
+    {
+      "pid": "intranet_directories",
+      "name": "Dateien",
+      "type": "menu_entry",
+      "position": 10050
+    }
+  ]
 }

@@ -1,48 +1,68 @@
 {
-	"moduleName": "Home",
-	"version": 3.83,
-	"installScript": "install/install.php",
-	"pages": [
-		{
-			"pid": "home",
-			"file": "sample_home.json",
-			"directory": "custom",
-			"title": "Startseite"
-		},
-		{
-			"pid": "intranet_admin_announcements",
-			"file": "announcements.php",
-			"directory": "scripts/admin",
-			"title": "Ankündigungen",
-			"accessRestriction": {
-				"aemter": ["internetwart", "datenpflegewart", "senior", "consenior", "scriptor", "fuchsmajor", "fuchsmajor2", "quaestor", "jubelsenior"]
-			}
-		},
-		{
-			"pid": "intranet_admin_announcement",
-			"file": "announcement.php",
-			"directory": "scripts/admin",
-			"title": "Ankündigung",
-			"accessRestriction": {
-				"aemter": ["internetwart", "datenpflegewart", "senior", "consenior", "scriptor", "fuchsmajor", "fuchsmajor2", "quaestor", "jubelsenior"]
-			}
-		}
-	],
-	"menuElementsAdministration": [
-		{
-			"name": "Daten",
-			"type": "menu_folder",
-			"elements": [
-				{
-					"pid": "intranet_admin_announcements",
-					"name": "Startseite",
-					"type": "menu_entry",
-					"position": 2000
-				}
-			]
-		}
-	],
-	"headerStrings": [
-		"<link rel='stylesheet' href='modules/mod_internet_home/styles/screen.css' />"
-	]
+  "moduleName": "Home",
+  "version": 4.0,
+  "installScript": "install/install.php",
+  "pages": [
+    {
+      "pid": "home",
+      "file": "sample_home.json",
+      "directory": "custom",
+      "title": "Startseite"
+    },
+    {
+      "pid": "intranet_admin_announcements",
+      "file": "announcements.php",
+      "directory": "scripts/admin",
+      "title": "Ankündigungen",
+      "accessRestriction": {
+        "aemter": [
+          "internetwart",
+          "datenpflegewart",
+          "senior",
+          "consenior",
+          "scriptor",
+          "fuchsmajor",
+          "fuchsmajor2",
+          "quaestor",
+          "jubelsenior"
+        ]
+      }
+    },
+    {
+      "pid": "intranet_admin_announcement",
+      "file": "announcement.php",
+      "directory": "scripts/admin",
+      "title": "Ankündigung",
+      "accessRestriction": {
+        "aemter": [
+          "internetwart",
+          "datenpflegewart",
+          "senior",
+          "consenior",
+          "scriptor",
+          "fuchsmajor",
+          "fuchsmajor2",
+          "quaestor",
+          "jubelsenior"
+        ]
+      }
+    }
+  ],
+  "menuElementsAdministration": [
+    {
+      "name": "Daten",
+      "type": "menu_folder",
+      "elements": [
+        {
+          "pid": "intranet_admin_announcements",
+          "name": "Startseite",
+          "type": "menu_entry",
+          "position": 2000
+        }
+      ]
+    }
+  ],
+  "headerStrings": [
+    "<link rel='stylesheet' href='modules/mod_internet_home/styles/screen.css' />"
+  ]
 }

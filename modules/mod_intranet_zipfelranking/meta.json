@@ -1,30 +1,30 @@
 {
-	"moduleName": "Zipfelranking",
-	"version": 2.43,
-	"installScript": "install/install.php",
-	"pages": [
-		{
-			"pid": "intranet_zipfel",
-			"file": "zipfel.php",
-			"directory": "scripts",
-			"title": "Zipfelranking",
-			"accessRestriction": {
-				"gruppen": ["F", "B", "P", "C", "G", "W", "Y"]
-			}
-		}
-	],
-	"menuElementsIntranet": [
-		{
-			"name": "Personen",
-			"type": "menu_folder",
-			"elements": [
-				{
-					"pid": "intranet_zipfel",
-					"name": "Zipfel",
-					"type": "menu_entry",
-					"position": 40000
-				}
-			]
-		}
-	]
+  "moduleName": "Zipfelranking",
+  "version": 3.0,
+  "installScript": "install/install.php",
+  "pages": [
+    {
+      "pid": "intranet_zipfel",
+      "file": "zipfel.php",
+      "directory": "scripts",
+      "title": "Zipfelranking",
+      "accessRestriction": {
+        "gruppen": ["F", "B", "P", "C", "G", "W", "Y"]
+      }
+    }
+  ],
+  "menuElementsIntranet": [
+    {
+      "name": "Personen",
+      "type": "menu_folder",
+      "elements": [
+        {
+          "pid": "intranet_zipfel",
+          "name": "Zipfel",
+          "type": "menu_entry",
+          "position": 40000
+        }
+      ]
+    }
+  ]
 }

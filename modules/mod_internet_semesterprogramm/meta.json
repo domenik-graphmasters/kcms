@@ -1,27 +1,27 @@
 {
-	"moduleName": "Semesterprogramm",
-	"version": 3.61,
-	"pages": [
-		{
-			"pid": "semesterprogramm",
-			"file": "calendar.php",
-			"directory": "scripts",
-			"title": "Semesterprogramm"
-		}
-	],
-	"includes": [
-		{
-			"iid": "semesterprogramm_icalendar",
-			"file": "icalendar.php",
-			"directory": "scripts"
-		}
-	],
-	"menuElementsInternet": [
-		{
-			"pid": "semesterprogramm",
-			"name": "Veranstaltungen",
-			"type": "menu_entry",
-			"position": 200
-		}
-	]
+  "moduleName": "Semesterprogramm",
+  "version": 4.0,
+  "pages": [
+    {
+      "pid": "semesterprogramm",
+      "file": "calendar.php",
+      "directory": "scripts",
+      "title": "Semesterprogramm"
+    }
+  ],
+  "includes": [
+    {
+      "iid": "semesterprogramm_icalendar",
+      "file": "icalendar.php",
+      "directory": "scripts"
+    }
+  ],
+  "menuElementsInternet": [
+    {
+      "pid": "semesterprogramm",
+      "name": "Veranstaltungen",
+      "type": "menu_entry",
+      "position": 200
+    }
+  ]
 }
