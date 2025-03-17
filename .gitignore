@@ -1,2 +1,3 @@
-.idea
-custom/systemconfig.php
+docker/logs
+docker/mysql/data
+.env
