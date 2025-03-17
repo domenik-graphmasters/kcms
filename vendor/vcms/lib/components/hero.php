@@ -83,7 +83,7 @@ function renderHeroRightImage(
     echo "<div class='mb-5'>";
     if ($secondaryButtonText) {
         echo "<a href='$primaryButtonUrl' class='btn btn-primary btn-lg'>$primaryButtonText</a>";
-        echo "<a href='$secondaryButtonUrl' class='btn btn-outline-primary btn-lg mx-3'>$secondaryButtonText</a>";
+        echo "<a href='$secondaryButtonUrl' class='btn btn-outline-dark btn-lg mx-3'>$secondaryButtonText</a>";
     } else {
         echo "<a href='$primaryButtonUrl' class='btn btn-primary btn-lg'>$primaryButtonText</a>";
     }

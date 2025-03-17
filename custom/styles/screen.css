@@ -1,27 +1,27 @@
 #logo {
-	background-image: url('https://placehold.it/70x50');
-	background-repeat: no-repeat;
-	background-size: auto 90%;
-	background-position: center;
+    background-image: url("https://dummyimage.com/70x50");
+    background-repeat: no-repeat;
+    background-size: auto 90%;
+    background-position: center;
 }
 
 :root {
-	--pcms-primary: #78B2D2;
-	--pcms-primary-rgb: 120, 178, 210;
+    --pcms-primary: #78b2d2;
+    --pcms-primary-rgb: 120, 178, 210;
 
-	--pcms-primary-m1: #6c9fb6;
-	--pcms-primary-m1-rgb: 108, 159, 182;
+    --pcms-primary-m1: #6c9fb6;
+    --pcms-primary-m1-rgb: 108, 159, 182;
 
-	--pcms-primary-m2: #416778;
-	--pcms-primary-m2-rgb: 65, 103, 120;
+    --pcms-primary-m2: #416778;
+    --pcms-primary-m2-rgb: 65, 103, 120;
 
-	--pcms-primary-p1: #8ec6e5;
-	--pcms-primary-p1-rgb: 142, 198, 229;
+    --pcms-primary-p1: #8ec6e5;
+    --pcms-primary-p1-rgb: 142, 198, 229;
 
-	--pcms-primary-p2: #a5d6f1;
-	--pcms-primary-p2-rgb: 165, 214, 241;
+    --pcms-primary-p2: #a5d6f1;
+    --pcms-primary-p2-rgb: 165, 214, 241;
 
-	--pcms-primary-bg-subtle: #a5d6f1;
+    --pcms-primary-bg-subtle: #a5d6f1;
 
-	--pcms-primary-border-subtle: #6c9fb6;
+    --pcms-primary-border-subtle: #6c9fb6;
 }
