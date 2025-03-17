@@ -17,7 +17,7 @@
     "primaryButtonUrl": "#",
     "secondaryButtonText": "Secondary",
     "secondaryButtonUrl": "#",
-    "imageUrl": "https://placehold.it/700x500"
+    "imageUrl": "https://dummyimage.com/700x500"
   },
   {
     "id": "hero-right-image",
@@ -27,7 +27,7 @@
     "primaryButtonUrl": "#",
     "secondaryButtonText": "Secondary",
     "secondaryButtonUrl": "#",
-    "imageUrl": "https://placehold.it/700x500"
+    "imageUrl": "https://dummyimage.com/700x500"
   },
   {
     "id": "hero-right-contact",
@@ -92,27 +92,27 @@
   },
   {
     "id": "gallery-single-fluid",
-    "imageUrl": "https://placehold.it/1920x1080"
+    "imageUrl": "https://dummyimage.com/1920x1080"
   },
   {
     "id": "gallery-single-with-text",
-    "imageUrl": "https://placehold.it/700x400",
+    "imageUrl": "https://dummyimage.com/700x400",
     "headline": "optional",
     "paragraph": "string"
   },
   {
     "id": "gallery-triplet",
-    "prominentImageUrl": "https://placehold.it/700x700",
-    "topImageUrl": "https://placehold.it/700x700",
-    "bottomImageUrl": "https://placehold.it/700x700"
+    "prominentImageUrl": "https://dummyimage.com/700x700",
+    "topImageUrl": "https://dummyimage.com/700x700",
+    "bottomImageUrl": "https://dummyimage.com/700x700"
   },
   {
     "id": "gallery-quintet",
-    "prominentImageUrl": "https://placehold.it/700x700",
-    "topLeftImageUrl": "https://placehold.it/700x700",
-    "bottomLeftImageUrl": "https://placehold.it/700x700",
-    "topRightImageUrl": "https://placehold.it/700x700",
-    "bottomRightImageUrl": "https://placehold.it/700x700"
+    "prominentImageUrl": "https://dummyimage.com/700x700",
+    "topLeftImageUrl": "https://dummyimage.com/700x700",
+    "bottomLeftImageUrl": "https://dummyimage.com/700x700",
+    "topRightImageUrl": "https://dummyimage.com/700x700",
+    "bottomRightImageUrl": "https://dummyimage.com/700x700"
   },
   {
     "id": "statistics-with-explainer",
@@ -197,7 +197,7 @@
         "answer": "Vermutlich, ja"
       }
     ],
-    "imageUrl": "https://placehold.it/700x700"
+    "imageUrl": "https://dummyimage.com/700x700"
   },
   {
     "id": "headline",
