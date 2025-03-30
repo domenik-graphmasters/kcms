@@ -6,13 +6,15 @@
 
 namespace Httpful\Handlers;
 
+use Httpful\Exception\JsonParseException;
+
 class JsonHandler extends MimeHandlerAdapter
 {
     private $decode_as_array = false;
 
     public function init(array $args)
     {
-        $this->decode_as_array = !!(array_key_exists('decode_as_array', $args) ? $args['decode_as_array'] : false);
+        $this->decode_as_array = (bool) ($args['decode_as_array'] ?? false);
     }
 
     /**
@@ -27,7 +29,7 @@ class JsonHandler extends MimeHandlerAdapter
             return null;
         $parsed = json_decode($body, $this->decode_as_array);
         if (is_null($parsed) && 'null' !== strtolower($body))
-            throw new \Exception("Unable to parse response as JSON");
+            throw new JsonParseException('Unable to parse response as JSON: ' . json_last_error_msg());
         return $parsed;
     }
 
@@ -35,7 +37,7 @@ class JsonHandler extends MimeHandlerAdapter
      * @param mixed $payload
      * @return string
      */
-    public function serialize($payload)
+    public function serialize($payload): string
     {
         return json_encode($payload);
     }
