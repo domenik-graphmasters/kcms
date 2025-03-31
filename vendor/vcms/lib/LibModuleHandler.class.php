@@ -135,14 +135,6 @@ class LibModuleHandler
             if ($valid) {
                 $this->registerModule($module, $moduleRelativePath);
             }
-
-            if (
-                file_exists(
-                    $this->customDirectory . "/" . $module->getName() . ".json"
-                )
-            ) {
-                // TODO: Implement meta.json overrides
-            }
         }
     }
 

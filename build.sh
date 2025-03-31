@@ -39,7 +39,7 @@ find ${cwd}/modules -type f -name "meta.json" | while read -r meta_json; do
 done
 
 # Extract the version from LibGlobal class
-engine_version=$(awk -F"'" '/var \$version =/ {print $2}' ${cwd}/vendor/vcms/lib/LibGlobal.class.php)
+engine_version=$(grep -oE 'var \$version = "[0-9.]*"' ${cwd}/vendor/vcms/lib/LibGlobal.class.php | sed 's/var $version = "//;s/"//')
 
 # Add the engine version to the output JSON object
 jq --argjson engine_version "$engine_version" '.["engine"] = $engine_version' "$output_file" > "$output_file.tmp" && mv "$output_file.tmp" "$output_file"

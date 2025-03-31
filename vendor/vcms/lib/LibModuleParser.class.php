@@ -80,7 +80,7 @@ class LibModuleParser
                 : "";
             $headerStrings = isset($json["headerStrings"])
                 ? $json["headerStrings"]
-                : "";
+                : [];
 
             $pages = [];
             $includes = [];

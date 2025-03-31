@@ -18,230 +18,337 @@ along with VCMS. If not, see <http://www.gnu.org/licenses/>.
 
 namespace vcms;
 
-class LibRepositoryClient{
+use Archive_Tar;
 
-  var $repoHostname;
-  var $modulesRelativeDirectoryPath = 'modules';
-  var $engineUpdateScript = 'vendor/vcms/install/update.php';
-  var $tempRelativeDirectoryPath = 'temp';
-  var $tempAbsoluteDirectoryPath;
+class LibRepositoryClient
+{
+    var $repoHostname;
+    var $modulesRelativeDirectoryPath = "modules";
+    var $engineUpdateScript = "vendor/vcms/install/update.php";
+    var $tempRelativeDirectoryPath = "temp";
+    var $tempAbsoluteDirectoryPath;
 
-  function __construct(){
-    global $libGlobal, $libFilesystem;
+    function __construct()
+    {
+        global $libGlobal, $libFilesystem;
 
-		$this->repoHostname = $libGlobal->vcmsHostname;
-    $this->tempAbsoluteDirectoryPath = $libFilesystem->getAbsolutePath($this->tempRelativeDirectoryPath);
-	}
-
-  function getModuleVersions(){
-  	global $libGlobal, $libHttp, $libModuleHandler;
-
-    $manifestUrl = 'https://' .$this->repoHostname. '/manifest.json?id=' .$libGlobal->getSiteUrlAuthority(). '&version=' .$libGlobal->version;
-  	$modules = $libHttp->get($manifestUrl);
-
-  	if(!is_array($modules)){
-  		$modules = json_decode($modules, true);
-  	}
-
-  	foreach($libModuleHandler->getModules() as $module){
-  		$isBaseModule = substr($module->getId(), 0, 5) == 'base_';
-
-  		if(!$isBaseModule){
-  			if(!array_key_exists($module->getId(), $modules)){
-  				$modules[$module->getId()] = '';
-  			}
-  		}
-  	}
-
-  	ksort($modules);
-
-  	return $modules;
-  }
-
-  function getModuleStates(){
-    global $libGlobal, $libModuleHandler;
-
-    $moduleVersions = $this->getModuleVersions();
-    $result = array();
-
-    foreach($moduleVersions as $key => $newVersion){
-      if($key == 'engine'){
-        $result['engine'] = ((double) $newVersion) > ((double) $libGlobal->version);
-      } elseif($libModuleHandler->moduleIsAvailable($key)){
-        $module = $libModuleHandler->getModuleByModuleid($key);
-        $result[$key] = ((double) $newVersion) > ((double) $module->getVersion());
-      }
+        $this->repoHostname = $libGlobal->vcmsHostname;
+        $this->tempAbsoluteDirectoryPath = $libFilesystem->getAbsolutePath(
+            $this->tempRelativeDirectoryPath
+        );
     }
 
-    return $result;
-  }
+    function getModuleVersions()
+    {
+        global $libGlobal, $libHttp, $libModuleHandler;
 
-  function installModule($module){
-  	global $libHttp, $libModuleHandler, $libFilesystem;
+        $manifestUrl =
+            "https://" .
+            $this->repoHostname .
+            "/manifest.json?id=" .
+            $libGlobal->getSiteUrlAuthority() .
+            "&version=" .
+            $libGlobal->version;
+        $modules = $libHttp->get($manifestUrl);
 
-  	// globals required for install/update scripts
-  	global $libGlobal, $libDb;
+        if (!is_array($modules)) {
+            $modules = json_decode($modules, true);
+        }
 
-  	$tarRelativeFilePath = $this->tempRelativeDirectoryPath. '/' .$module. '.tar';
-  	$tarAbsoluteFilePath = $libFilesystem->getAbsolutePath($tarRelativeFilePath);
+        foreach ($libModuleHandler->getModules() as $module) {
+            $isBaseModule = substr($module->getId(), 0, 5) == "base_";
 
-  	$tempModuleRelativeDirectoryPath = $this->tempRelativeDirectoryPath. '/' .$module;
-  	$tempModuleAbsoluteDirectoryPath = $libFilesystem->getAbsolutePath($tempModuleRelativeDirectoryPath);
+            if (!$isBaseModule) {
+                if (!array_key_exists($module->getId(), $modules)) {
+                    $modules[$module->getId()] = "";
+                }
+            }
+        }
 
-  	$moduleRelativeDirectoryPath = $this->modulesRelativeDirectoryPath. '/' .$module;
-  	$moduleAbsoluteDirectoryPath = $libFilesystem->getAbsolutePath($moduleRelativeDirectoryPath);
+        ksort($modules);
 
-  	$isUpdate = is_dir($moduleAbsoluteDirectoryPath);
+        return $modules;
+    }
 
-  	$libGlobal->notificationTexts[] = 'Lade Modulpaket aus dem Repository.';
-  	$libHttp->get('https://' .$this->repoHostname. '/packages/'. $module. '.tar', $tarAbsoluteFilePath);
+    function getModuleStates()
+    {
+        global $libGlobal, $libModuleHandler;
 
-  	//untar module package
-  	$tar = new \pear\Archive\Archive_Tar($tarAbsoluteFilePath);
-  	$libGlobal->notificationTexts[] = 'Entpacke das Paket in den temp-Ordner.';
-  	$tar->extract($this->tempRelativeDirectoryPath. '/');
+        $moduleVersions = $this->getModuleVersions();
+        $result = [];
 
-  	if(is_dir($tempModuleAbsoluteDirectoryPath)){
-  		if(is_file($tempModuleAbsoluteDirectoryPath. '/meta.json')){
-  			if(!$isUpdate){
-  				$libFilesystem->copyDirectory($tempModuleRelativeDirectoryPath, $moduleRelativeDirectoryPath);
-  			} else {
-  				$filesToDelete = array_diff(scandir($moduleAbsoluteDirectoryPath), array('.', '..', 'custom'));
+        foreach ($moduleVersions as $key => $newVersion) {
+            if ($key == "engine") {
+                $result["engine"] =
+                    ((float) $newVersion) > ((float) $libGlobal->version);
+            } elseif ($libModuleHandler->moduleIsAvailable($key)) {
+                $module = $libModuleHandler->getModuleByModuleid($key);
+                $result[$key] =
+                    ((float) $newVersion) > ((float) $module->getVersion());
+            }
+        }
 
-  				foreach($filesToDelete as $file){
-  					$fileRelativePath = $moduleRelativeDirectoryPath. '/' .$file;
-  					$fileAbsolutePath = $libFilesystem->getAbsolutePath($fileRelativePath);
+        return $result;
+    }
 
-  					if(is_dir($fileAbsolutePath)){
-  						$libGlobal->notificationTexts[] = 'Lösche ' .$fileRelativePath. '.';
-  						$libFilesystem->deleteDirectory($fileRelativePath);
-  					} elseif(is_file($fileAbsolutePath)){
-  						$libGlobal->notificationTexts[] = 'Lösche ' .$fileRelativePath. '.';
-  						unlink($fileAbsolutePath);
-  					}
-  				}
+    function installModule($module)
+    {
+        global $libHttp, $libModuleHandler, $libFilesystem;
 
-  				$libGlobal->notificationTexts[] = 'Kopiere aktualisiertes Modul in den Modulordner ' .$moduleRelativeDirectoryPath. '.';
+        // globals required for install/update scripts
+        global $libGlobal, $libDb;
 
-  				$filesToCopy = array_diff(scandir($tempModuleAbsoluteDirectoryPath), array('.', '..'));
+        $tarRelativeFilePath =
+            $this->tempRelativeDirectoryPath . "/" . $module . ".tar";
+        $tarAbsoluteFilePath = $libFilesystem->getAbsolutePath(
+            $tarRelativeFilePath
+        );
 
-  				foreach($filesToCopy as $file){
-  					$fileRelativePath = $tempModuleRelativeDirectoryPath. '/' .$file;
-  					$fileAbsolutePath = $libFilesystem->getAbsolutePath($fileRelativePath);
+        $tempModuleRelativeDirectoryPath =
+            $this->tempRelativeDirectoryPath . "/" . $module;
+        $tempModuleAbsoluteDirectoryPath = $libFilesystem->getAbsolutePath(
+            $tempModuleRelativeDirectoryPath
+        );
 
-  					if($file == 'custom'){
-  						$libFilesystem->mergeDirectory($fileRelativePath, $moduleRelativeDirectoryPath. '/' .$file);
-  					} elseif(is_dir($fileAbsolutePath)){
-  						$libFilesystem->copyDirectory($fileRelativePath, $moduleRelativeDirectoryPath. '/' .$file);
-  					} elseif(is_file($fileAbsolutePath)){
-  						copy($fileRelativePath, $moduleRelativeDirectoryPath. '/' .$file);
-  					}
-  				}
-  			}
+        $moduleRelativeDirectoryPath =
+            $this->modulesRelativeDirectoryPath . "/" . $module;
+        $moduleAbsoluteDirectoryPath = $libFilesystem->getAbsolutePath(
+            $moduleRelativeDirectoryPath
+        );
 
-  			$this->refreshModuleHandler();
+        $isUpdate = is_dir($moduleAbsoluteDirectoryPath);
 
-  			$moduleObject = $libModuleHandler->getModuleByModuleid($module);
+        $libGlobal->notificationTexts[] = "Lade Modulpaket aus dem Repository.";
+        $libHttp->get(
+            "https://" . $this->repoHostname . "/packages/" . $module . ".tar",
+            $tarAbsoluteFilePath
+        );
 
-  			if(!$isUpdate && $moduleObject->getInstallScript() != ''){
-  				$libGlobal->notificationTexts[] = 'Führe Installationsskript des Moduls aus.';
-  				$scriptAbsolutePath = $libFilesystem->getAbsolutePath($moduleObject->getPath(). '/' .$moduleObject->getInstallScript());
-  				include($scriptAbsolutePath);
-  			} elseif($isUpdate && $moduleObject->getUpdateScript() != ''){
-  				$libGlobal->notificationTexts[] = 'Führe Aktualisierungsskript des Moduls aus.';
-  				$scriptAbsolutePath = $libFilesystem->getAbsolutePath($moduleObject->getPath(). '/' .$moduleObject->getUpdateScript());
-  				include($scriptAbsolutePath);
-  			}
-  		} else {
-  			$libGlobal->errorTexts[] = 'Das heruntergeladene Modulpaket enthält keine meta.json';
-  		}
-  	} else {
-  		$libGlobal->errorTexts[] = 'Das heruntergeladene Modulpaket konnte nicht entpackt werden.';
-  	}
+        //untar module package
+        $tar = new Archive_Tar($tarAbsoluteFilePath);
+        $libGlobal->notificationTexts[] =
+            "Entpacke das Paket in den temp-Ordner.";
+        $tar->extract($this->tempRelativeDirectoryPath . "/");
 
-  	//delete temporary module folder
-  	$libGlobal->notificationTexts[] = 'Lösche temporäres Modulpaket ' .$tarRelativeFilePath. '.';
-  	@unlink($tarAbsoluteFilePath);
+        if (is_dir($tempModuleAbsoluteDirectoryPath)) {
+            if (is_file($tempModuleAbsoluteDirectoryPath . "/meta.json")) {
+                if (!$isUpdate) {
+                    $libFilesystem->copyDirectory(
+                        $tempModuleRelativeDirectoryPath,
+                        $moduleRelativeDirectoryPath
+                    );
+                } else {
+                    $filesToDelete = array_diff(
+                        scandir($moduleAbsoluteDirectoryPath),
+                        [".", "..", "custom"]
+                    );
 
-  	$libGlobal->notificationTexts[] = 'Lösche temporären Modulordner ' .$tempModuleRelativeDirectoryPath. '.';
+                    foreach ($filesToDelete as $file) {
+                        $fileRelativePath =
+                            $moduleRelativeDirectoryPath . "/" . $file;
+                        $fileAbsolutePath = $libFilesystem->getAbsolutePath(
+                            $fileRelativePath
+                        );
 
-  	if(is_dir($tempModuleAbsoluteDirectoryPath)){
-  		$libFilesystem->deleteDirectory($tempModuleRelativeDirectoryPath);
-  	}
-  }
+                        if (is_dir($fileAbsolutePath)) {
+                            $libGlobal->notificationTexts[] =
+                                "Lösche " . $fileRelativePath . ".";
+                            $libFilesystem->deleteDirectory($fileRelativePath);
+                        } elseif (is_file($fileAbsolutePath)) {
+                            $libGlobal->notificationTexts[] =
+                                "Lösche " . $fileRelativePath . ".";
+                            unlink($fileAbsolutePath);
+                        }
+                    }
 
-  function uninstallModule($module){
-  	global $libModuleHandler, $libFilesystem;
+                    $libGlobal->notificationTexts[] =
+                        "Kopiere aktualisiertes Modul in den Modulordner " .
+                        $moduleRelativeDirectoryPath .
+                        ".";
 
-  	// globals required for install/update scripts
-  	global $libGlobal, $libDb;
+                    $filesToCopy = array_diff(
+                        scandir($tempModuleAbsoluteDirectoryPath),
+                        [".", ".."]
+                    );
 
-  	$moduleRelativeDirectoryPath = $this->modulesRelativeDirectoryPath. '/' .$module;
-  	$moduleObject = $libModuleHandler->getModuleByModuleid($module);
+                    foreach ($filesToCopy as $file) {
+                        $fileRelativePath =
+                            $tempModuleRelativeDirectoryPath . "/" . $file;
+                        $fileAbsolutePath = $libFilesystem->getAbsolutePath(
+                            $fileRelativePath
+                        );
 
-  	if(is_object($moduleObject) && $moduleObject->getUninstallScript() != ''){
-  		$libGlobal->notificationTexts[] = 'Führe Deinstallationsskript des Moduls aus.';
-  		$scriptAbsolutePath = $libFilesystem->getAbsolutePath($moduleObject->getPath(). '/'. $moduleObject->getUninstallScript());
-  		include($scriptAbsolutePath);
-  	}
+                        if ($file == "custom") {
+                            $libFilesystem->mergeDirectory(
+                                $fileRelativePath,
+                                $moduleRelativeDirectoryPath . "/" . $file
+                            );
+                        } elseif (is_dir($fileAbsolutePath)) {
+                            $libFilesystem->copyDirectory(
+                                $fileRelativePath,
+                                $moduleRelativeDirectoryPath . "/" . $file
+                            );
+                        } elseif (is_file($fileAbsolutePath)) {
+                            copy(
+                                $fileRelativePath,
+                                $moduleRelativeDirectoryPath . "/" . $file
+                            );
+                        }
+                    }
+                }
 
-  	//delete module directory
-  	$libGlobal->notificationTexts[] = 'Lösche den Modulordner ' .$moduleRelativeDirectoryPath. '.';
-  	$libFilesystem->deleteDirectory($moduleRelativeDirectoryPath);
+                $this->refreshModuleHandler();
 
-  	$this->refreshModuleHandler();
-  }
+                $moduleObject = $libModuleHandler->getModuleByModuleid($module);
 
-  function updateEngine(){
-  	global $libHttp, $libFilesystem, $libCronjobs;
-  	// globals required for install/update scripts
-  	global $libGlobal, $libDb, $libGenericStorage;
+                if (!$isUpdate && $moduleObject->getInstallScript() != "") {
+                    $libGlobal->notificationTexts[] =
+                        "Führe Installationsskript des Moduls aus.";
+                    $scriptAbsolutePath = $libFilesystem->getAbsolutePath(
+                        $moduleObject->getPath() .
+                            "/" .
+                            $moduleObject->getInstallScript()
+                    );
+                    include $scriptAbsolutePath;
+                } elseif ($isUpdate && $moduleObject->getUpdateScript() != "") {
+                    $libGlobal->notificationTexts[] =
+                        "Führe Aktualisierungsskript des Moduls aus.";
+                    $scriptAbsolutePath = $libFilesystem->getAbsolutePath(
+                        $moduleObject->getPath() .
+                            "/" .
+                            $moduleObject->getUpdateScript()
+                    );
+                    include $scriptAbsolutePath;
+                }
+            } else {
+                $libGlobal->errorTexts[] =
+                    "Das heruntergeladene Modulpaket enthält keine meta.json";
+            }
+        } else {
+            $libGlobal->errorTexts[] =
+                "Das heruntergeladene Modulpaket konnte nicht entpackt werden.";
+        }
 
-  	$tarRelativeFilePath = $this->tempRelativeDirectoryPath. '/engine.tar';
-  	$tarAbsoluteFilePath = $libFilesystem->getAbsolutePath($tarRelativeFilePath);
+        //delete temporary module folder
+        $libGlobal->notificationTexts[] =
+            "Lösche temporäres Modulpaket " . $tarRelativeFilePath . ".";
+        @unlink($tarAbsoluteFilePath);
 
-  	$tempEngineRelativeDirectoryPath = $this->tempRelativeDirectoryPath. '/home/runner/work/vcms/vcms'; // /temp/engine
-  	$tempEngineAbsoluteDirectoryPath = $libFilesystem->getAbsolutePath($tempEngineRelativeDirectoryPath);
+        $libGlobal->notificationTexts[] =
+            "Lösche temporären Modulordner " .
+            $tempModuleRelativeDirectoryPath .
+            ".";
 
-  	$libGlobal->notificationTexts[] = 'Lade Enginepaket aus dem Repository.';
-  	$libHttp->get('https://' .$this->repoHostname. '/packages/engine.tar', $tarAbsoluteFilePath);
+        if (is_dir($tempModuleAbsoluteDirectoryPath)) {
+            $libFilesystem->deleteDirectory($tempModuleRelativeDirectoryPath);
+        }
+    }
 
-  	$tar = new \pear\Archive\Archive_Tar($tarRelativeFilePath);
-  	$libGlobal->notificationTexts[] = 'Entpacke Enginepaket in das Verzeichnis: ' . $this->tempRelativeDirectoryPath;
-  	$tar->extract($this->tempRelativeDirectoryPath);
+    function uninstallModule($module)
+    {
+        global $libModuleHandler, $libFilesystem;
 
-  	if(!is_dir($tempEngineAbsoluteDirectoryPath)){
-  		$libGlobal->errorTexts[] = 'Das Enginepaket konnte nicht in das angegebene Verzeichnis entpackt werden: ' . $tempEngineAbsoluteDirectoryPath;
-  	} elseif(!is_file($tempEngineAbsoluteDirectoryPath. '/index.php')) {
-  		$libGlobal->errorTexts[] = 'Das Enginepaket ist fehlerhaft.';
-  	} else {
-  		$libCronjobs->deleteFiles();
+        // globals required for install/update scripts
+        global $libGlobal, $libDb;
 
-  		unlink($libFilesystem->getAbsolutePath('api.php'));
-  		unlink($libFilesystem->getAbsolutePath('index.php'));
+        $moduleRelativeDirectoryPath =
+            $this->modulesRelativeDirectoryPath . "/" . $module;
+        $moduleObject = $libModuleHandler->getModuleByModuleid($module);
 
-  		$libFilesystem->deleteDirectory('vendor');
+        if (
+            is_object($moduleObject) &&
+            $moduleObject->getUninstallScript() != ""
+        ) {
+            $libGlobal->notificationTexts[] =
+                "Führe Deinstallationsskript des Moduls aus.";
+            $scriptAbsolutePath = $libFilesystem->getAbsolutePath(
+                $moduleObject->getPath() .
+                    "/" .
+                    $moduleObject->getUninstallScript()
+            );
+            include $scriptAbsolutePath;
+        }
 
-  		$libGlobal->notificationTexts[] = 'Installiere neue Engine.';
-  		$libFilesystem->copyDirectory($tempEngineRelativeDirectoryPath, '.');
+        //delete module directory
+        $libGlobal->notificationTexts[] =
+            "Lösche den Modulordner " . $moduleRelativeDirectoryPath . ".";
+        $libFilesystem->deleteDirectory($moduleRelativeDirectoryPath);
 
-  		$libGlobal->notificationTexts[] = 'Führe Aktualisierungsskript der Engine aus.';
-  		$scriptAbsolutePath = $libFilesystem->getAbsolutePath($this->engineUpdateScript);
-  		include($scriptAbsolutePath);
-  	}
-  }
+        $this->refreshModuleHandler();
+    }
 
-  function refreshModuleHandler(){
-  	global $libModuleHandler;
+    function updateEngine()
+    {
+        global $libHttp, $libFilesystem, $libCronjobs;
+        // globals required for install/update scripts
+        global $libGlobal, $libDb, $libGenericStorage;
 
-  	$libModuleHandler = new \vcms\LibModuleHandler();
-  	$libModuleHandler->initModules();
-  }
+        $tarRelativeFilePath = $this->tempRelativeDirectoryPath . "/engine.tar";
+        $tarAbsoluteFilePath = $libFilesystem->getAbsolutePath(
+            $tarRelativeFilePath
+        );
 
-  function resetTempDirectory(){
-    global $libFilesystem;
+        $tempEngineRelativeDirectoryPath =
+            $this->tempRelativeDirectoryPath . "/home/runner/work/vcms/vcms"; // /temp/engine
+        $tempEngineAbsoluteDirectoryPath = $libFilesystem->getAbsolutePath(
+            $tempEngineRelativeDirectoryPath
+        );
 
-    $libFilesystem->deleteDirectory($this->tempRelativeDirectoryPath);
-    @mkdir($this->tempAbsoluteDirectoryPath);
-  }
+        $libGlobal->notificationTexts[] =
+            "Lade Enginepaket aus dem Repository.";
+        $libHttp->get(
+            "https://" . $this->repoHostname . "/packages/engine.tar",
+            $tarAbsoluteFilePath
+        );
+
+        $tar = new \pear\Archive\Archive_Tar($tarRelativeFilePath);
+        $libGlobal->notificationTexts[] =
+            "Entpacke Enginepaket in das Verzeichnis: " .
+            $this->tempRelativeDirectoryPath;
+        $tar->extract($this->tempRelativeDirectoryPath);
+
+        if (!is_dir($tempEngineAbsoluteDirectoryPath)) {
+            $libGlobal->errorTexts[] =
+                "Das Enginepaket konnte nicht in das angegebene Verzeichnis entpackt werden: " .
+                $tempEngineAbsoluteDirectoryPath;
+        } elseif (!is_file($tempEngineAbsoluteDirectoryPath . "/index.php")) {
+            $libGlobal->errorTexts[] = "Das Enginepaket ist fehlerhaft.";
+        } else {
+            $libCronjobs->deleteFiles();
+
+            unlink($libFilesystem->getAbsolutePath("api.php"));
+            unlink($libFilesystem->getAbsolutePath("index.php"));
+
+            $libFilesystem->deleteDirectory("vendor");
+
+            $libGlobal->notificationTexts[] = "Installiere neue Engine.";
+            $libFilesystem->copyDirectory(
+                $tempEngineRelativeDirectoryPath,
+                "."
+            );
+
+            $libGlobal->notificationTexts[] =
+                "Führe Aktualisierungsskript der Engine aus.";
+            $scriptAbsolutePath = $libFilesystem->getAbsolutePath(
+                $this->engineUpdateScript
+            );
+            include $scriptAbsolutePath;
+        }
+    }
+
+    function refreshModuleHandler()
+    {
+        global $libModuleHandler;
+
+        $libModuleHandler = new \vcms\LibModuleHandler();
+        $libModuleHandler->initModules();
+    }
+
+    function resetTempDirectory()
+    {
+        global $libFilesystem;
+
+        $libFilesystem->deleteDirectory($this->tempRelativeDirectoryPath);
+        @mkdir($this->tempAbsoluteDirectoryPath);
+    }
 }

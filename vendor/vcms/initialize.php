@@ -17,51 +17,49 @@ along with VCMS. If not, see <http://www.gnu.org/licenses/>.
 */
 
 /*
-* register autoloaders
-*/
-require_once(__DIR__ . '/autoload.php');
-require_once(__DIR__ . '/../phpmailer/autoload.php');
-require_once(__DIR__ . '/../phpass/autoload.php');
-require_once(__DIR__ . '/../pear/autoload.php');
-require_once(__DIR__ . '/../httpful/bootstrap.php');
-
+ * register autoloaders
+ */
+require_once __DIR__ . "/autoload.php";
+require_once __DIR__ . "/../autoload.php";
 
 /*
-* append parameter PHPSESSID to the URL by &amp; instead of & for XHTML compatibility
-*/
-ini_set('arg_separator.output', '&amp;');
-
-
-/*
-* set up session
-*/
-if(isset($_COOKIE[session_name()])){
-	session_start();
-}
-
-if((isset($_REQUEST['logout']) && $_REQUEST['logout'] == 1) ||
-		(isset($_SESSION) && isset($_SESSION['session_timeout_timestamp']) &&
-		($_SESSION['session_timeout_timestamp'] == '' || $_SESSION['session_timeout_timestamp'] < time()))){
-	$_SESSION = array();
-	session_destroy();
-	setcookie(session_name(), '', time() - 86400);
-}
-
-if(isset($_COOKIE[session_name()])){
-	$_SESSION['session_timeout_timestamp'] = time() + (3 * 24 * 60 * 60);
-}
-
+ * append parameter PHPSESSID to the URL by &amp; instead of & for XHTML compatibility
+ */
+ini_set("arg_separator.output", "&amp;");
 
 /*
-* instantiate libraries
-*/
+ * set up session
+ */
+if (isset($_COOKIE[session_name()])) {
+    session_start();
+}
+
+if (
+    (isset($_REQUEST["logout"]) && $_REQUEST["logout"] == 1) ||
+    (isset($_SESSION) &&
+        isset($_SESSION["session_timeout_timestamp"]) &&
+        ($_SESSION["session_timeout_timestamp"] == "" ||
+            $_SESSION["session_timeout_timestamp"] < time()))
+) {
+    $_SESSION = [];
+    session_destroy();
+    setcookie(session_name(), "", time() - 86400);
+}
+
+if (isset($_COOKIE[session_name()])) {
+    $_SESSION["session_timeout_timestamp"] = time() + 3 * 24 * 60 * 60;
+}
+
+/*
+ * instantiate libraries
+ */
 $libConfig = new LibConfig();
 
 $libAssociation = new \vcms\LibAssociation();
 $libCronjobs = new \vcms\LibCronjobs();
 $libDb = new \vcms\LibDb();
 $libEvent = new \vcms\LibEvent();
-$libFilesystem = new \vcms\LibFilesystem(__DIR__ . '/../..');
+$libFilesystem = new \vcms\LibFilesystem(__DIR__ . "/../..");
 $libForm = new \vcms\LibForm();
 $libGallery = new \vcms\LibGallery();
 $libGenericStorage = new \vcms\LibGenericStorage();
@@ -79,36 +77,36 @@ $libTime = new \vcms\LibTime();
 $libComponentRenderer = new \vcms\LibComponentRenderer();
 
 /*
-* init modules
-*/
+ * init modules
+ */
 $libModuleHandler->initModules();
 
-
 /*
-* set timezone
-*/
-if(isset($libConfig->timezone) && $libConfig->timezone != ''){
-	date_default_timezone_set($libConfig->timezone);
+ * set timezone
+ */
+if (isset($libConfig->timezone) && $libConfig->timezone != "") {
+    date_default_timezone_set($libConfig->timezone);
 } else {
-	date_default_timezone_set('Europe/Berlin');
+    date_default_timezone_set("Europe/Berlin");
 }
 
-
 /*
-* set the current semester
-*/
-if(isset($_REQUEST['semester']) && $libTime->isValidSemesterString($_REQUEST['semester'])){
-	$libGlobal->semester = $_REQUEST['semester'];
+ * set the current semester
+ */
+if (
+    isset($_REQUEST["semester"]) &&
+    $libTime->isValidSemesterString($_REQUEST["semester"])
+) {
+    $libGlobal->semester = $_REQUEST["semester"];
 } else {
-	$libGlobal->semester = $libTime->getSemesterName();
+    $libGlobal->semester = $libTime->getSemesterName();
 }
 
-
 /*
-* instantiate authentication context
-*/
-if(isset($_SESSION) && isset($_SESSION['libAuth'])){
-	$libAuth = $_SESSION['libAuth'];
+ * instantiate authentication context
+ */
+if (isset($_SESSION) && isset($_SESSION["libAuth"])) {
+    $libAuth = $_SESSION["libAuth"];
 } else {
-	$libAuth = new \vcms\LibAuth();
+    $libAuth = new \vcms\LibAuth();
 }
