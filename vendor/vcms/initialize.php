@@ -75,6 +75,7 @@ $libSecurityManager = new \vcms\LibSecurityManager();
 $libString = new \vcms\LibString();
 $libTime = new \vcms\LibTime();
 $libComponentRenderer = new \vcms\LibComponentRenderer();
+$libTemplateRenderer = new \vcms\LibTemplateRenderer();
 
 /*
  * init modules
