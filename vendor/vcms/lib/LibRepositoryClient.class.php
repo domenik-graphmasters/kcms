@@ -301,7 +301,7 @@ class LibRepositoryClient
             $tarAbsoluteFilePath
         );
 
-        $tar = new \pear\Archive\Archive_Tar($tarRelativeFilePath);
+        $tar = new Archive_Tar($tarRelativeFilePath);
         $libGlobal->notificationTexts[] =
             "Entpacke Enginepaket in das Verzeichnis: " .
             $this->tempRelativeDirectoryPath;
