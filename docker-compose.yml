@@ -64,3 +64,9 @@ services:
     volumes:
       - /sessions
       - ${PHP_INI-./docker/php/php.ini}:/usr/local/etc/php/conf.d/php-phpmyadmin.ini
+  documentation:
+    image: squidfunk/mkdocs-material:9
+    volumes:
+      - ./documentation:/docs
+    ports:
+      - 8083:8000
