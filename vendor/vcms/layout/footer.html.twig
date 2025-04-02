@@ -1,0 +1,30 @@
+<footer class="pb-5 pt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="social-buttons text-end mb-0 mt-0">
+                    <small class="text-muted"><a href="index.php?pid=privacy">Datenschutz</a></small>
+                    {% if facebookUrl != null %}
+                    <a href="{{facebookUrl}}" rel="nofollow"><i class="fa fa-facebook-official fa-lg hvr-pop" aria-hidden="true"></i></a>
+                    {% endif %}
+
+                    {% if instagramUrl != null %}
+                    <a href="{{instagramUrl}}" rel="nofollow"><i class="fa fa-instagram fa-lg hvr-pop" aria-hidden="true"></i></a>
+                    {% endif %}
+
+                    {% if twitterUrl != null %}
+                    <a href="{{twitterUrl}}" rel="nofollow"><i class="fa fa-twitter-square fa-lg hvr-pop" aria-hidden="true"></i></a>
+	                {% endif %}
+
+					{% if wikipediaUrl != null %}
+					<a href="' .$wikipediaUrl. '" rel="nofollow"><i class="fa fa-wikipedia-w fa-lg hvr-pop" aria-hidden="true"></i></a>
+					{% endif %}
+
+					{% if autoupdate == true %}
+					<img src="api.php?iid=auto_update" alt="auto-update" class="auto-update-img" />
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
