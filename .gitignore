@@ -5,3 +5,4 @@ build
 temp
 **/.DS_Store
 custom/veranstaltungsfotos
+custom/systemconfig.php
