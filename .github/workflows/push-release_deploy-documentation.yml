@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - "release"
+      - "initial-docs-setup"
 
 jobs:
   build:
