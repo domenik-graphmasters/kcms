@@ -1,0 +1,22 @@
+<div class="row text-center py-5 my-5">
+    <h1 class="mt-4 mb-3">{{ title }}</h1>
+    <div class="col-md-8 offset-md-2">
+        <p class="lead">{{ paragraph }}</p>
+        <div class="mb-5">
+            {% if secondaryButtonText != null %}
+            <a href="primaryButtonUrl" class="btn btn-primary btn-lg mx-2">{{ primaryButtonText }}</a>
+            <a href="secondaryButtonUrl" class="btn btn-outline-primary btn-lg mx-2">{{ secondaryButtonText }}</a>
+            {% else %}
+            <a href="primaryButtonUrl" class="btn btn-primary btn-lg">{{ primaryButtonText }}</a>
+            {% endif %}
+        </div>
+
+        {% if imageUrl != null%}
+        <div class="px-5 center-block" style="max-height: 30vh; overflow: clip">
+            <img src="{{ imageUrl }}" class="mb-4 img-fluid center-block shadow-lg" loading="lazy" width="700" height="500">
+        </div>
+        {% endif %}
+
+    </div>
+
+</div>

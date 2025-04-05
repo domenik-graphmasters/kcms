@@ -1,0 +1,12 @@
+{{
+include(
+    'components/form-group.html.twig',
+    {
+        id: id,
+        label: label,
+        class: '',
+        input: "<input type='#{type}' id='#{id}' name='#{id}' value='' required='' class='form-control'>"
+    },
+    with_context: false
+)
+}}

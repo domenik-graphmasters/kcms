@@ -1,0 +1,79 @@
+<div class="row py-5 my-5">
+    <div class="col-sx-12 col-md-6">
+        <h1 class="mt-4 mb-3 text-start">{{title}}</h1>
+        <div class="">
+            <p class="lead text-start">{{paragraph}}</p>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form action="index.php?pid=kontakt" method="post" class="form-horizontal">
+                <fieldset>
+                {{
+                include(
+                    'components/form-group-input.html.twig',
+                    {
+                        id: "name",
+                        label: "Name",
+                        type: "text"
+                    },
+                    with_context: false
+                )
+                }}
+
+                {{
+                include(
+                    'components/form-group-input.html.twig',
+                    {
+                        id: "emailaddress",
+                        label: "E-Mail-Adresse",
+                        type: "email"
+                    },
+                    with_context: false
+                )
+                }}
+
+                {{
+                include(
+                    'components/form-group-input.html.twig',
+                    {
+                        id: "telefon",
+                        label: "Telefonnummer",
+                        type: "tel"
+                    },
+                    with_context: false
+                )
+                }}
+
+                {{
+                include(
+                    'components/form-group.html.twig',
+                    {
+                        id: 'nachricht',
+                        label: 'Nachricht',
+                        class: null,
+                        input: "<textarea id='#{formGroupId}' name='formGroupId' rows='10' required='' class='form-control'></textarea>"
+                    },
+                    with_context: false
+                )
+                }}
+
+                {{
+                include(
+                    'components/form-group.html.twig',
+                    {
+                        id: '',
+                        label: '',
+                        class: 'col-sm-offset-3',
+                        input: '<button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-envelope-o" aria-hidden="true"></i> Abschicken</button>'
+                    },
+                    with_context: false
+                )
+                }}
+            </div>
+        </div>
+
+    </div>
+</div>

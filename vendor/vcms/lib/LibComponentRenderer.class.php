@@ -15,7 +15,6 @@ use function vcms\components\renderStatisticsWithExplainer;
 include_once "components/faq.php";
 include_once "components/features.php";
 include_once "components/gallery.php";
-include_once "components/hero.php";
 include_once "components/quote.php";
 include_once "components/statistics.php";
 
@@ -25,48 +24,34 @@ class LibComponentRenderer
 
     public function render(array $json): void
     {
+        global $libTemplateRenderer;
         foreach ($json as $item) {
             switch ($item["id"]) {
                 case "hero-centered-small-image":
-                    renderHeroCenteredSmallImage(
-                        title: $item["title"],
-                        paragraph: $item["paragraph"],
-                        primaryButtonText: $item["primaryButtonText"],
-                        primaryButtonUrl: $item["primaryButtonUrl"],
-                        secondaryButtonText: $item["secondaryButtonText"],
-                        secondaryButtonUrl: $item["secondaryButtonUrl"],
-                        imageUrl: $item["imageUrl"]
+                    $libTemplateRenderer->display(
+                        "hero-centered-small-image.html.twig",
+                        $item
                     );
                     break;
 
                 case "hero-centered-large-image":
-                    renderHeroCenteredLargeImage(
-                        title: $item["title"],
-                        paragraph: $item["paragraph"],
-                        primaryButtonText: $item["primaryButtonText"],
-                        primaryButtonUrl: $item["primaryButtonUrl"],
-                        secondaryButtonText: $item["secondaryButtonText"],
-                        secondaryButtonUrl: $item["secondaryButtonUrl"],
-                        imageUrl: $item["imageUrl"]
+                    $libTemplateRenderer->display(
+                        "hero-centered-large-image.html.twig",
+                        $item
                     );
                     break;
 
                 case "hero-right-image":
-                    renderHeroRightImage(
-                        title: $item["title"],
-                        paragraph: $item["paragraph"],
-                        primaryButtonText: $item["primaryButtonText"],
-                        primaryButtonUrl: $item["primaryButtonUrl"],
-                        secondaryButtonText: $item["secondaryButtonText"],
-                        secondaryButtonUrl: $item["secondaryButtonUrl"],
-                        imageUrl: $item["imageUrl"]
+                    $libTemplateRenderer->display(
+                        "hero-right-image.html.twig",
+                        $item
                     );
                     break;
 
                 case "hero-right-contact":
-                    renderHeroRightContact(
-                        title: $item["title"],
-                        paragraph: $item["paragraph"]
+                    $libTemplateRenderer->display(
+                        "hero-right-contact.html.twig",
+                        $item
                     );
                     break;
 
