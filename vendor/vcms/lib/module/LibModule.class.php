@@ -20,7 +20,7 @@ namespace vcms\module;
 
 use vcms\menu\LibMenuElement;
 
-readonly class LibModule
+final readonly class LibModule
 {
     /**
      * @param LibPage[] $pages
@@ -31,19 +31,19 @@ readonly class LibModule
      * @param LibMenuElement[] $menuElementsAdministration
      */
     function __construct(
-        string $id,
-        string $name,
-        int $version,
-        string $path,
-        array $pages,
-        array $includes,
-        array $headerStrings,
-        string $installScript,
-        string $uninstallScript,
-        string $updateScript,
-        array $menuElementsInternet,
-        array $menuElementsIntranet,
-        array $menuElementsAdministration
+        public string $id,
+        public string $name,
+        public string $version,
+        public string $path,
+        public array $pages,
+        public array $includes,
+        public array $headerStrings,
+        public string $installScript,
+        public string $uninstallScript,
+        public string $updateScript,
+        public array $menuElementsInternet,
+        public array $menuElementsIntranet,
+        public array $menuElementsAdministration
     ) {
         global $libGlobal;
 
@@ -55,7 +55,7 @@ readonly class LibModule
             $libGlobal->errorTexts[] = "Versionsangabe nicht numerisch";
         }
 
-        if ($name == "") {
+        if ($name == "" || $name == null) {
             $libGlobal->errorTexts[] = "Fehlende Namensangabe";
         }
 
@@ -86,12 +86,12 @@ readonly class LibModule
 
     function getPages(): array
     {
-        return $this->pages;
+        return $this->pages ?? [];
     }
 
     function getIncludes(): array
     {
-        return $this->includes;
+        return $this->includes ?? [];
     }
 
     function getInstallScript(): string

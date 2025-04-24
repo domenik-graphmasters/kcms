@@ -1,3 +1,8 @@
 docker/logs
 docker/mysql/data
 .env
+build
+temp
+**/.DS_Store
+custom/veranstaltungsfotos
+custom/systemconfig.php
