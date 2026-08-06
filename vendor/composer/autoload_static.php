@@ -30,6 +30,10 @@ class ComposerStaticInitdc9c71d111d6b8728f51975814621250
         array (
             'PHPMailer\\PHPMailer\\' => 20,
         ),
+        'O' => 
+        array (
+            'OpenCage\\Geocoder\\' => 18,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -48,6 +52,10 @@ class ComposerStaticInitdc9c71d111d6b8728f51975814621250
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
+        'OpenCage\\Geocoder\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/opencage/geocode/src',
         ),
     );
 

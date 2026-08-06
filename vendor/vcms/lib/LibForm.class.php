@@ -61,7 +61,7 @@ class LibForm
         $type = "text",
         $disabled = false,
         $required = false,
-        $classes = []
+        $classes = [],
     ) {
         echo '<div class="form-group row mb-3">';
         echo '<label for="' .
@@ -100,7 +100,7 @@ class LibForm
         $value,
         $disabled = false,
         $required = false,
-        $classes = []
+        $classes = [],
     ) {
         echo '<div class="form-group row mb-3">';
         echo '<label for="' .
@@ -131,7 +131,7 @@ class LibForm
         $disabled = false,
         $required = false,
         $classes = [],
-        $accepts = []
+        $accepts = [],
     ) {
         echo '<div class="form-group row mb-3">';
         echo '<label for="' .
@@ -166,7 +166,7 @@ class LibForm
         $disabled = false,
         $required = false,
         $classes = [],
-        $accepts = []
+        $accepts = [],
     ) {
         echo '<div class="form-group row">';
         echo '<label class="btn btn-outline-primary btn-file';
@@ -192,7 +192,7 @@ class LibForm
         $value,
         $disabled = false,
         $required = false,
-        $classes = []
+        $classes = [],
     ) {
         echo '<div class="form-group row">';
         echo '<label class="col-sm-' .
@@ -241,9 +241,9 @@ class LibForm
     function printMitgliederDropDownBox(
         string $name,
         string $label,
-        string $activeElementId = "",
+        ?string $activeElementId = "",
         bool $allowNull = true,
-        bool $disabled = false
+        bool $disabled = false,
     ): void {
         global $libDb, $libPerson;
 
@@ -272,7 +272,7 @@ class LibForm
         }
 
         $stmt = $libDb->prepare(
-            "SELECT id, anrede, name, vorname, titel, rang, praefix, suffix, gruppe FROM base_person ORDER BY name, vorname"
+            "SELECT id, anrede, name, vorname, titel, rang, praefix, suffix, gruppe FROM base_person ORDER BY name, vorname",
         );
         $stmt->execute();
 
@@ -292,7 +292,7 @@ class LibForm
                     $row["praefix"],
                     $row["name"],
                     $row["suffix"],
-                    7
+                    7,
                 ) .
                 " [" .
                 $row["gruppe"] .
@@ -308,7 +308,7 @@ class LibForm
         $label,
         $activeElementId = "",
         $allowNull = true,
-        $disabled = false
+        $disabled = false,
     ) {
         global $libDb;
 
@@ -337,7 +337,7 @@ class LibForm
         }
 
         $stmt = $libDb->prepare(
-            "SELECT id, titel, name FROM base_verein ORDER BY name"
+            "SELECT id, titel, name FROM base_verein ORDER BY name",
         );
         $stmt->execute();
 
@@ -360,7 +360,7 @@ class LibForm
         $label,
         $selectedSemester = "",
         $allowNull = true,
-        $disabled = false
+        $disabled = false,
     ) {
         global $libDb;
 
@@ -389,7 +389,7 @@ class LibForm
         }
 
         $stmt = $libDb->prepare(
-            "SELECT semester FROM base_semester ORDER BY SUBSTRING(semester, 3) DESC"
+            "SELECT semester FROM base_semester ORDER BY SUBSTRING(semester, 3) DESC",
         );
         $stmt->execute();
 
@@ -412,7 +412,7 @@ class LibForm
         $label,
         $selectedStatus = "",
         $allowNull = true,
-        $disabled = false
+        $disabled = false,
     ) {
         global $libDb;
 
@@ -441,7 +441,7 @@ class LibForm
         }
 
         $stmt = $libDb->prepare(
-            "SELECT bezeichnung, beschreibung FROM base_status ORDER BY bezeichnung"
+            "SELECT bezeichnung, beschreibung FROM base_status ORDER BY bezeichnung",
         );
         $stmt->execute();
 
@@ -468,7 +468,7 @@ class LibForm
         $label,
         $selectedGruppe = "",
         $allowNull = true,
-        $disabled = false
+        $disabled = false,
     ) {
         global $libDb;
 
@@ -497,7 +497,7 @@ class LibForm
         }
 
         $stmt = $libDb->prepare(
-            "SELECT bezeichnung, beschreibung FROM base_gruppe ORDER BY bezeichnung"
+            "SELECT bezeichnung, beschreibung FROM base_gruppe ORDER BY bezeichnung",
         );
         $stmt->execute();
 
@@ -524,7 +524,7 @@ class LibForm
         $label,
         $selectedRegion = "",
         $allowNull = true,
-        $disabled = false
+        $disabled = false,
     ) {
         global $libDb;
 
@@ -553,13 +553,13 @@ class LibForm
         }
 
         $stmt = $libDb->prepare(
-            "SELECT id, bezeichnung FROM base_region ORDER BY bezeichnung"
+            "SELECT id, bezeichnung FROM base_region ORDER BY bezeichnung",
         );
         $stmt->execute();
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $stmt2 = $libDb->prepare(
-                "SELECT COUNT(*) AS number FROM base_person WHERE region1 = :region1 OR region2 = :region2"
+                "SELECT COUNT(*) AS number FROM base_person WHERE region1 = :region1 OR region2 = :region2",
             );
             $stmt2->bindValue(":region1", $row["id"], PDO::PARAM_INT);
             $stmt2->bindValue(":region2", $row["id"], PDO::PARAM_INT);
@@ -589,7 +589,7 @@ class LibForm
         $label,
         $selectedVeranstaltung = "",
         $allowNull = true,
-        $disabled = false
+        $disabled = false,
     ) {
         global $libDb;
 
@@ -618,7 +618,7 @@ class LibForm
         }
 
         $stmt = $libDb->prepare(
-            "SELECT id, titel, datum FROM base_veranstaltung ORDER BY datum DESC"
+            "SELECT id, titel, datum FROM base_veranstaltung ORDER BY datum DESC",
         );
         $stmt->execute();
 
