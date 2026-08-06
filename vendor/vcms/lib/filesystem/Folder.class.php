@@ -129,7 +129,7 @@ class Folder extends FolderElement{
 	}
 
 	function addFile($tmpFileSystemName, $name, $groupArray){
-		$name = trim(preg_replace("/[^a-zA-Z0-9\s\.äöüÄÖÜß]/", ' ', $name));
+		$name = trim(preg_replace("/[^a-zA-Z0-9\s\.\-_äöüÄÖÜß]/", ' ', $name));
 		$name = preg_replace("/[\s]+/", ' ', $name);
 
 		if(strlen($name) > 0){
