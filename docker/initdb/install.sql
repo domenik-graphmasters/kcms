@@ -255,6 +255,18 @@ CREATE TABLE IF NOT EXISTS sys_log_intranet (
   KEY aktion (aktion)
 ) ENGINE=MYISAM DEFAULT CHARSET=utf8;
 
+-- Table: base_registration
+CREATE TABLE IF NOT EXISTS base_registration (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255),
+  datum_geburtstag DATE,
+  email VARCHAR(255),
+  password_hash VARCHAR(255),
+  validationkey VARCHAR(255),
+  PRIMARY KEY (id),
+  UNIQUE KEY email (email)
+) ENGINE=MYISAM DEFAULT CHARSET=utf8;
+
 -- Standarddatensätze for base_gruppe
 INSERT IGNORE INTO base_gruppe (bezeichnung, beschreibung) VALUES
 ('F', 'Fuchs'),

@@ -241,7 +241,7 @@ class LibForm
     function printMitgliederDropDownBox(
         string $name,
         string $label,
-        string $activeElementId = "",
+        ?string $activeElementId = "",
         bool $allowNull = true,
         bool $disabled = false
     ): void {

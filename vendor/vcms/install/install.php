@@ -298,7 +298,7 @@ $sql = "CREATE TABLE base_registration (
     password_hash varchar(255),
     validationkey varchar(255),
     PRIMARY KEY (id),
-    UNIQUE KEY email (email),
+    UNIQUE KEY email (email)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
 $libDb->query($sql);
 
