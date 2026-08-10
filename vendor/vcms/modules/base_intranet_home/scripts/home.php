@@ -49,14 +49,7 @@ echo $libString->getNotificationBoxText();
 * semester menu
 */
 
-$stmt = $libDb->prepare('SELECT * FROM base_semester ORDER BY SUBSTRING(semester, 3) DESC');
-$stmt->execute();
-
-$semesters = array();
-
-while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-	$semesters[] = $row['semester'];
-}
+$semesters = $libCharge->getSemester();
 
 echo $libTime->getSemesterMenu($semesters, $libGlobal->semester);
 

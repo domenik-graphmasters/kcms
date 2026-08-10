@@ -29,11 +29,8 @@ $personsPerRow = 4;
 
 $tArray = array();
 
-$stmt = $libDb->prepare("SELECT semester FROM base_semester ORDER BY SUBSTRING(semester, 3) DESC LIMIT 0,25");
-$stmt->execute();
-
-while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-	$tArray[$row['semester']] = array();
+foreach(array_slice($libCharge->getSemester(), 0, 25) as $semester){
+	$tArray[$semester] = array();
 }
 
 
@@ -45,11 +42,8 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 		$vornameArray = explode(" ", $row['vorname']);
 		$vorname = $vornameArray[0];
 
-		$stmt2 = $libDb->prepare("SELECT COUNT(*) AS number FROM base_person, base_semester WHERE id = :id AND (base_semester.senior = base_person.id OR base_semester.consenior = base_person.id OR base_semester.fuchsmajor = base_person.id OR base_semester.fuchsmajor2 = base_person.id OR base_semester.scriptor = base_person.id OR base_semester.quaestor = base_person.id OR base_semester.jubelsenior = base_person.id OR base_semester.vop = base_person.id OR base_semester.vvop = base_person.id OR base_semester.vopxx = base_person.id OR base_semester.vopxxx = base_person.id OR base_semester.vopxxxx = base_person.id)");
-		$stmt2->bindValue(':id', $row['id'], PDO::PARAM_INT);
-		$stmt2->execute();
-		$stmt2->bindColumn('number', $anzahlChargen);
-		$stmt2->fetch();
+		$anzahlChargen = $libCharge->zaehleSemesterMitKategorien($row['id'],
+			\vcms\LibCharge::KATEGORIEN_CONCHARGEN);
 
 		$tArray[$row['semester_reception']][$row['id']]['gruppe'] = $row['gruppe'];
 		$tArray[$row['semester_reception']][$row['id']]['status'] = $row['status'];

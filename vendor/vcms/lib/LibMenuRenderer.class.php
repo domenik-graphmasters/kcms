@@ -33,19 +33,19 @@ class LibMenuRenderer
 
     var $defaultIndent = '            ';
 
-    function printNavbar($menuInternet, $menuIntranet, $menuAdministration, $aktivesPid, $gruppe, $aemter)
+    function printNavbar($menuInternet, $menuIntranet, $menuAdministration, $aktivesPid, $gruppe, $rollen, $rechte)
     {
         global $libGenericStorage;
         global $libAuth;
 
         $menuInternet = $menuInternet->copy();
-        $menuInternet->reduceByAccessRestriction($gruppe, $aemter);
+        $menuInternet->reduceByAccessRestriction($gruppe, $rollen, $rechte);
 
         $menuIntranet = $menuIntranet->copy();
-        $menuIntranet->reduceByAccessRestriction($gruppe, $aemter);
+        $menuIntranet->reduceByAccessRestriction($gruppe, $rollen, $rechte);
 
         $menuAdministration = $menuAdministration->copy();
-        $menuAdministration->reduceByAccessRestriction($gruppe, $aemter);
+        $menuAdministration->reduceByAccessRestriction($gruppe, $rollen, $rechte);
 
         $navbarClass = $this->getNavbarClass();
 

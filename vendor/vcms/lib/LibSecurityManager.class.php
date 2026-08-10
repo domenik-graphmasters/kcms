@@ -21,6 +21,27 @@ namespace vcms;
 use PDO;
 
 class LibSecurityManager{
+	const RECHT_SYSTEMVERWALTUNG = 'systemverwaltung';
+	const RECHT_STAMMDATEN = 'stammdaten';
+	const RECHT_MITGLIEDERVERWALTUNG = 'mitgliederverwaltung';
+	const RECHT_BENUTZERKONTEN = 'benutzerkonten';
+	const RECHT_GALERIEVERWALTUNG = 'galerieverwaltung';
+
+	/*
+	* Die Rechte der Engine. Module dürfen in ihrer meta.json eigene Rechte
+	* verwenden; die Chargenverwaltung sammelt sie aus den installierten Modulen ein.
+	*/
+	var $possibleRechte = array(
+			self::RECHT_SYSTEMVERWALTUNG,
+			self::RECHT_STAMMDATEN,
+			self::RECHT_MITGLIEDERVERWALTUNG,
+			self::RECHT_BENUTZERKONTEN,
+			self::RECHT_GALERIEVERWALTUNG);
+
+	/*
+	* Veraltet: die Rollen der Chargen, also die alten Amtsbezeichnungen. Werden nur
+	* noch für Module gebraucht, deren meta.json weiterhin aemter statt rechte angibt.
+	*/
 	var $possibleAemter = array(
 			'senior', 'consenior', 'fuchsmajor', 'fuchsmajor2', 'scriptor', 'quaestor', 'jubelsenior',
 			'ahv_senior', 'ahv_consenior', 'ahv_keilbeauftragter', 'ahv_scriptor', 'ahv_quaestor', 'ahv_beisitzer1', 'ahv_beisitzer2',
@@ -44,6 +65,51 @@ class LibSecurityManager{
 		return $this->possibleAemter;
 	}
 
+	function getPossibleRechte(){
+		return $this->possibleRechte;
+	}
+
+	/*
+	* Alle Rechte, die sich einer Charge zuweisen lassen: die der Engine, die in den
+	* meta.json installierter Module verwendeten und die bereits vergebenen.
+	*
+	* ponytail: Rechte, die ein Modul ausschließlich im Code prüft, kommen über die
+	* bereits vergebenen herein - der Seed des Moduls muss sie also einmal vergeben.
+	* Ein eigenes Feld in der meta.json lohnt erst, wenn das nicht mehr reicht.
+	*/
+	function getVergebbareRechte(){
+		global $libModuleHandler, $libCharge;
+
+		$rechte = $this->possibleRechte;
+
+		if(is_object($libModuleHandler)){
+			foreach($libModuleHandler->getModules() as $module){
+				$elemente = array_merge($module->getPages(), $module->getIncludes());
+
+				foreach($elemente as $element){
+					if(!$element->hasAccessRestriction()){
+						continue;
+					}
+
+					$elementRechte = $element->getAccessRestriction()->getRechte();
+
+					if(is_array($elementRechte)){
+						$rechte = array_merge($rechte, $elementRechte);
+					}
+				}
+			}
+		}
+
+		if(is_object($libCharge)){
+			$rechte = array_merge($rechte, $libCharge->getVergebeneRechte());
+		}
+
+		$rechte = array_values(array_unique($rechte));
+		sort($rechte);
+
+		return $rechte;
+	}
+
 	function hasAccess($libElement, $libAuth){
 		//public page?
 		if(!$libElement->hasAccessRestriction()){
@@ -57,7 +123,7 @@ class LibSecurityManager{
 			$accessRestriction = $libElement->getAccessRestriction();
 
 			//enough rights?
-			if($accessRestriction->isFulfilledBy($libAuth->getGruppe(), $libAuth->getAemter())){
+			if($accessRestriction->isFulfilledBy($libAuth->getGruppe(), $libAuth->getRollen(), $libAuth->getRechte())){
 				return true;
 			} else {
 				return false;
@@ -66,85 +132,35 @@ class LibSecurityManager{
 	}
 
 	function generateAggregatedAccessRestriction($accessRestrictions){
-		$includedGruppen = array();
-		$modifyGruppen = true;
-		$freshGruppen = true;
+		return new \vcms\module\LibAccessRestriction(
+			$this->aggregateRestrictionValues($accessRestrictions, 'getGruppen'),
+			$this->aggregateRestrictionValues($accessRestrictions, 'getAemter'),
+			$this->aggregateRestrictionValues($accessRestrictions, 'getRechte'));
+	}
 
-		$includedAemter = array();
-		$modifyAemter = true;
-		$freshAemter = true;
+	/*
+	* Vereinigt eine Dimension über alle Restriktionen. Sobald ein Element ohne
+	* Einschränkung dabei ist, entfällt der Filter für diese Dimension.
+	*/
+	function aggregateRestrictionValues($accessRestrictions, $getter){
+		$included = array();
 
 		//no foreach, as otherwise php4 does copy-by-value!
 		for($i=0; $i<count($accessRestrictions); $i++){
-			$accessRestriction = $accessRestrictions[$i];
+			$values = $accessRestrictions[$i]->$getter();
 
-			/*
-			* aggregate groups
-			*/
-			if($modifyGruppen){
-				//element without group restriction?
-				if(!$accessRestriction->hasGruppenRestriction()){
-					//remove group filder
-					$includedGruppen = array();
-					//protect group filter from modification
-					$modifyGruppen = false;
-					$freshGruppen = false;
-				}
-				//element with group restriction
-				else{
-					//first iteration
-					if($freshGruppen){
-						//add all groups
-						$includedGruppen = $accessRestriction->getGruppen();
-						$freshGruppen = false;
-					} else {
-						//remove all groups not contained in the restriction
-						$includedGruppen = array_unique(array_merge(
-							$includedGruppen, $accessRestriction->getGruppen()));
-					}
-				}
+			//element without restriction? then no filter remains
+			if(!is_array($values) || count($values) == 0){
+				return '';
 			}
 
-			/*
-			* aggregate functions
-			*/
-			if($modifyAemter){
-				//element without function restriction?
-				if(!$accessRestriction->hasAemterRestriction()){
-					//remove function filter
-					$includedAemter = array();
-					//protect function filter from modification
-					$modifyAemter = false;
-					$freshAemter = false;
-				}
-				//element with function restriction
-				else{
-					//if first iteration
-					if($freshAemter){
-						//add all functions
-						$includedAemter = $accessRestriction->getAemter();
-						$freshAemter = false;
-					} else {
-						//remove all functions not contained in the restriction
-						$includedAemter = array_unique(array_merge(
-							$includedAemter, $accessRestriction->getAemter()));
-					}
-				}
-			}
+			$included = array_merge($included, $values);
 		}
 
-		if(count($includedGruppen) == 0){
-			$includedGruppen = '';
-		} else {
-			$includedGruppen = array_values(array_unique($includedGruppen));
+		if(count($included) == 0){
+			return '';
 		}
 
-		if(count($includedAemter) == 0){
-			$includedAemter = '';
-		} else {
-			$includedAemter = array_values(array_unique($includedAemter));
-		}
-
-		return new \vcms\module\LibAccessRestriction($includedGruppen, $includedAemter);
+		return array_values(array_unique($included));
 	}
 }

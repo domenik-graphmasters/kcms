@@ -31,7 +31,7 @@ if(isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])){
 }
 
 
-if($libGallery->hasFotowartPrivilege($libAuth->getAemter())){
+if($libGallery->hasFotowartPrivilege()){
 	//delete image
 	if(isset($_REQUEST['aktion']) && $_REQUEST['aktion'] == 'deleteFoto'){
 		if(is_numeric($id) && isset($_REQUEST['bildnr']) && is_numeric($_REQUEST['bildnr'])){
@@ -169,7 +169,7 @@ echo '<p class="mb-4">Hochgeladene Fotos sind nach einer <a href="index.php?pid=
 
 
 if(is_dir('custom/veranstaltungsfotos/' .$id)){
-	if($libGallery->hasFotowartPrivilege($libAuth->getAemter())){
+	if($libGallery->hasFotowartPrivilege()){
 		echo '<hr />';
 
 		echo '<a href="index.php?pid=event_admin_galerien&amp;aktion=delete&amp;id=' .$id. '"  onclick="return confirm(\'Willst Du die Galerie wirklich löschen?\')"><i class="fa fa-trash" aria-hidden="true"></i> Komplette Galerie löschen</a>';
@@ -227,7 +227,7 @@ if(is_dir('custom/veranstaltungsfotos/' .$id)){
 
 		echo '</div>';
 
-		if($libGallery->hasFotowartPrivilege($libAuth->getAemter())){
+		if($libGallery->hasFotowartPrivilege()){
 			echo '<div class="controls mb-3">';
 
 			echo '<a href="index.php?pid=event_admin_galerie&amp;aktion=main&amp;id=' .$id. '&amp;bildnr=' .$key. '"><i class="fa fa-home public" aria-hidden="true"></i></a> ';

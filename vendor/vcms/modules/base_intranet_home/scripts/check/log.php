@@ -23,7 +23,7 @@ if(!is_object($libGlobal) || !$libAuth->isLoggedin())
 $numberOfLoginErrorsThreshold = 14;
 $numberOfLoginErrorDaysThreshold = 14;
 
-if(in_array('internetwart', $libAuth->getAemter()) || in_array('datenpflegewart', $libAuth->getAemter())){
+if($libAuth->hasRecht(\vcms\LibSecurityManager::RECHT_BENUTZERKONTEN)){
 	$stmt = $libDb->prepare('SELECT COUNT(mitglied) AS numberOfLoginErrors FROM sys_log_intranet WHERE aktion = 2 AND DATEDIFF(NOW(), datum) < ' .$numberOfLoginErrorDaysThreshold. ' GROUP BY mitglied HAVING numberOfLoginErrors >= ' .$numberOfLoginErrorsThreshold);
 	$stmt->execute();
 	$stmt->bindColumn('numberOfLoginErrors', $anzahl);

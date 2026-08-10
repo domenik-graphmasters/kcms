@@ -136,32 +136,74 @@ echo '<p class="contact-vorstand mb-4">';
 
 $vorstand = $libAssociation->getAnsprechbarerAktivenVorstandIds();
 
-if($libGenericStorage->loadValueInCurrentModule('show_senior') && $vorstand['senior']){
-	echo 'Senior: ' .$libPerson->getNameString($vorstand['senior'], 0). '<br />';
+if($libGenericStorage->loadValueInCurrentModule('show_senior') && count($vorstand['senior']) > 0){
+	$namen = array();
+
+	foreach($vorstand['senior'] as $person){
+		$namen[] = $libPerson->getNameString($person, 0);
+	}
+
+	echo 'Senior: ' .implode(', ', $namen). '<br />';
 }
 
-if($libGenericStorage->loadValueInCurrentModule('show_jubelsenior') && $vorstand['jubelsenior']){
-	echo 'Jubelsenior: ' .$libPerson->getNameString($vorstand['jubelsenior'], 0). '<br />';
+if($libGenericStorage->loadValueInCurrentModule('show_jubelsenior') && count($vorstand['jubelsenior']) > 0){
+	$namen = array();
+
+	foreach($vorstand['jubelsenior'] as $person){
+		$namen[] = $libPerson->getNameString($person, 0);
+	}
+
+	echo 'Jubelsenior: ' .implode(', ', $namen). '<br />';
 }
 
-if($libGenericStorage->loadValueInCurrentModule('show_consenior') && $vorstand['consenior']){
-	echo 'Consenior: ' .$libPerson->getNameString($vorstand['consenior'], 0). '<br />';
+if($libGenericStorage->loadValueInCurrentModule('show_consenior') && count($vorstand['consenior']) > 0){
+	$namen = array();
+
+	foreach($vorstand['consenior'] as $person){
+		$namen[] = $libPerson->getNameString($person, 0);
+	}
+
+	echo 'Consenior: ' .implode(', ', $namen). '<br />';
 }
 
-if($libGenericStorage->loadValueInCurrentModule('show_fuchsmajor') && $vorstand['fuchsmajor']){
-	echo 'Fuchsmajor: ' .$libPerson->getNameString($vorstand['fuchsmajor'], 0). '<br />';
+if($libGenericStorage->loadValueInCurrentModule('show_fuchsmajor') && count($vorstand['fuchsmajor']) > 0){
+	$namen = array();
+
+	foreach($vorstand['fuchsmajor'] as $person){
+		$namen[] = $libPerson->getNameString($person, 0);
+	}
+
+	echo 'Fuchsmajor: ' .implode(', ', $namen). '<br />';
 }
 
-if($libGenericStorage->loadValueInCurrentModule('show_fuchsmajor2') && $vorstand['fuchsmajor2']){
-	echo 'Fuchsmajor 2: ' .$libPerson->getNameString($vorstand['fuchsmajor2'], 0). '<br />';
+if($libGenericStorage->loadValueInCurrentModule('show_fuchsmajor2') && count($vorstand['fuchsmajor2']) > 0){
+	$namen = array();
+
+	foreach($vorstand['fuchsmajor2'] as $person){
+		$namen[] = $libPerson->getNameString($person, 0);
+	}
+
+	echo 'Fuchsmajor 2: ' .implode(', ', $namen). '<br />';
 }
 
-if($libGenericStorage->loadValueInCurrentModule('show_scriptor') && $vorstand['scriptor']){
-	echo 'Scriptor: ' .$libPerson->getNameString($vorstand['scriptor'], 0). '<br />';
+if($libGenericStorage->loadValueInCurrentModule('show_scriptor') && count($vorstand['scriptor']) > 0){
+	$namen = array();
+
+	foreach($vorstand['scriptor'] as $person){
+		$namen[] = $libPerson->getNameString($person, 0);
+	}
+
+	echo 'Scriptor: ' .implode(', ', $namen). '<br />';
 }
 
-if($libGenericStorage->loadValueInCurrentModule('show_quaestor') && $vorstand['quaestor']){
-	echo 'Quaestor: ' .$libPerson->getNameString($vorstand['quaestor'], 0). '<br />';
+if($libGenericStorage->loadValueInCurrentModule('show_quaestor') && count($vorstand['quaestor']) > 0){
+	$namen = array();
+
+	foreach($vorstand['quaestor'] as $person){
+		$namen[] = $libPerson->getNameString($person, 0);
+	}
+
+	echo 'Quaestor: ' .implode(', ', $namen). '<br />';
 }
 
 echo '</p>';

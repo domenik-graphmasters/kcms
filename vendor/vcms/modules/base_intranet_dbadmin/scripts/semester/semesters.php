@@ -27,25 +27,19 @@ if($libAuth->isLoggedin()){
 	*/
 	if(isset($_GET['aktion']) && $_GET['aktion'] == 'delete'){
 		if(isset($_GET['semester']) && $_GET['semester'] != ''){
-			$stmt = $libDb->prepare('SELECT internetwart FROM base_semester WHERE semester=:semester');
-			$stmt->bindValue(':semester', $_REQUEST['semester']);
-			$stmt->execute();
-			$stmt->bindColumn('internetwart', $internetwart);
-			$stmt->fetch();
+			//Semester mit Systemverwaltung nie löschen, sonst bleibt im Extremfall kein Administrator übrig
+			$verwalter = $libCharge->getPersonenMitRecht(
+				\vcms\LibSecurityManager::RECHT_SYSTEMVERWALTUNG, $_REQUEST['semester']);
 
-			//ist im zu löschenden Semester kein Internetwart angegeben?
-			if($internetwart == '' || $internetwart == 0){
-				//aus Datenbank löschen
-				$stmt = $libDb->prepare('DELETE FROM base_semester WHERE semester=:semester');
-				$stmt->bindValue(':semester', $_REQUEST['semester']);
-				$stmt->execute();
+			if(count($verwalter) == 0){
+				$libCharge->loescheSemester($_REQUEST['semester']);
 
 				$libGlobal->notificationTexts[] = 'Datensatz gelöscht';
 
 				//Semestercover löschen
 				$libImage->deleteSemesterCover($_REQUEST['semester']);
 			} else {
-				$libGlobal->errorTexts[] = 'Das Semester kann nicht gelöscht werden, da es einen Internetwart-Eintrag enthält. Um das Semester zu löschen, muss erst von einem Internetwart der Internetwarteintrag aus dem Semester ausgetragen werden.';
+				$libGlobal->errorTexts[] = 'Das Semester kann nicht gelöscht werden, weil darin eine Charge mit dem Recht zur Systemverwaltung besetzt ist. Trage diese Besetzung zuerst aus dem Semester aus.';
 			}
 		}
 	}
@@ -74,17 +68,15 @@ if($libAuth->isLoggedin()){
 	echo '<tr><th>Semester</th><th>Senior</th><th>Fuchsmajor</th><th>Internetwart</th><th></th></tr>';
 	echo '</thead>';
 
-	$stmt = $libDb->prepare('SELECT * FROM base_semester ORDER BY SUBSTRING(semester,3) DESC');
-	$stmt->execute();
-
-	while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+	//eine Rolle darf mehrfach besetzt sein, deshalb werden alle Inhaber genannt
+	foreach($libCharge->getSemester() as $semester){
 		echo '<tr>';
-		echo '<td>' .$row['semester']. '</td>';
-		echo '<td>' .$libPerson->getNameString($row['senior'],5). '</td>';
-		echo '<td>' .$libPerson->getNameString($row['fuchsmajor'],5). '</td>';
-		echo '<td>' .$libPerson->getNameString($row['internetwart'],5). '</td>';
+		echo '<td>' .$semester. '</td>';
+		echo '<td>' .$libCharge->getNamenMitRolle('senior', $semester). '</td>';
+		echo '<td>' .$libCharge->getNamenMitRolle('fuchsmajor', $semester). '</td>';
+		echo '<td>' .$libCharge->getNamenMitRolle('internetwart', $semester). '</td>';
 		echo '<td class="tool-column">';
-		echo '<a href="index.php?pid=intranet_admin_semester&amp;semester=' .$row['semester']. '">';
+		echo '<a href="index.php?pid=intranet_admin_semester&amp;semester=' .$semester. '">';
 		echo '<i class="fa fa-cog" aria-hidden="true"></i>';
 		echo '</a>';
 		echo '</td>';

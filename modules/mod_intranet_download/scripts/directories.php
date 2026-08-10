@@ -39,9 +39,9 @@ $rootFolderAbsolutePathString = $libFilesystem->getAbsolutePath($rootFolderPathS
 /*
 * pre scan actions
 */
-foreach ($libAuth->getAemter() as $amt) {
-    if (!is_dir($rootFolderAbsolutePathString . '/' . $amt)) {
-        mkdir($rootFolderAbsolutePathString . '/' . $amt);
+foreach ($libAuth->getOrdnernamen() as $ordnername) {
+    if (!is_dir($rootFolderAbsolutePathString . '/' . $ordnername)) {
+        mkdir($rootFolderAbsolutePathString . '/' . $ordnername);
     }
 }
 
@@ -63,7 +63,7 @@ $hashes = $rootFolderObject->getHashMap();
 if (isset($_GET['aktion']) && $_GET['aktion'] == 'delete' && isset($_GET['deleteHash'])) {
     $element = $hashes[$_GET['deleteHash']];
 
-    if (in_array($element->owningAmt, $libAuth->getAemter())) {
+    if (in_array($element->owningAmt, $libAuth->getOrdnernamen())) {
         $element->delete();
         $libGlobal->notificationTexts[] = 'Das Element wurde gelöscht.';
     } else {
@@ -73,7 +73,7 @@ if (isset($_GET['aktion']) && $_GET['aktion'] == 'delete' && isset($_GET['delete
 elseif (isset($_POST['aktion']) && $_POST['aktion'] == 'upload' && isset($_POST['hash'])) {
     $folder = $hashes[$_POST['hash']];
 
-    if (in_array($folder->owningAmt, $libAuth->getAemter())) {
+    if (in_array($folder->owningAmt, $libAuth->getOrdnernamen())) {
         if (isset($_POST['gruppen']) && count($_POST['gruppen']) > 0) {
             if ($_FILES['datei']['tmp_name'] != '') {
                 $groupArray = array_merge($_POST['gruppen'], array($libAuth->getGruppe()));
@@ -91,7 +91,7 @@ elseif (isset($_POST['aktion']) && $_POST['aktion'] == 'upload' && isset($_POST[
 elseif (isset($_POST['aktion']) && $_POST['aktion'] == "newfolder" && isset($_POST['hash'])) {
     $folder = $hashes[$_POST['hash']];
 
-    if (in_array($folder->owningAmt, $libAuth->getAemter())) {
+    if (in_array($folder->owningAmt, $libAuth->getOrdnernamen())) {
         $folder->addFolder($_POST['foldername']);
         $libGlobal->notificationTexts[] = 'Der Ordner wurde angelegt.';
     } else {
@@ -136,7 +136,7 @@ displayFolderContents($currentFolder, $libDb);
 echo '</div>';
 
 
-if (in_array($currentFolder->owningAmt, $libAuth->getAemter())) {
+if (in_array($currentFolder->owningAmt, $libAuth->getOrdnernamen())) {
     /*
     * upload form
     */
@@ -253,7 +253,7 @@ function displayFolderContents(Folder &$folder, \vcms\LibDb $libDb): void
             }
             echo '</td>';
             echo '<td class="col-1">';
-            if ($folderElement->isDeleteable() && in_array($folderElement->owningAmt, $libAuth->getAemter())) {
+            if ($folderElement->isDeleteable() && in_array($folderElement->owningAmt, $libAuth->getOrdnernamen())) {
                 $href = 'index.php?pid=intranet_directories&amp;aktion=delete&amp;deleteHash=' . $folderElement->getHash() . '&hash=' . $folder->getHash();
                 echo '<a href="' . $href . '" onclick="return confirm(\'Willst Du den Ordner wirklich löschen?\')"><i class="fa fa-trash" aria-hidden="true"></i></a>';
             }
@@ -275,7 +275,7 @@ function displayFolderContents(Folder &$folder, \vcms\LibDb $libDb): void
             echo '<td class="col-2 col-md-1"><span class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="' . $tooltip . '">' . implode('', $folderElement->readGroups) . '</span></td>';
             echo '<td class="col-2 col-md-1"><span class="text-muted">' . getSizeString($folderElement->getSize()) . '</span></td>';
             echo '<td class="col-1">';
-            if (in_array($folderElement->owningAmt, $libAuth->getAemter())) {
+            if (in_array($folderElement->owningAmt, $libAuth->getOrdnernamen())) {
                 $href = 'index.php?pid=intranet_directories&amp;aktion=delete&amp;deleteHash=' . $folderElement->getHash() . '&hash=' . $folder->getHash();
                 echo '<a href="' . $href . '" onclick="return confirm(\'Willst Du die Datei wirklich löschen?\')"><i class="fa fa-trash" aria-hidden="true"></i></a>';
             }

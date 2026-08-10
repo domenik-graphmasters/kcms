@@ -21,18 +21,27 @@ namespace vcms\module;
 class LibAccessRestriction{
 	var $gruppen;
 	var $aemter;
+	var $rechte;
 
-	function __construct($gruppen, $aemter){
+	function __construct($gruppen, $aemter, $rechte = ''){
 		$this->gruppen = $gruppen;
 		$this->aemter = $aemter;
+		$this->rechte = $rechte;
 	}
 
 	function getGruppen(){
 		return $this->gruppen;
 	}
 
+	/*
+	* Veraltete Notation: Rollen von Chargen statt Rechte.
+	*/
 	function getAemter(){
 		return $this->aemter;
+	}
+
+	function getRechte(){
+		return $this->rechte;
 	}
 
 	function hasGruppenRestriction(){
@@ -43,11 +52,15 @@ class LibAccessRestriction{
 		return is_array($this->aemter) && count($this->aemter) > 0;
 	}
 
-	function isFulfilledBy($gruppe, $aemter){
+	function hasRechteRestriction(){
+		return is_array($this->rechte) && count($this->rechte) > 0;
+	}
+
+	function isFulfilledBy($gruppe, $rollen, $rechte){
 		$gruppenOk = false;
 
 		//should this restriction be restricted by group membership?
-		if(is_array($this->gruppen) && count($this->gruppen) > 0){
+		if($this->hasGruppenRestriction()){
 			if(in_array($gruppe, $this->gruppen)){
 				$gruppenOk = true;
 			}
@@ -55,21 +68,26 @@ class LibAccessRestriction{
 			$gruppenOk = true;
 		}
 
-		$aemterOk = false;
-
-		//should this restriction be restricted by function?
-		if(is_array($this->aemter) && count($this->aemter) > 0){
-			if(is_array($aemter)){
-				foreach($aemter as $amt){
-					if(in_array($amt, $this->aemter)){
-						$aemterOk = true;
-					}
-				}
-			}
-		} else {
-			$aemterOk = true;
+		//ohne Einschränkung auf Rechte oder Rollen genügt die Gruppe
+		if(!$this->hasRechteRestriction() && !$this->hasAemterRestriction()){
+			return $gruppenOk;
 		}
 
-		return $gruppenOk && $aemterOk;
+		$funktionOk = false;
+
+		if($this->hasRechteRestriction() && is_array($rechte)){
+			if(count(array_intersect($rechte, $this->rechte)) > 0){
+				$funktionOk = true;
+			}
+		}
+
+		//veraltete Notation: gegen die Rollen der gehaltenen Chargen prüfen
+		if(!$funktionOk && $this->hasAemterRestriction() && is_array($rollen)){
+			if(count(array_intersect($rollen, $this->aemter)) > 0){
+				$funktionOk = true;
+			}
+		}
+
+		return $gruppenOk && $funktionOk;
 	}
 }

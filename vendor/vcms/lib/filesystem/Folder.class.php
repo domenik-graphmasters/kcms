@@ -24,6 +24,8 @@ class Folder extends FolderElement{
 	var $nestedFolderElements = array();
 
 	function __construct($nestingFolder, $name, $fileSystemFileName){
+		global $libCharge;
+
 		parent::__construct($nestingFolder, $name, $fileSystemFileName);
 
 		$this->type = 1;
@@ -33,7 +35,13 @@ class Folder extends FolderElement{
 		}
 
 		if($this->isAmtsRootFolder){
+			//der Verzeichnisname ist der Ordnername der Charge
 			$this->owningAmt = $fileSystemFileName;
+
+			//angezeigt wird der Name der Charge, das Verzeichnis behält seinen Namen
+			if(is_object($libCharge)){
+				$this->name = $libCharge->getNameZuOrdnername($fileSystemFileName);
+			}
 		} elseif(is_object($nestingFolder)){
 			$this->owningAmt = $nestingFolder->owningAmt;
 		}

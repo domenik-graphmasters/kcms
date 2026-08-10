@@ -106,64 +106,15 @@ $sql = "CREATE TABLE base_person (
 ) ENGINE=MYISAM DEFAULT CHARSET=utf8;";
 $libDb->query($sql);
 
-echo "Erstelle Tabelle base_semester<br />";
-$sql = "CREATE TABLE base_semester (
-  semester varchar(10),
-  senior int(11),
-  sen_dech tinyint(1),
-  consenior int(11),
-  con_dech tinyint(1),
-  fuchsmajor int(11),
-  fm_dech tinyint(1),
-  fuchsmajor2 int(11),
-  fm2_dech tinyint(1),
-  scriptor int(11),
-  scr_dech tinyint(1),
-  quaestor int(11),
-  quaes_dech tinyint(1),
-  jubelsenior int(11),
-  jubelsen_dech tinyint(1),
-  ahv_senior int(11),
-  ahv_consenior int(11),
-  ahv_keilbeauftragter int(11),
-  ahv_scriptor int(11),
-  ahv_quaestor int(11),
-  ahv_beisitzer1 int(11),
-  ahv_beisitzer2 int(11),
-  hv_vorsitzender int(11),
-  hv_kassierer int(11),
-  hv_beisitzer1 int(11),
-  hv_beisitzer2 int(11),
-  archivar int(11),
-  ausflugswart int(11),
-  bierwart int(11),
-  bootshauswart int(11),
-  couleurartikelwart int(11),
-  datenpflegewart int(11),
-  fechtwart int(11),
-  fotowart int(11),
-  hauswart int(11),
-  huettenwart int(11),
-  internetwart int(11),
-  kuehlschrankwart int(11),
-  musikwart int(11),
-  redaktionswart int(11),
-  technikwart int(11),
-  thekenwart int(11),
-  sportwart int(11),
-  stammtischwart int(11),
-  wichswart int(11),
-  wirtschaftskassenwart int(11),
-  ferienordner int(11),
-  dachverbandsberichterstatter int(11),
-  vop int(11),
-  vvop int(11),
-  vopxx int(11),
-  vopxxx int(11),
-  vopxxxx int(11),
-  PRIMARY KEY (semester)
-) ENGINE=MYISAM DEFAULT CHARSET=utf8;";
-$libDb->query($sql);
+echo "Erstelle Tabellen der Chargenverwaltung<br />";
+require_once __DIR__ . "/chargen.php";
+createChargenTabellen();
+
+echo "Speichere Standardchargen<br />";
+seedChargen();
+
+echo "Erstelle Kompatibilitätsansicht base_semester<br />";
+$libDb->query(getKompatibilitaetsViewSql());
 
 echo "Erstelle Tabelle base_veranstaltung<br />";
 $sql = "CREATE TABLE base_veranstaltung (

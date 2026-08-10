@@ -24,7 +24,7 @@ if(!is_object($libGlobal) || !$libAuth->isLoggedin())
 * deletion
 */
 if(isset($_REQUEST['aktion']) && $_REQUEST['aktion'] == 'delete'){
-	if($libGallery->hasFotowartPrivilege($libAuth->getAemter())){
+	if($libGallery->hasFotowartPrivilege()){
 		if(isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])){
 			$pictures = $libGallery->getPictures($_REQUEST['id'], 2);
 

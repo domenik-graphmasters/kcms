@@ -174,8 +174,36 @@ if(!in_array('datenpflegewart', $columnsBaseSemester)){
 	$libDb->query('ALTER TABLE base_semester ADD datenpflegewart int(11)');
 }
 
+
 /*
-* Update base_semester
+* Chargenverwaltung
+*/
+require_once __DIR__ . '/chargen.php';
+
+$libGlobal->notificationTexts[] = 'Aktualisiere die Tabellen der Chargenverwaltung';
+createChargenTabellen();
+
+$angelegteChargen = seedChargen();
+
+if($angelegteChargen > 0){
+	$libGlobal->notificationTexts[] = 'Lege ' .$angelegteChargen. ' Standardchargen an';
+}
+
+$uebernommeneBelegungen = migriereChargenBelegungen();
+$libGlobal->notificationTexts[] = 'Übernehme ' .$uebernommeneBelegungen. ' Chargenbelegungen aus der Tabelle base_semester';
+
+foreach(pruefeChargenMigration() as $fehlertext){
+	$libGlobal->errorTexts[] = 'Chargenmigration: ' .$fehlertext;
+}
+
+//die alte Tabelle wird durch die Kompatibilitäts-View ersetzt
+if(ersetzeSemesterTabelleDurchView()){
+	$libGlobal->notificationTexts[] = 'Die Tabelle base_semester wurde nach base_semester_alt gesichert und durch eine Kompatibilitätsansicht ersetzt';
+}
+
+
+/*
+* Update sys_genericstorage
 */
 $libGlobal->notificationTexts[] = 'Aktualisiere Tabelle sys_genericstorage';
 

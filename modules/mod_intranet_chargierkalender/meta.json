@@ -18,17 +18,7 @@
       "directory": "scripts/admin",
       "title": "Chargierveranstaltungen",
       "accessRestriction": {
-        "aemter": [
-          "internetwart",
-          "datenpflegewart",
-          "senior",
-          "consenior",
-          "scriptor",
-          "fuchsmajor",
-          "fuchsmajor2",
-          "quaestor",
-          "jubelsenior"
-        ]
+        "rechte": ["chargierkalender"]
       }
     },
     {
@@ -37,17 +27,7 @@
       "directory": "scripts/admin",
       "title": "Chargierveranstaltung",
       "accessRestriction": {
-        "aemter": [
-          "internetwart",
-          "datenpflegewart",
-          "senior",
-          "consenior",
-          "scriptor",
-          "fuchsmajor",
-          "fuchsmajor2",
-          "quaestor",
-          "jubelsenior"
-        ]
+        "rechte": ["chargierkalender"]
       }
     }
   ],
