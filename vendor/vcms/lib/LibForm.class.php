@@ -26,6 +26,59 @@ class LibForm
 
     var $colInput = 9;
 
+    var $mitgliederOptionen;
+
+    /*
+     * Die Auswahlliste der Mitglieder, einmal je Aufruf geladen - das Semesterformular
+     * zeigt sie für jede Charge erneut.
+     */
+    function getMitgliederOptionen(): array
+    {
+        global $libDb, $libPerson;
+
+        if (is_array($this->mitgliederOptionen)) {
+            return $this->mitgliederOptionen;
+        }
+
+        $this->mitgliederOptionen = [];
+
+        $stmt = $libDb->prepare(
+            "SELECT id, anrede, name, vorname, titel, rang, praefix, suffix, gruppe FROM base_person ORDER BY name, vorname"
+        );
+        $stmt->execute();
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $this->mitgliederOptionen[$row["id"]] =
+                $libPerson->formatNameString(
+                    $row["anrede"], $row["titel"], $row["rang"], $row["vorname"],
+                    $row["praefix"], $row["name"], $row["suffix"], 7
+                ) . " [" . $row["gruppe"] . "]";
+        }
+
+        return $this->mitgliederOptionen;
+    }
+
+    /*
+     * Nur das Auswahlfeld, ohne Zeilenrahmen - für Masken mit eigenem Layout.
+     */
+    function printMitgliederSelect(string $name, ?string $activeElementId = ""): void
+    {
+        echo '<select name="' . $name . '" class="form-select">';
+        echo '<option value=""></option>';
+
+        foreach ($this->getMitgliederOptionen() as $id => $bezeichnung) {
+            echo '<option value="' . $id . '"';
+
+            if ($activeElementId == $id) {
+                echo ' selected="selected"';
+            }
+
+            echo ">" . $bezeichnung . "</option>";
+        }
+
+        echo "</select>";
+    }
+
     private function printDisabledString($disabled)
     {
         if ($disabled) {
@@ -241,7 +294,7 @@ class LibForm
     function printMitgliederDropDownBox(
         string $name,
         string $label,
-        string $activeElementId = "",
+        ?string $activeElementId = "",
         bool $allowNull = true,
         bool $disabled = false
     ): void {
@@ -271,32 +324,14 @@ class LibForm
             echo '<option value=""></option>';
         }
 
-        $stmt = $libDb->prepare(
-            "SELECT id, anrede, name, vorname, titel, rang, praefix, suffix, gruppe FROM base_person ORDER BY name, vorname"
-        );
-        $stmt->execute();
+        foreach ($this->getMitgliederOptionen() as $id => $bezeichnung) {
+            echo '<option value="' . $id . '"';
 
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo '<option value="' . $row["id"] . '"';
-
-            if ($activeElementId == $row["id"]) {
+            if ($activeElementId == $id) {
                 echo ' selected="selected"';
             }
 
-            echo ">" .
-                $libPerson->formatNameString(
-                    $row["anrede"],
-                    $row["titel"],
-                    $row["rang"],
-                    $row["vorname"],
-                    $row["praefix"],
-                    $row["name"],
-                    $row["suffix"],
-                    7
-                ) .
-                " [" .
-                $row["gruppe"] .
-                "]</option>";
+            echo ">" . $bezeichnung . "</option>";
         }
 
         echo "</select></div>";
@@ -388,19 +423,16 @@ class LibForm
             echo '<option value=""></option>';
         }
 
-        $stmt = $libDb->prepare(
-            "SELECT semester FROM base_semester ORDER BY SUBSTRING(semester, 3) DESC"
-        );
-        $stmt->execute();
+        global $libCharge;
 
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo '<option value="' . $row["semester"] . '"';
+        foreach ($libCharge->getSemester() as $semester) {
+            echo '<option value="' . $semester . '"';
 
-            if ($selectedSemester == $row["semester"]) {
+            if ($selectedSemester == $semester) {
                 echo ' selected="selected"';
             }
 
-            echo ">" . $row["semester"] . "</option>";
+            echo ">" . $semester . "</option>";
         }
 
         echo "</select></div>";

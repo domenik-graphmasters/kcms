@@ -160,15 +160,19 @@ if ($formSent && !$formError) {
     $text .= PHP_EOL;
     $text .= "MBuH,";
 
-    $stmt = $libDb->prepare(
-        "SELECT internetwart FROM base_semester ORDER BY SUBSTRING(semester, 3) DESC LIMIT 1"
-    );
-    $stmt->execute();
-
     $internetwartId = null;
-    if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $internetwartId = $row["internetwart"];
-    } else {
+
+    foreach (
+        $libCharge->getLetzteBelegungenMitRecht(
+            \vcms\LibSecurityManager::RECHT_SYSTEMVERWALTUNG
+        )
+        as $belegung
+    ) {
+        $internetwartId = $belegung["person"];
+        break;
+    }
+
+    if ($internetwartId === null) {
         echo "InternetwartId nicht gefunden";
     }
 

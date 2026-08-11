@@ -25,7 +25,7 @@ if(!$libGenericStorage->attributeExistsInCurrentModule('check_file_permissions')
 }
 
 
-if(in_array('internetwart', $libAuth->getAemter())){
+if($libAuth->hasRecht(\vcms\LibSecurityManager::RECHT_SYSTEMVERWALTUNG)){
 	/*
 	* output
 	*/

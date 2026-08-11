@@ -15,17 +15,7 @@
       "directory": "scripts/admin",
       "title": "Ankündigungen",
       "accessRestriction": {
-        "aemter": [
-          "internetwart",
-          "datenpflegewart",
-          "senior",
-          "consenior",
-          "scriptor",
-          "fuchsmajor",
-          "fuchsmajor2",
-          "quaestor",
-          "jubelsenior"
-        ]
+        "rechte": ["ankuendigungen"]
       }
     },
     {
@@ -34,17 +24,7 @@
       "directory": "scripts/admin",
       "title": "Ankündigung",
       "accessRestriction": {
-        "aemter": [
-          "internetwart",
-          "datenpflegewart",
-          "senior",
-          "consenior",
-          "scriptor",
-          "fuchsmajor",
-          "fuchsmajor2",
-          "quaestor",
-          "jubelsenior"
-        ]
+        "rechte": ["ankuendigungen"]
       }
     }
   ],

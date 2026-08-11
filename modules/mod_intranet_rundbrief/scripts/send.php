@@ -181,10 +181,25 @@ if(!isset($_POST['nachricht']) || $_POST['nachricht'] == '' || !isset($_POST['su
 	//add Fuchsmajor
 	if(isset($_POST['fuchsia']) && (!isset($_POST['burschen']))){
 		$vorstand = $libAssociation->getAnsprechbarerAktivenVorstandIds();
+		$fuchsmajore = array_merge($vorstand['fuchsmajor'], $vorstand['fuchsmajor2']);
 
-		$stmt = $libDb->prepare("SELECT anrede, titel, rang, vorname, praefix, name, suffix, email FROM base_person, mod_rundbrief_empfaenger WHERE (base_person.id = :fuchsmajor OR base_person.id = :fuchsmajor2) AND base_person.id = mod_rundbrief_empfaenger.id AND gruppe != 'X' AND gruppe != 'T' AND gruppe != 'V' AND empfaenger=1");
-		$stmt->bindValue(':fuchsmajor', $vorstand['fuchsmajor'], PDO::PARAM_INT);
-		$stmt->bindValue(':fuchsmajor2', $vorstand['fuchsmajor2'], PDO::PARAM_INT);
+		//jede Fuchsmajorcharge darf mehrfach besetzt sein
+		$platzhalter = array();
+
+		for($i = 0; $i < count($fuchsmajore); $i++){
+			$platzhalter[] = ':fuchsmajor' .$i;
+		}
+
+		if(count($platzhalter) == 0){
+			$platzhalter[] = '0';
+		}
+
+		$stmt = $libDb->prepare("SELECT anrede, titel, rang, vorname, praefix, name, suffix, email FROM base_person, mod_rundbrief_empfaenger WHERE base_person.id IN (" .implode(', ', $platzhalter). ") AND base_person.id = mod_rundbrief_empfaenger.id AND gruppe != 'X' AND gruppe != 'T' AND gruppe != 'V' AND empfaenger=1");
+
+		for($i = 0; $i < count($fuchsmajore); $i++){
+			$stmt->bindValue(':fuchsmajor' .$i, $fuchsmajore[$i], PDO::PARAM_INT);
+		}
+
 		$stmt->execute();
 
 		while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
@@ -249,7 +264,7 @@ function sendMail($fromName, $subject, $replyEmail, $message, $recipientsArray, 
 	$mail->addReplyTo($replyEmail);
 	$mail->Body = stripslashes($message);
 
-	if(!istImVorstand($libAuth->getAemter())){
+	if(!istImVorstand()){
 		// low priority
 		$mail->Priority = 5;
 	}
@@ -267,17 +282,8 @@ function sendMail($fromName, $subject, $replyEmail, $message, $recipientsArray, 
 	}
 }
 
-function istImVorstand($aemter){
-	if(!is_array($aemter)){
-		return false;
-	}
+function istImVorstand(){
+	global $libAuth;
 
-	$vorstandsAemter = array('senior', 'consenior', 'fuchsmajor', 'fuchsmajor2', 'scriptor', 'quaestor', 'jubelsenior', 'ahv_senior', 'ahv_consenior', 'ahv_keilbeauftragter', 'ahv_scriptor', 'ahv_quaestor');
-	$vorstandsAemterOfPerson = array_intersect($aemter, $vorstandsAemter);
-
-	if(count($vorstandsAemterOfPerson) > 0){
-		return true;
-	} else {
-		return false;
-	}
+	return $libAuth->hasRecht('rundbriefversand');
 }

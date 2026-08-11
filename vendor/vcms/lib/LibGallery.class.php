@@ -172,13 +172,10 @@ class LibGallery{
 		return $result;
 	}
 
-	function hasFotowartPrivilege($aemterArrayOfUser){
-		$priviliegedAemter = array('fotowart', 'internetwart', 'datenpflegewart', 'senior', 'consenior',
-			'fuchsmajor', 'fuchsmajor2', 'scriptor', 'quaestor', 'jubelsenior');
-		$privilegedAemterOfUser = array_intersect($priviliegedAemter, $aemterArrayOfUser);
-		$numberOfPrivilegedAemterOfUser = count($privilegedAemterOfUser);
+	function hasFotowartPrivilege($aemterArrayOfUser = null){
+		global $libAuth;
 
-		return $numberOfPrivilegedAemterOfUser > 0;
+		return $libAuth->hasRecht(\vcms\LibSecurityManager::RECHT_GALERIEVERWALTUNG);
 	}
 
 	function setPublicityLevel($eventId, $pictureId, $accessString){

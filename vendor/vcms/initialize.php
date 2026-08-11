@@ -56,6 +56,7 @@ if (isset($_COOKIE[session_name()])) {
 $libConfig = new LibConfig();
 
 $libAssociation = new \vcms\LibAssociation();
+$libCharge = new \vcms\LibCharge();
 $libCronjobs = new \vcms\LibCronjobs();
 $libDb = new \vcms\LibDb();
 $libEvent = new \vcms\LibEvent();

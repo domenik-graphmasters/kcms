@@ -184,36 +184,24 @@ class LibAssociation
             $vorstandssemester = $libTime->getSemesterName();
         }
 
-        $stmt = $libDb->prepare(
-            "SELECT senior, jubelsenior, consenior, fuchsmajor, fuchsmajor2, scriptor, quaestor FROM base_semester WHERE semester = :semester"
-        );
-        $stmt->bindValue(":semester", $vorstandssemester);
-        $stmt->execute();
+        /*
+         * Eine Charge darf mehrfach besetzt sein, deshalb je Rolle eine Liste von Personen.
+         */
+        global $libCharge;
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
+        $vorstand = [];
 
-    function getValideInternetWarte()
-    {
-        global $libDb;
-
-        // ein valider Internetwart
-        // 1. muss als solcher mindestens einmal in einem Semester angegeben worden sein
-        // 2. muss eine E-Mail-Adresse und einen Passwort-Hash haben
-        // 3. darf nicht in der Gruppe T oder X (tot oder ausgetreten) sein
-
-        $internetwarte = [];
-
-        $stmt = $libDb->prepare(
-            'SELECT COUNT(*) AS anzahlsemester, base_person.id FROM base_person, base_semester WHERE base_semester.internetwart = base_person.id AND gruppe != "X" AND gruppe != "T" AND gruppe != "C" AND gruppe != "W" AND gruppe != "G" AND email IS NOT NULL AND email != "" AND password_hash IS NOT NULL AND password_hash != "" GROUP BY id'
-        );
-        $stmt->execute();
-
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $internetwarte[$row["id"]] = $row["anzahlsemester"];
+        foreach (
+            ["senior", "jubelsenior", "consenior", "fuchsmajor", "fuchsmajor2",
+             "scriptor", "quaestor"] as $rolle
+        ) {
+            $vorstand[$rolle] = $libCharge->getPersonenMitRolle(
+                $rolle,
+                $vorstandssemester
+            );
         }
 
-        return $internetwarte;
+        return $vorstand;
     }
 
     function importAssociations()

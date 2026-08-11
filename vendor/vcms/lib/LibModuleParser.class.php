@@ -227,8 +227,12 @@ class LibModuleParser
     function parseAccessRestrictionJson(
         array $accessRestrictionJson
     ): LibAccessRestriction {
+        //aemter ist die veraltete Notation und wird gegen die Rollen der Chargen geprüft
         $aemter = isset($accessRestrictionJson["aemter"])
             ? $accessRestrictionJson["aemter"]
+            : "";
+        $rechte = isset($accessRestrictionJson["rechte"])
+            ? $accessRestrictionJson["rechte"]
             : "";
         $gruppen = isset($accessRestrictionJson["gruppen"])
             ? $accessRestrictionJson["gruppen"]
@@ -236,7 +240,8 @@ class LibModuleParser
 
         $accessRestriction = new \vcms\module\LibAccessRestriction(
             $gruppen,
-            $aemter
+            $aemter,
+            $rechte
         );
         return $accessRestriction;
     }

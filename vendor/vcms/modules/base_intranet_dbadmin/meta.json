@@ -7,7 +7,9 @@
 			"directory": "scripts/person",
 			"title": "Personen",
 			"accessRestriction": {
-				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+				"rechte": [
+					"mitgliederverwaltung"
+				]
 			}
 		},
 		{
@@ -16,7 +18,9 @@
 			"directory": "scripts/person",
 			"title": "Person",
 			"accessRestriction": {
-				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+				"rechte": [
+					"mitgliederverwaltung"
+				]
 			}
 		},
 		{
@@ -25,7 +29,9 @@
 			"directory": "scripts/semester",
 			"title": "Semester",
 			"accessRestriction": {
-				"aemter": ["internetwart", "datenpflegewart"]
+				"rechte": [
+					"stammdaten"
+				]
 			}
 		},
 		{
@@ -34,7 +40,31 @@
 			"directory": "scripts/semester",
 			"title": "Semester",
 			"accessRestriction": {
-				"aemter": ["internetwart", "datenpflegewart"]
+				"rechte": [
+					"stammdaten"
+				]
+			}
+		},
+		{
+			"pid": "intranet_admin_chargen",
+			"file": "chargen.php",
+			"directory": "scripts/chargen",
+			"title": "Chargen",
+			"accessRestriction": {
+				"rechte": [
+					"systemverwaltung"
+				]
+			}
+		},
+		{
+			"pid": "intranet_admin_charge",
+			"file": "charge.php",
+			"directory": "scripts/chargen",
+			"title": "Charge",
+			"accessRestriction": {
+				"rechte": [
+					"systemverwaltung"
+				]
 			}
 		},
 		{
@@ -43,7 +73,9 @@
 			"directory": "scripts/event",
 			"title": "Veranstaltungen",
 			"accessRestriction": {
-				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+				"rechte": [
+					"mitgliederverwaltung"
+				]
 			}
 		},
 		{
@@ -52,7 +84,9 @@
 			"directory": "scripts/event",
 			"title": "Veranstaltung",
 			"accessRestriction": {
-				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+				"rechte": [
+					"mitgliederverwaltung"
+				]
 			}
 		},
 		{
@@ -61,7 +95,9 @@
 			"directory": "scripts/association",
 			"title": "Vereine",
 			"accessRestriction": {
-				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+				"rechte": [
+					"mitgliederverwaltung"
+				]
 			}
 		},
 		{
@@ -70,7 +106,9 @@
 			"directory": "scripts/association",
 			"title": "Verein",
 			"accessRestriction": {
-				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+				"rechte": [
+					"mitgliederverwaltung"
+				]
 			}
 		},
 		{
@@ -79,7 +117,9 @@
 			"directory": "scripts/vip",
 			"title": "Vips",
 			"accessRestriction": {
-				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+				"rechte": [
+					"mitgliederverwaltung"
+				]
 			}
 		},
 		{
@@ -88,7 +128,9 @@
 			"directory": "scripts/vip",
 			"title": "Vip",
 			"accessRestriction": {
-				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+				"rechte": [
+					"mitgliederverwaltung"
+				]
 			}
 		},
 		{
@@ -97,7 +139,9 @@
 			"directory": "scripts/membership",
 			"title": "Vereinsmitgliedschaften",
 			"accessRestriction": {
-				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+				"rechte": [
+					"mitgliederverwaltung"
+				]
 			}
 		},
 		{
@@ -106,7 +150,9 @@
 			"directory": "scripts/membership",
 			"title": "Vereinsmitgliedschaft",
 			"accessRestriction": {
-				"aemter": ["internetwart", "datenpflegewart", "senior", "scriptor", "ahv_senior", "ahv_scriptor"]
+				"rechte": [
+					"mitgliederverwaltung"
+				]
 			}
 		},
 		{
@@ -115,7 +161,9 @@
 			"directory": "scripts",
 			"title": "Gruppen",
 			"accessRestriction": {
-				"aemter": ["internetwart", "datenpflegewart"]
+				"rechte": [
+					"stammdaten"
+				]
 			}
 		},
 		{
@@ -124,7 +172,9 @@
 			"directory": "scripts",
 			"title": "Status",
 			"accessRestriction": {
-				"aemter": ["internetwart", "datenpflegewart"]
+				"rechte": [
+					"stammdaten"
+				]
 			}
 		},
 		{
@@ -133,7 +183,9 @@
 			"directory": "scripts",
 			"title": "Regionen",
 			"accessRestriction": {
-				"aemter": ["internetwart", "datenpflegewart"]
+				"rechte": [
+					"stammdaten"
+				]
 			}
 		}
 	],
@@ -154,6 +206,12 @@
 					"name": "Semester",
 					"type": "menu_entry",
 					"position": 300
+				},
+				{
+					"pid": "intranet_admin_chargen",
+					"name": "Chargen",
+					"type": "menu_entry",
+					"position": 350
 				},
 				{
 					"pid": "intranet_admin_events",

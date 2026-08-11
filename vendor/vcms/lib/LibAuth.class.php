@@ -32,7 +32,9 @@ class LibAuth
     var $nachname;
 
     var $gruppe;
-    var $aemter = [];
+    var $rechte = [];
+    var $rollen = [];
+    var $chargen = [];
     var $possibleGruppen = [];
 
     var $isLoggedIn = false;
@@ -46,6 +48,7 @@ class LibAuth
             $libDb,
             $libPerson,
             $libTime,
+            $libCharge,
             $libSecurityManager,
             $libString;
 
@@ -62,7 +65,9 @@ class LibAuth
         $this->nachname = "";
 
         $this->gruppe = "";
-        $this->aemter = [];
+        $this->rechte = [];
+        $this->rollen = [];
+        $this->chargen = [];
         $this->possibleGruppen = [];
 
         $this->isLoggedIn = false;
@@ -186,63 +191,52 @@ class LibAuth
             $this->nachname = $row["name"];
             $this->gruppe = $row["gruppe"];
 
-            //b. determine functions
-            $stmt = $libDb->prepare(
-                "SELECT * FROM base_semester WHERE semester=:semester OR semester=:semester_next"
-            );
-            $stmt->bindValue(":semester", $libTime->getSemesterName());
-            $stmt->bindValue(
-                ":semester_next",
-                $libTime->getFollowingSemesterName()
-            );
-            $stmt->execute();
+            //b. determine charges, roles and rights of the current and next semester
+            $semesters = [
+                $libTime->getSemesterName(),
+                $libTime->getFollowingSemesterName(),
+            ];
 
-            //for all semesters
-            while ($semesterRow = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $possibleAemter = $libSecurityManager->getPossibleAemter();
+            $this->chargen = $libCharge->getChargenVonPerson(
+                $row["id"],
+                $semesters
+            );
+            $this->rechte = $libCharge->getRechteVonPerson(
+                $row["id"],
+                $semesters
+            );
 
-                //for all functions
-                foreach ($possibleAemter as $amt) {
-                    //does the member have the function in the semester?
-                    if ($semesterRow[$amt] == $row["id"]) {
-                        //save this function
-                        $this->aemter[] = $amt;
-                    }
+            foreach ($this->chargen as $charge) {
+                if ($charge["rolle"] != "") {
+                    $this->rollen[] = $charge["rolle"];
                 }
             }
 
-            //for the last 20 semesters
-            $semesterIterator = $libTime->getSemesterName();
+            /*
+             * Solange niemand nachgerückt ist, behält der zuletzt amtierende
+             * Systemverwalter seinen Zugang - sonst sperrt sich ein Verein aus,
+             * der die Charge einmal nicht besetzt.
+             */
+            foreach (
+                $libCharge->getLetzteBelegungenMitRecht(
+                    $libSecurityManager::RECHT_SYSTEMVERWALTUNG
+                )
+                as $belegung
+            ) {
+                if ($belegung["person"] != $row["id"]) {
+                    continue;
+                }
 
-            for ($i = 0; $i < 20; $i++) {
-                $semesterIterator = $libTime->getPreviousSemesterNameOfSemester(
-                    $semesterIterator
-                );
+                $this->rechte[] = $libSecurityManager::RECHT_SYSTEMVERWALTUNG;
 
-                //select the internetwart in that semester
-                $stmt = $libDb->prepare(
-                    "SELECT internetwart FROM base_semester WHERE semester=:semester"
-                );
-                $stmt->bindValue(":semester", $semesterIterator);
-                $stmt->execute();
-                $stmt->bindColumn("internetwart", $internetwart);
-                $stmt->fetch();
-
-                //if there is an internetwart given
-                if ($internetwart) {
-                    //if the authenticating user is this internetwart
-                    if ($internetwart == $row["id"]) {
-                        //save this function
-                        $this->aemter[] = "internetwart";
-                    }
-
-                    //we only want to do this for the most recent internetwart -> break
-                    break;
+                //auch die Rolle, damit Module mit alter aemter-Notation weiter greifen
+                if ($belegung["rolle"] != "") {
+                    $this->rollen[] = $belegung["rolle"];
                 }
             }
 
-            //remove redundant functions from multiple semesters
-            $this->aemter = array_unique($this->aemter);
+            $this->rechte = array_values(array_unique($this->rechte));
+            $this->rollen = array_values(array_unique($this->rollen));
 
             //c. log successful login attempt
             $stmt = $libDb->prepare(
@@ -424,13 +418,65 @@ class LibAuth
         return $this->gruppe;
     }
 
+    function getRechte()
+    {
+        return $this->rechte;
+    }
+
+    function hasRecht($recht)
+    {
+        return in_array($recht, $this->rechte);
+    }
+
+    /*
+     * Die Rollen der gehaltenen Chargen, also die alten Amtsbezeichnungen.
+     */
+    function getRollen()
+    {
+        return $this->rollen;
+    }
+
+    function getChargen()
+    {
+        return $this->chargen;
+    }
+
+    /*
+     * Die Verzeichnisnamen der gehaltenen Chargen, für das Dateienmodul.
+     */
+    function getOrdnernamen()
+    {
+        $ordnernamen = [];
+
+        foreach ($this->chargen as $charge) {
+            if ($charge["ordnername"] != "") {
+                $ordnernamen[] = $charge["ordnername"];
+            }
+        }
+
+        return array_values(array_unique($ordnernamen));
+    }
+
+    /*
+     * Veraltet, durch getRollen() ersetzt. Bleibt erhalten, damit Module mit der
+     * alten Ämternotation weiterlaufen.
+     */
     function getAemter()
     {
-        return $this->aemter;
+        return $this->getRollen();
     }
 
     function isLoggedin()
     {
+        /*
+         * Sitzung aus der Zeit vor der Chargenumstellung? Sie bringt nur die alte
+         * Ämterliste mit und hätte damit keinerlei Rechte. Statt die Person still
+         * auszusperren, wird sie zur Neuanmeldung geschickt.
+         */
+        if (isset($this->aemter)) {
+            return false;
+        }
+
         if (
             $this->isLoggedIn &&
             is_numeric($this->id) &&

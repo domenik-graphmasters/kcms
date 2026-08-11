@@ -7,7 +7,7 @@
 			"directory": "scripts",
 			"title": "Module",
 			"accessRestriction": {
-				"aemter": ["internetwart"]
+				"rechte": ["systemverwaltung"]
 			}
 		}
 	],

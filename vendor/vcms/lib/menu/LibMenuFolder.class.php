@@ -109,14 +109,14 @@ class LibMenuFolder extends LibMenuElement{
 		}
 	}
 
-	function reduceByAccessRestriction($gruppe, $aemter){
+	function reduceByAccessRestriction($gruppe, $rollen, $rechte){
 		//no foreach, as otherwise php4 does copy-by-value
 		for($i=0; $i<count($this->elements); $i++){
 			$element = $this->elements[$i];
 
 			//menu folder?
 			if($element->getType() == 2){
-				$element->reduceByAccessRestriction($gruppe, $aemter);
+				$element->reduceByAccessRestriction($gruppe, $rollen, $rechte);
 			}
 		}
 
@@ -133,7 +133,7 @@ class LibMenuFolder extends LibMenuElement{
 				$accessRestriction = $element->getAccessRestriction();
 
 				//restrict
-				if($accessRestriction->isFulfilledBy($gruppe, $aemter)){
+				if($accessRestriction->isFulfilledBy($gruppe, $rollen, $rechte)){
 					$elementsNew[] = $element;
 				}
 			}

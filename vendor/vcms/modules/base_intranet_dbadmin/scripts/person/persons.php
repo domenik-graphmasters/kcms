@@ -30,19 +30,16 @@ if($libAuth->isLoggedin()){
 	if(isset($_GET['aktion']) && $_GET['aktion'] == 'delete'){
 		if(isset($_GET['id']) && $_GET['id'] != ''){
 			//Ist der Bearbeiter kein Internetwart?
-			if(!in_array('internetwart', $libAuth->getAemter()) && !in_array('datenpflegewart', $libAuth->getAemter())){
+			if(!$libAuth->hasRecht(\vcms\LibSecurityManager::RECHT_BENUTZERKONTEN)){
 				die('Diese Aktion darf nur von einem Internetwart ausgeführt werden.');
 			}
 
-			//Problemfall Internetwart: Dieser darf nie gelöscht werden, um immer einen Admin im System zu haben
-			$stmt = $libDb->prepare('SELECT COUNT(*) AS number FROM base_semester WHERE internetwart=:internetwart');
-			$stmt->bindValue(':internetwart', $_REQUEST['id'], PDO::PARAM_INT);
-			$stmt->execute();
-			$stmt->bindColumn('number', $anzahl);
-			$stmt->fetch();
+			//Systemverwalter dürfen nie gelöscht werden, damit immer ein Administrator im System bleibt
+			$anzahl = $libCharge->zaehleSemesterMitRecht($_REQUEST['id'],
+				\vcms\LibSecurityManager::RECHT_SYSTEMVERWALTUNG);
 
 			if($anzahl > 0){
-				$libGlobal->errorTexts[] = 'Die Person kann nicht gelöscht werden, weil sie ein Internetwart in mindestens einem Semester ist. Internetwarte können nicht gelöscht werden, weil sie die Administratoren sind und im Extremfall somit kein Administrator im System existiert. Falls diese Person gelöscht werden soll, so muss sie erst manuell von einem Internetwart in allen Semestern aus den Internetwartsposten entfernt werden.';
+				$libGlobal->errorTexts[] = 'Die Person kann nicht gelöscht werden, weil sie in mindestens einem Semester eine Charge mit dem Recht zur Systemverwaltung innehat. Solche Personen sind die Administratoren; im Extremfall bliebe sonst kein Administrator im System. Trage sie zuerst in allen Semestern aus diesen Chargen aus.';
 			} else {
 				//Verwendung der Person in anderen Tabellen prüfen
 				//diese Einträge vorher löschen oder vom Mitglied befreien
@@ -57,12 +54,8 @@ if($libAuth->isLoggedin()){
 				$stmt->bindValue(':id', $_REQUEST['id'], PDO::PARAM_INT);
 				$stmt->execute();
 
-				//Semesterämter löschen
-				foreach($libSecurityManager->getPossibleAemter() as $amt){
-					$stmt = $libDb->prepare('UPDATE base_semester SET '.$amt.' = NULL WHERE '.$amt.'=:id');
-					$stmt->bindValue(':id', $_REQUEST['id'], PDO::PARAM_INT);
-					$stmt->execute();
-				}
+				//Chargenbelegungen löschen
+				$libCharge->loescheBelegungenVonPerson($_REQUEST['id']);
 
 				//Leibvaterangaben entfernen
 				$stmt = $libDb->prepare('UPDATE base_person SET leibmitglied = NULL WHERE leibmitglied=:id');
@@ -111,7 +104,7 @@ if($libAuth->isLoggedin()){
 
     echo '<div class="row">';
 
-	if(in_array('internetwart', $libAuth->getAemter()) || in_array('datenpflegewart', $libAuth->getAemter())){
+	if($libAuth->hasRecht(\vcms\LibSecurityManager::RECHT_BENUTZERKONTEN)){
         echo '<div class="col-12 col-xl-6">';
         echo '<div class="card mt-3">';
         echo '<div class="card-body">';
