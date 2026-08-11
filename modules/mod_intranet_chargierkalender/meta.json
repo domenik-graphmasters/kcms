@@ -1,6 +1,6 @@
 {
   "moduleName": "Chargierkalender",
-  "version": 3.0,
+  "version": 4.0,
   "installScript": "install/install.php",
   "pages": [
     {

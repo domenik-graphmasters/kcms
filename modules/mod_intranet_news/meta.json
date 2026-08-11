@@ -1,6 +1,6 @@
 {
   "moduleName": "Neuigkeiten",
-  "version": 3.0,
+  "version": 4.0,
   "installScript": "install/install.php",
   "updateScript": "install/update.php",
   "pages": [
